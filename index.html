@@ -2452,7 +2452,65 @@
             <hr class="mt-5 border-secondary" style="opacity: 0.2;">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-light small text-center gap-2">
                 <div>&copy; 2026 Dahira Sope Serigne Saliou (D3S). Tous droits réservés.</div>
-                <div>Fait avec <i class="fas fa-heart text-gold"></i> par <a href="https://ndiogouba.versel.app" class="text-decoration-underline">O_melhor_Dev</a></div>
+                <div class="footer-credit">
+                    <span>Fait avec</span>
+                    <i class="fas fa-heart text-gold"></i>
+                    <span>par</span>
+                    <a href="https://ndiogouba.versel.app" target="_blank" rel="noopener noreferrer" class="credit-link">
+                        <i class="fas fa-code"></i>
+                        O_melhor_Dev
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <style>
+                    .footer-credit {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        color: rgba(255, 255, 255, 0.7);
+                        font-size: 0.85rem;
+                    }
+
+                    .credit-link {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        color: var(--accent-gold);
+                        text-decoration: none;
+                        font-weight: 600;
+                        background: rgba(212, 175, 55, 0.08);
+                        padding: 4px 12px;
+                        border-radius: 50px;
+                        border: 1px solid rgba(212, 175, 55, 0.25);
+                        transition: all 0.3s ease;
+                        font-size: 0.82rem;
+                    }
+
+                    .credit-link i {
+                        font-size: 0.7rem;
+                        opacity: 0.8;
+                    }
+
+                    .credit-link i:last-child {
+                        font-size: 0.6rem;
+                        opacity: 0.5;
+                    }
+
+                    .credit-link:hover {
+                        background: var(--gradient-gold);
+                        color: var(--primary-green);
+                        border-color: var(--accent-gold);
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+                    }
+
+                    .credit-link:hover i {
+                        opacity: 1;
+                    }
+                </style>
+                    
             </div>
         </div>
     </footer>
