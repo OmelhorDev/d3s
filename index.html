@@ -1,0 +1,2862 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="description" content="Dahira Sope Serigne Saliou (D3S) - Espace spirituel, fraternel et éducatif dédié à l'héritage de Serigne Saliou.">
+    <meta name="theme-color" content="#0a4d3a">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <title>Dahira Sope Serigne Saliou (D3S)</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="images/logo.png" type="image/png">
+
+    <style>
+        :root {
+            --primary-green: #0a4d3a;
+            --primary-green-light: #0d5c46;
+            --secondary-green: #1a7a5e;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #e8c458;
+            --accent-blue: #2c5e8a;
+            --text-dark: #1a1a1a;
+            --text-muted: #6c757d;
+            --bg-cream: #faf8f3;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 50px rgba(10, 77, 58, 0.15);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f4d47c 50%, #d4af37 100%);
+            --gradient-green: linear-gradient(135deg, #0a4d3a 0%, #0d5c46 50%, #1a7a5e 100%);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+        }
+        
+        html, body {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+        
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: var(--bg-cream);
+            line-height: 1.7;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: 'Marcellus', serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .font-arabic { font-family: 'Amiri', serif; }
+
+        img, iframe, video { 
+            max-width: 100%; 
+            height: auto; 
+        }
+
+        .honeypot-field {
+            position: absolute !important;
+            left: -9999px !important;
+            width: 1px !important;
+            height: 1px !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* ============ BOUTON BACK TO TOP ============ */
+        #backToTop {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 52px;
+            height: 52px;
+            background: var(--gradient-green);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 9998;
+            box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        #backToTop::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            animation: pulseRing 2.5s infinite;
+        }
+
+        #backToTop:hover {
+            color: var(--primary-green);
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+            animation: none;
+        }
+
+        #backToTop:hover::before { transform: scale(1); }
+
+        #backToTop:active { transform: translateY(-2px) scale(1.02); }
+
+        #backToTop i {
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        #backToTop:hover i { 
+            transform: translateY(-3px);
+            animation: bounceArrow 0.6s ease infinite alternate;
+        }
+
+        #backToTop .tooltip-text {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: var(--primary-green);
+            color: var(--accent-gold);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            margin-bottom: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        #backToTop .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 18px;
+            border: 6px solid transparent;
+            border-top-color: var(--primary-green);
+        }
+
+        #backToTop:hover .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.6); }
+            70% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        @keyframes bounceArrow {
+            from { transform: translateY(-3px); }
+            to { transform: translateY(-7px); }
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                width: 46px;
+                height: 46px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1rem;
+            }
+            #backToTop .tooltip-text { display: none; }
+        }
+
+        @media (max-width: 375px) {
+            #backToTop {
+                width: 42px;
+                height: 42px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ============ POPUP ============ */
+        #welcomePopup {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 77, 58, 0.94);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        #welcomePopup.active { opacity: 1; visibility: visible; }
+
+        #welcomePopup .popup-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 3px solid var(--accent-gold);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #welcomePopup.active .popup-image-wrapper { transform: scale(1); }
+
+        #welcomePopup .popup-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 88vh;
+            object-fit: contain;
+        }
+
+        #welcomePopup .popup-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        #welcomePopup .popup-close:hover,
+        #welcomePopup .popup-close:active { 
+            transform: rotate(90deg) scale(1.1); 
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--gradient-green);
+            color: white;
+            padding: 6px 0;
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        .top-bar a { 
+            color: rgba(255,255,255,0.85); 
+            text-decoration: none; 
+            transition: color 0.3s; 
+            display: inline-block;
+            padding: 2px 4px;
+        }
+        
+        .top-bar a:hover { color: var(--accent-gold); }
+
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            padding: 8px 0;
+            transition: all 0.4s ease;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-gold) 1;
+            width: 100%;
+        }
+
+        .navbar.scrolled { padding: 5px 0; box-shadow: var(--shadow-md); }
+
+        .navbar .container { padding-left: 12px; padding-right: 12px; }
+
+        .navbar-brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            max-width: calc(100% - 55px);
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 50%;
+            background: var(--gradient-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-family: 'Marcellus', serif;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(10, 77, 58, 0.3);
+            border: 2px solid var(--accent-gold);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .brand-text { overflow: hidden; min-width: 0; }
+
+        .brand-text h5 {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brand-text span {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 6px;
+            width: 42px;
+            height: 42px;
+            position: relative;
+            background: transparent;
+            box-shadow: none !important;
+            flex-shrink: 0;
+        }
+
+        .navbar-toggler:focus { box-shadow: none; }
+
+        .burger-icon {
+            position: relative;
+            width: 24px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .burger-icon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background: var(--primary-green);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .burger-icon span:nth-child(1) { top: 0; }
+        .burger-icon span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .burger-icon span:nth-child(3) { bottom: 0; }
+
+        .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            background: var(--accent-gold);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(3) {
+            bottom: 50%;
+            transform: translateY(50%) rotate(-45deg);
+            background: var(--accent-gold);
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin: 0 4px;
+            padding: 8px 12px !important;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after { width: 60%; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--gradient-green);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(10, 77, 58, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .btn-primary-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary-custom:hover {
+            color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary-custom:hover::before { left: 0; }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50px;
+            padding: 10px 26px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--accent-gold);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        /* HERO */
+        .hero-section {
+            position: relative;
+            padding: 70px 0 140px;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.95) 0%, rgba(13, 92, 70, 0.88) 50%, rgba(26, 122, 94, 0.85) 100%),
+                        url('images/mos2.WEBP') center/cover no-repeat;
+            color: white;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at right, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-section .container { padding-left: 15px; padding-right: 15px; }
+
+        .hero-content .badge-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--accent-gold);
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            word-wrap: break-word;
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: italic;
+        }
+
+        .hero-content .lead {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin-bottom: 25px;
+            max-width: 550px;
+            font-weight: 300;
+        }
+
+        .hero-image { position: relative; z-index: 2; }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+
+        .hero-image-wrapper img { width: 100%; height: auto; display: block; }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            padding: 12px 16px;
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            text-align: center;
+            z-index: 3;
+        }
+
+        .hero-image-badge .number {
+            font-family: 'Marcellus', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-image-badge .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        .arabic-calligraphy {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            color: rgba(212, 175, 55, 0.5);
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        /* FEATURES */
+        .features-section { 
+            margin-top: -90px; 
+            position: relative; 
+            z-index: 10;
+            padding-bottom: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px 22px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(10, 77, 58, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-gold);
+            transition: height 0.4s ease;
+        }
+
+        .feature-card:hover::before { height: 100%; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.08) 0%, rgba(212, 175, 55, 0.08) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .icon-box {
+            background: var(--gradient-green);
+            color: var(--accent-gold);
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .feature-card h4 { font-size: 1.25rem; margin-bottom: 12px; }
+        .feature-card p { font-size: 0.9rem; line-height: 1.6; }
+
+        /* Section Headers */
+        .section-label {
+            display: inline-block;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 25px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            color: var(--primary-green);
+            margin-bottom: 16px;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        /* About */
+        .about-section { padding: 70px 0; background: var(--bg-cream); position: relative; }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover { background: white; box-shadow: var(--shadow-sm); }
+
+        .value-item i {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .value-item h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+
+        .value-item p { font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+        .quote-card {
+            background: var(--gradient-green);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quote-card::before {
+            content: '\201C';
+            font-family: 'Marcellus', serif;
+            font-size: 9rem;
+            position: absolute;
+            top: -40px;
+            left: 15px;
+            opacity: 0.12;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .quote-card .author-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            object-fit: cover;
+            padding: 3px;
+            background: white;
+        }
+
+        /* Events */
+        .event-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+        .event-img-wrapper { position: relative; height: 180px; overflow: hidden; flex-shrink: 0; }
+
+        .event-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .event-card:hover .event-img-wrapper img { transform: scale(1.1); }
+
+        .event-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 77, 58, 0.7) 0%, transparent 50%);
+        }
+
+        .date-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: white;
+            color: var(--primary-green);
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 1.1;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+
+        .date-badge span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .date-badge strong {
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            font-family: 'Marcellus', serif;
+        }
+
+        .badge-category {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            min-height: 130px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.85) 0%, rgba(212, 175, 55, 0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 1.6rem;
+            transform: scale(0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay i { transform: scale(1); }
+
+        /* Testimonial */
+        .testimonial-card {
+            background: white;
+            padding: 24px 18px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+        .testimonial-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 3px solid var(--accent-gold);
+            padding: 2px;
+        }
+
+        .stars { color: var(--accent-gold); font-size: 0.75rem; margin-bottom: 10px; }
+
+        /* Resource */
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .resource-item:hover {
+            background: var(--bg-cream);
+            transform: translateX(4px);
+            border-color: var(--accent-gold);
+        }
+
+        .resource-item i { font-size: 1.4rem; flex-shrink: 0; }
+
+        .resource-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.82rem;
+            display: block;
+            word-wrap: break-word;
+        }
+
+        .resource-item a:hover { color: var(--primary-green); }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.95) 0%, rgba(13, 92, 70, 0.92) 100%),
+                        url('images/mos3.WEBP') center/cover no-repeat;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner .container { position: relative; z-index: 2; }
+
+        .cta-banner h3 {
+            font-family: 'Marcellus', serif;
+            max-width: 900px;
+            margin: 0 auto 20px;
+            font-size: 1.7rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #083528 0%, #061f17 100%);
+            color: rgba(255,255,255,0.7);
+            padding: 55px 0 25px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+        }
+
+        footer h5 {
+            color: var(--accent-gold);
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        footer ul { list-style: none; padding: 0; }
+        footer ul li { margin-bottom: 10px; }
+        footer ul li a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.82rem;
+        }
+
+        footer ul li a::before {
+            content: '›';
+            margin-right: 8px;
+            color: var(--accent-gold);
+        }
+
+        footer ul li a:hover { color: var(--accent-gold); padding-left: 5px; }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.06);
+            color: white;
+            border-radius: 50%;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-icons a:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-input {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            border-radius: 50px 0 0 50px;
+            padding: 12px 18px;
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-color: var(--accent-gold);
+            box-shadow: none;
+        }
+
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .newsletter-btn {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            border: none;
+            border-radius: 0 50px 50px 0;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        /* ============ MODAL FORMULAIRE - CORRIGÉ POUR ORDINATEUR ============ */
+        .modal {
+            padding: 0 !important;
+        }
+
+        .modal-dialog {
+            max-height: calc(100vh - 40px);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-dialog.modal-lg {
+            max-width: 800px;
+            width: calc(100% - 30px);
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(10, 77, 58, 0.3);
+            max-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .modal-header {
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            padding: 22px 25px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .modal-header::before {
+            content: '۞';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 6rem;
+            color: rgba(212, 175, 55, 0.15);
+            font-family: 'Amiri', serif;
+        }
+
+        .modal-header h5 {
+            color: white;
+            font-size: 1.15rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-header p {
+            margin: 5px 0 0;
+            font-size: 0.78rem;
+            opacity: 0.85;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1) brightness(2);
+            opacity: 0.8;
+            position: relative;
+            z-index: 3;
+        }
+
+        .modal-body {
+            padding: 25px;
+            background: var(--bg-cream);
+            overflow-y: auto;
+            flex: 1 1 auto;
+            max-height: calc(100vh - 220px);
+        }
+
+        /* Barre de défilement personnalisée pour le body du modal */
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+            display: block;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: rgba(10, 77, 58, 0.05);
+            border-radius: 10px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 10px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
+        }
+
+        .modal-footer {
+            background: white;
+            border: none;
+            padding: 18px 25px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(10, 77, 58, 0.06);
+        }
+
+        .form-floating > .form-control,
+        .form-floating > .form-select {
+            border: 1.5px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px 18px;
+            height: 56px;
+            font-size: 0.88rem;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .form-floating > .form-control:focus,
+        .form-floating > .form-select:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 4px rgba(10, 77, 58, 0.1);
+        }
+
+        .form-floating > label { padding: 16px 18px; color: var(--text-muted); font-size: 0.83rem; }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label,
+        .form-floating > .form-select ~ label {
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+
+        .form-floating > textarea.form-control {
+            height: 130px !important;
+            min-height: 130px;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            z-index: 10;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        .btn-submit {
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-gold);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-submit:hover::before { transform: translateX(0); }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message { display: none; text-align: center; padding: 25px 18px; }
+
+        .success-message .check-icon {
+            width: 65px;
+            height: 65px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .form-control.is-invalid, .form-select.is-invalid {
+            border-color: #dc3545 !important;
+            background-image: none;
+        }
+
+        .form-control.is-valid, .form-select.is-valid {
+            border-color: #198754 !important;
+            background-image: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1199px) {
+            .hero-content h1 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 991px) {
+            .hero-section { padding: 55px 0 130px; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .section-title { font-size: 2rem; }
+            .navbar-collapse {
+                background: white;
+                padding: 15px;
+                border-radius: 16px;
+                margin-top: 12px;
+                box-shadow: var(--shadow-md);
+                max-height: calc(100vh - 100px);
+                overflow-y: auto;
+            }
+            .nav-link { 
+                padding: 12px 15px !important; 
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                margin: 0;
+            }
+            .nav-link:last-child { border-bottom: none; }
+            .nav-link::after { display: none; }
+            .btn-primary-custom { margin-top: 12px; width: 100%; }
+            .cta-banner h3 { font-size: 1.4rem; }
+            .features-section { margin-top: -85px; }
+        }
+
+        @media (max-width: 767px) {
+            .top-bar { font-size: 0.68rem; padding: 5px 0; }
+            .top-bar .container { justify-content: center !important; }
+            
+            .navbar { padding: 6px 0; }
+            .brand-logo { width: 40px; height: 40px; min-width: 40px; font-size: 0.9rem; }
+            .brand-text h5 { font-size: 0.75rem; }
+            .brand-text span { font-size: 0.55rem; }
+            
+            .hero-section { padding: 40px 0 115px; }
+            .hero-content { text-align: center; margin-bottom: 25px; }
+            .hero-content .badge-hero { font-size: 0.65rem; padding: 6px 13px; margin-bottom: 14px; }
+            .hero-content h1 { font-size: 1.7rem; line-height: 1.3; margin-bottom: 14px; }
+            .hero-content .lead { font-size: 0.88rem; margin-bottom: 20px; margin-left: auto; margin-right: auto; }
+            .hero-content .d-flex.gap-3 { justify-content: center; flex-direction: column; }
+            .hero-content .btn { width: 100%; padding: 12px 18px; font-size: 0.83rem; }
+            
+            .hero-image { margin-top: 0; }
+            .hero-image-badge { bottom: -10px; right: -6px; padding: 9px 12px; border-radius: 10px; }
+            .hero-image-badge .number { font-size: 1.2rem; }
+            .hero-image-badge .label { font-size: 0.48rem; letter-spacing: 0.8px; }
+            .arabic-calligraphy { font-size: 1.5rem; bottom: 8px; right: 8px; }
+            
+            .features-section { margin-top: -70px; padding-bottom: 20px; }
+            .feature-card { padding: 22px 16px; }
+            .icon-box { width: 52px; height: 52px; font-size: 1.3rem; margin-bottom: 14px; }
+            .feature-card h4 { font-size: 1.1rem; }
+            .feature-card p { font-size: 0.83rem; }
+            
+            .section-title { font-size: 1.55rem; }
+            .section-label { font-size: 0.68rem; letter-spacing: 1.8px; padding-left: 30px; }
+            .section-label::before { width: 20px; }
+            
+            .about-section { padding: 55px 0; }
+            .quote-card { padding: 32px 22px; border-radius: 18px; }
+            .quote-card .author-img { width: 55px; height: 55px; }
+            .quote-card p { font-size: 1rem !important; }
+            
+            .event-img-wrapper { height: 170px; }
+            .date-badge { padding: 7px 10px; top: 10px; left: 10px; border-radius: 8px; }
+            .date-badge strong { font-size: 1.15rem; }
+            .date-badge span { font-size: 0.6rem; }
+            .badge-category { padding: 4px 10px; font-size: 0.6rem; bottom: 10px; right: 10px; }
+            
+            .gallery-item { min-height: 110px; }
+            
+            .testimonial-card { padding: 20px 14px; }
+            .testimonial-card img { width: 50px; height: 50px; }
+            
+            .cta-banner { padding: 45px 0; }
+            .cta-banner h3 { font-size: 1.15rem; line-height: 1.4; }
+            .cta-banner .container { padding: 0 18px; }
+            .cta-banner .btn-primary-custom { width: 100%; padding: 13px 18px; font-size: 0.85rem; }
+            .cta-banner i.fa-quote-left { font-size: 1.5rem !important; }
+            
+            footer { padding: 45px 0 20px; text-align: center; }
+            footer h5 { margin-top: 12px; }
+            .social-icons { justify-content: center; display: flex; flex-wrap: wrap; }
+            .newsletter-input { border-radius: 50px; margin-bottom: 8px; width: 100%; }
+            .newsletter-btn { border-radius: 50px; width: 100%; }
+            footer form { flex-direction: column !important; }
+            
+            /* Modal mobile */
+            .modal-dialog {
+                max-height: calc(100vh - 20px);
+                margin: 10px auto;
+            }
+            .modal-dialog.modal-lg {
+                width: calc(100% - 20px);
+            }
+            .modal-content {
+                max-height: calc(100vh - 20px);
+            }
+            .modal-body { 
+                padding: 18px; 
+                max-height: calc(100vh - 180px);
+            }
+            .modal-header { padding: 18px; }
+            .modal-header h5 { font-size: 1rem; }
+            .modal-header p { font-size: 0.72rem; }
+            .modal-footer { 
+                padding: 15px 18px 18px; 
+                flex-direction: column-reverse;
+            }
+            .modal-footer .btn { width: 100%; }
+            .btn-submit { width: 100%; padding: 13px 18px; font-size: 0.85rem; }
+            .form-floating > .form-control,
+            .form-floating > .form-select { height: 52px; font-size: 0.83rem; padding: 14px 15px; }
+            .form-floating > label { font-size: 0.78rem; padding: 14px 15px; }
+            .input-icon { right: 14px; font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section { padding: 35px 0 105px; }
+            .hero-content h1 { font-size: 1.5rem; }
+            .hero-content .lead { font-size: 0.83rem; }
+            .hero-content .badge-hero { font-size: 0.6rem; padding: 5px 11px; }
+            .section-title { font-size: 1.4rem; }
+            .cta-banner h3 { font-size: 1.05rem; }
+            .cta-banner { padding: 40px 0; }
+            .features-section { margin-top: -65px; }
+            .feature-card { padding: 20px 14px; }
+            .feature-card h4 { font-size: 1rem; }
+            .feature-card p { font-size: 0.78rem; }
+            .quote-card { padding: 28px 20px; }
+            .quote-card p { font-size: 0.95rem !important; }
+            .brand-text h5 { font-size: 0.7rem; }
+            .brand-logo { width: 38px; height: 38px; min-width: 38px; font-size: 0.85rem; }
+            .hero-image-badge { padding: 8px 10px; }
+            .hero-image-badge .number { font-size: 1.05rem; }
+            .hero-image-badge .label { font-size: 0.42rem; }
+        }
+
+        @media (max-width: 375px) {
+            .hero-content h1 { font-size: 1.35rem; }
+            .section-title { font-size: 1.28rem; }
+            .brand-text h5 { font-size: 0.65rem; }
+            .brand-text span { font-size: 0.5rem; }
+            .brand-logo { width: 36px; height: 36px; min-width: 36px; font-size: 0.8rem; }
+            .cta-banner h3 { font-size: 0.95rem; }
+            .features-section { margin-top: -60px; }
+            .hero-section { padding: 30px 0 100px; }
+            .hero-content h1 { font-size: 1.25rem; }
+            .hero-content .lead { font-size: 0.78rem; }
+            .feature-card { padding: 18px 12px; }
+            .icon-box { width: 48px; height: 48px; font-size: 1.2rem; }
+            .quote-card { padding: 25px 18px; }
+            .quote-card p { font-size: 0.9rem !important; }
+            .resource-item { padding: 10px; }
+            .resource-item i { font-size: 1.2rem; }
+            .resource-item a { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 340px) {
+            .brand-text h5 { font-size: 0.6rem; }
+            .brand-logo { width: 34px; height: 34px; min-width: 34px; font-size: 0.75rem; }
+            .hero-content h1 { font-size: 1.15rem; }
+            .section-title { font-size: 1.15rem; }
+            .hero-content .badge-hero { font-size: 0.55rem; padding: 4px 9px; }
+            .cta-banner h3 { font-size: 0.88rem; }
+            .feature-card h4 { font-size: 0.92rem; }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section { padding: 40px 0 90px; }
+            .hero-content h1 { font-size: 1.5rem; }
+            .hero-content .lead { display: none; }
+        }
+
+        .text-gold { color: var(--accent-gold); }
+        .bg-cream { background-color: var(--bg-cream); }
+
+
+        /* ============ CARTE DIEUWERIGNE - STYLE MODERNE ============ */
+        .dieuwerigne-modern {
+            position: relative;
+            background: white;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 20px 55px rgba(10, 77, 58, 0.13);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(10, 77, 58, 0.06);
+        }
+
+        .dieuwerigne-modern:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 70px rgba(10, 77, 58, 0.22);
+        }
+
+        .dieuwerigne-bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dieuwerigne-bg-pattern::before {
+            content: '۞';
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            font-family: 'Amiri', serif;
+            font-size: 6rem;
+            color: rgba(212, 175, 55, 0.08);
+            line-height: 1;
+        }
+
+        .dieuwerigne-modern-inner {
+            position: relative;
+            z-index: 1;
+            padding: 35px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .dieuwerigne-photo-section {
+            flex-shrink: 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .dieuwerigne-photo-ring {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            padding: 5px;
+            background: var(--gradient-gold);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .dieuwerigne-modern:hover .dieuwerigne-photo-ring {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .dieuwerigne-photo-ring::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px dashed rgba(212, 175, 55, 0.3);
+            animation: rotateSlow 20s linear infinite;
+        }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .dieuwerigne-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+            border: 4px solid white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dieuwerigne-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .dieuwerigne-modern:hover .dieuwerigne-photo img {
+            transform: scale(1.1);
+        }
+
+        .dieuwerigne-crown {
+            position: absolute;
+            top: -12px;
+            right: -8px;
+            width: 42px;
+            height: 42px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+            border: 3px solid white;
+            z-index: 3;
+            animation: crownPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes crownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .dieuwerigne-status {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(25, 135, 84, 0.1);
+            color: #198754;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: #198754;
+            border-radius: 50%;
+            animation: pulseDot 1.5s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.6);
+        }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(25, 135, 84, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+        }
+
+        .dieuwerigne-info-section {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dieuwerigne-header {
+            margin-bottom: 18px;
+        }
+
+        .dieuwerigne-tag {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.06) 100%);
+            color: var(--accent-gold);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .dieuwerigne-name {
+            font-family: 'Marcellus', serif;
+            font-size: 1.75rem;
+            color: var(--primary-green);
+            margin-bottom: 6px;
+            line-height: 1.15;
+            letter-spacing: 0.3px;
+        }
+
+        .dieuwerigne-subtitle {
+            color: var(--text-muted);
+            font-size: 0.83rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dieuwerigne-subtitle::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        .dieuwerigne-message {
+            position: relative;
+            background: linear-gradient(135deg, #faf8f3 0%, #f4f7f6 100%);
+            border-radius: 14px;
+            padding: 18px 20px 18px 50px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .dieuwerigne-message .quote-icon {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            color: var(--accent-gold);
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .dieuwerigne-message p {
+            font-family: 'Marcellus', serif;
+            font-style: italic;
+            font-size: 0.88rem;
+            color: var(--primary-green);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .dieuwerigne-stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--gradient-green);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(10, 77, 58, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            display: block;
+            font-family: 'Marcellus', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+        }
+
+        .dieuwerigne-actions-modern {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            border: 2px solid transparent;
+        }
+
+        .action-btn.primary {
+            background: var(--gradient-green);
+            color: white;
+            box-shadow: 0 6px 18px rgba(10, 77, 58, 0.25);
+        }
+
+        .action-btn.primary:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: transparent;
+            color: var(--primary-green);
+            border-color: rgba(10, 77, 58, 0.15);
+        }
+
+        .action-btn.secondary:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .dieuwerigne-footer {
+            background: var(--gradient-green);
+            color: var(--accent-gold);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dieuwerigne-footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.1) 50%, transparent 100%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .dieuwerigne-footer i {
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dieuwerigne-footer span {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 991px) {
+            .dieuwerigne-modern-inner {
+                padding: 28px;
+                gap: 24px;
+            }
+            
+            .dieuwerigne-photo-ring {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .dieuwerigne-name { font-size: 1.5rem; }
+            .dieuwerigne-message { padding: 16px 18px 16px 44px; }
+            .dieuwerigne-message .quote-icon { top: 16px; left: 16px; }
+            .dieuwerigne-message p { font-size: 0.83rem; }
+        }
+
+        @media (max-width: 767px) {
+            .dieuwerigne-modern { border-radius: 20px; }
+            
+            .dieuwerigne-modern-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 30px 22px;
+                gap: 22px;
+            }
+            
+            .dieuwerigne-photo-ring { width: 140px; height: 140px; }
+            .dieuwerigne-info-section { width: 100%; }
+            .dieuwerigne-header { text-align: center; }
+            .dieuwerigne-subtitle { justify-content: center; }
+            .dieuwerigne-subtitle::before { display: none; }
+            .dieuwerigne-name { font-size: 1.4rem; }
+            .dieuwerigne-message { padding: 16px 18px 16px 46px; text-align: left; }
+            .dieuwerigne-message p { font-size: 0.82rem; }
+            .dieuwerigne-stats { padding: 14px 16px; }
+            .stat-value { font-size: 1.2rem; }
+            .stat-label { font-size: 0.6rem; }
+            .dieuwerigne-actions-modern { flex-direction: column; }
+            .action-btn { width: 100%; padding: 12px 16px; }
+            .dieuwerigne-footer { font-size: 0.68rem; padding: 10px 16px; gap: 8px; }
+            .dieuwerigne-footer span { font-size: 0.65rem; }
+        }
+
+        @media (max-width: 480px) {
+            .dieuwerigne-modern-inner { padding: 25px 18px; }
+            .dieuwerigne-photo-ring { width: 120px; height: 120px; }
+            .dieuwerigne-crown { width: 36px; height: 36px; font-size: 0.85rem; }
+            .dieuwerigne-name { font-size: 1.25rem; }
+            .dieuwerigne-subtitle { font-size: 0.75rem; }
+            .dieuwerigne-message p { font-size: 0.78rem; }
+            .dieuwerigne-tag { font-size: 0.6rem; padding: 4px 10px; }
+            .stat-value { font-size: 1.05rem; }
+            .stat-label { font-size: 0.55rem; }
+            .dieuwerigne-footer { flex-direction: column; gap: 4px; }
+            .dieuwerigne-footer i:first-child,
+            .dieuwerigne-footer i:last-child { display: none; }
+        }
+
+        @media (max-width: 375px) {
+            .dieuwerigne-photo-ring { width: 110px; height: 110px; }
+            .dieuwerigne-name { font-size: 1.1rem; }
+            .dieuwerigne-message { padding: 14px 15px 14px 40px; }
+            .dieuwerigne-message .quote-icon { top: 14px; left: 14px; font-size: 0.85rem; }
+            .dieuwerigne-message p { font-size: 0.72rem; }
+            .dieuwerigne-stats { flex-direction: column; gap: 10px; }
+            .stat-divider { width: 40px; height: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOUTON BACK TO TOP -->
+    <button id="backToTop" type="button" aria-label="Retour en haut de la page" title="Retour en haut">
+        <span class="tooltip-text">Retour en haut</span>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- POPUP -->
+    <div id="welcomePopup">
+        <div class="popup-image-wrapper">
+            <button class="popup-close" onclick="closeWelcomePopup()" aria-label="Fermer">
+                <i class="fas fa-times"></i>
+            </button>
+            <img src="images/aff1.jpeg" alt="Bienvenue">
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="brand-logo"><img src="images/logo.png" alt="Logo D3S"></div>
+                <div class="brand-text">
+                    <h5>Dahira Sope Serigne Saliou</h5>
+                    <span>Unité • Foi • Héritage</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="burger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">La Dahira</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#evenements">Événements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="durus.html">Durus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galerie.html">Galerie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#joinModal" type="button">
+                            <i class="fas fa-user-plus me-2"></i>Rejoindre la Dahira
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section" id="accueil">
+        <div class="container position-relative">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-6 hero-content" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="badge-hero">
+                        <i class="fas fa-star"></i>
+                        Dahira Sope Serigne Saliou (D3S)
+                    </div>
+                    <h1>Au service de la foi, de l'unité et de l'héritage <span>de Serigne Saliou</span></h1>
+                    <p class="lead">« Unis par la foi, guidés par Serigne Saliou, vers un meilleur demain. »</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#joinModal" type="button">
+                            <i class="fas fa-arrow-right me-2"></i>Découvrir la Dahira
+                        </button>
+                        <a href="galerie.html" class="btn btn-outline-gold btn-lg">
+                            <i class="fas fa-play me-2"></i>Voir la vidéo
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-image-wrapper">
+                        <img src="images/s1.WEBP" alt="Serigne Saliou" loading="lazy">
+                        <div class="hero-image-badge">
+                            <span class="number">20+</span>
+                            <span class="label">Ans d'héritage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arabic-calligraphy font-arabic">﷽</div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row g-3 g-md-4">
+                <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4 class="mb-3">Nos valeurs</h4>
+                        <p class="text-muted mb-0">Foi, Solidarité, Partage et Transmission au cœur de notre engagement quotidien.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h4 class="mb-3">Nos objectifs</h4>
+                        <p class="text-muted mb-0">Renforcer l'unité, promouvoir l'enseignement et l'héritage de Serigne Saliou.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h4 class="mb-3">Notre mission</h4>
+                        <p class="text-muted mb-0">Éclairer les cœurs, former les générations et œuvrer pour une société meilleure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="apropos">
+        <div class="container">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <span class="section-label">Notre Histoire</span>
+                    <h2 class="section-title">À propos de la Dahira</h2>
+                    <p class="text-muted mb-4">
+                        La Dahira Sope Serigne Saliou (D3S) est un espace spirituel, fraternel et éducatif, dédié à la mémoire et à l'enseignement de Serigne Saliou. Elle œuvre pour le renforcement de la foi, l'unité de la communauté et la transmission des valeurs islamiques aux générations futures.
+                    </p>
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6">
+                            <div class="value-item">
+                                <i class="fas fa-mosque"></i>
+                                <div>
+                                    <h6>Foi & Spiritualité</h6>
+                                    <p>Renforcer notre lien avec Allah à travers l'enseignement.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="value-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h6>Solidarité & Entraide</h6>
+                                    <p>Soutenir nos membres dans l'esprit de partage.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="value-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <h6>Éducation & Formation</h6>
+                                    <p>Transmettre un savoir religieux et moral.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="value-item">
+                                <i class="fas fa-handshake"></i>
+                                <div>
+                                    <h6>Engagement Communautaire</h6>
+                                    <p>Agir ensemble pour un impact positif.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary-custom mt-4" data-bs-toggle="modal" data-bs-target="#joinModal" type="button">
+                        Découvrir notre histoire <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="quote-card">
+                        <div class="d-flex align-items-center mb-4 position-relative" style="z-index: 2;">
+                            <img src="images/s1.WEBP" class="author-img me-3" alt="Serigne Saliou">
+                            <div>
+                                <h5 class="mb-0 text-white font-serif" style="font-size: 1.05rem;">Serigne Saliou Mbacké</h5>
+                                <small class="text-gold" style="font-size: 0.75rem;">Guide religieux</small>
+                            </div>
+                        </div>
+                        <p class="fs-4 fst-italic mb-0 position-relative" style="z-index: 2; font-family: 'Marcellus', serif;">
+                            « Le savoir est une lumière qui ne s'éteint jamais. »
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="py-5 bg-white" id="evenements">
+        <div class="container py-3">
+            <div class="row align-items-end mb-4 mb-md-5" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <span class="section-label">Événements</span>
+                    <h2 class="section-title">Prochains événements</h2>
+                    <p class="text-muted mb-0">Ne manquez pas nos prochains rendez-vous spirituels, éducatifs et communautaires.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <a href="#" class="btn btn-outline-gold w-100 w-lg-auto">Voir tous les événements <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+
+            <div class="row g-3 g-md-4">
+                <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-card">
+                        <div class="card border-0 shadow-sm h-100 article-card" style="border-radius: 16px; overflow: hidden;">
+                            <img src="images/aff1.jpeg" alt="Dahira" loading="lazy">
+                            <div class="date-badge">
+                                <strong>17</strong>
+                                <span>Oct</span>
+                            </div>
+                            <span class="badge-category">Dahira</span>
+                        </div>
+                        <div class="p-3 p-md-4">
+                            <h5 class="h6 mb-3 fw-bold">Serigne Abdou Khadre Thioune</h5>
+                            <p class="small text-muted mb-2"><i class="fas fa-map-marker-alt me-2 text-gold"></i>Kasaville - Kaolack</p>
+                            <p class="small text-muted mb-0"><i class="fas fa-clock me-2 text-gold"></i>À partir de 20h30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES & GALLERY -->
+    <section class="py-5" id="articles">
+        <div class="container py-3">
+            <div class="row g-4 g-lg-5">
+                <div class="col-lg-7">
+                    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2" data-aos="fade-up">
+                        <div>
+                            <span class="section-label">Actualités & Articles</span>
+                            <h2 class="section-title">Derniers articles</h2>
+                        </div>
+                        <a href="#" class="text-success text-decoration-none small fw-bold d-none d-md-block">Voir tous <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                    <div class="row g-3 g-md-4">
+                        <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                            <article class="card border-0 shadow-sm h-100 article-card" style="border-radius: 16px; overflow: hidden;">
+                                <div class="article-img-wrapper">
+                                    <img src="images/ac1.jpeg" alt="Carte de membre" loading="lazy">
+                                </div>
+                                <div class="card-body p-3 p-md-4">
+                                    <small class="text-gold fw-bold" style="font-size: 0.68rem; letter-spacing: 1px;">En cours</small>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                            <article class="card border-0 shadow-sm h-100 article-card" style="border-radius: 16px; overflow: hidden;">
+                                <div class="article-img-wrapper">
+                                    <img src="images/ac2.jpeg" alt="Ngontou Xassida" loading="lazy">
+                                </div>
+                                <div class="card-body p-3 p-md-4">
+                                    <small class="text-gold fw-bold" style="font-size: 0.68rem; letter-spacing: 1px;">30 OCT 2026</small>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <article class="card border-0 shadow-sm h-100 article-card" style="border-radius: 16px; overflow: hidden;">
+                                <div class="article-img-wrapper">
+                                    <img src="images/ac3.jpeg" alt="Mensualités" loading="lazy">
+                                </div>
+                                <div class="card-body p-3 p-md-4">
+                                    <small class="text-gold fw-bold" style="font-size: 0.68rem; letter-spacing: 1px;">Chaque fin du mois</small>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5" id="galerie">
+                    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2" data-aos="fade-up">
+                        <div>
+                            <span class="section-label">Galerie</span>
+                            <h2 class="section-title">Nos moments</h2>
+                        </div>
+                        <a href="galerie.html" class="text-success text-decoration-none small fw-bold d-none d-md-block">Voir tout <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="gallery-item" data-aos="fade-up" style="height: 140px;">
+                                <img src="images/k1.jpeg" alt="Gallery" loading="lazy">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" style="height: 140px;">
+                                <img src="images/so1.jpeg" alt="Gallery" loading="lazy">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200" style="height: 140px;">
+                                <img src="images/k3.jpeg" alt="Gallery" loading="lazy">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="gallery-item" data-aos="fade-up" data-aos-delay="300" style="height: 140px;">
+                                <img src="images/k2.jpeg" alt="Gallery" loading="lazy">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container text-center" data-aos="fade-up">
+            <i class="fas fa-quote-left text-gold fs-1 mb-3"></i>
+            <h3 class="fst-italic mb-4 text-white">
+                « Celui qui s'attache à la voie de Serigne Saliou ne marche jamais seul. »
+            </h3>
+            <p class="text-gold fw-bold mb-4">— D3S</p>
+            <button class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#joinModal" type="button">
+                <i class="fas fa-user-plus me-2"></i>Rejoindre la Dahira
+            </button>
+        </div>
+    </section>
+
+    <!-- DIEUWERIGNE & RESSOURCES -->
+    <section class="py-5 bg-cream">
+        <div class="container py-3">
+            <div class="row g-4 g-lg-5">
+                
+                <!-- DIEUWERIGNE -->
+                <div class="col-lg-7">
+                    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2" data-aos="fade-up">
+                        <div>
+                            <span class="section-label">Notre guide</span>
+                            <h2 class="section-title">Le Dieuwerigne du Dahira</h2>
+                        </div>
+                    </div>
+
+                    <div class="dieuwerigne-modern" data-aos="fade-up" data-aos-delay="100">
+                        <div class="dieuwerigne-bg-pattern"></div>
+                        
+                        <div class="dieuwerigne-modern-inner">
+                            <div class="dieuwerigne-photo-section">
+                                <div class="dieuwerigne-photo-ring">
+                                    <div class="dieuwerigne-photo">
+                                        <img src="images/diew1.PNG" alt="Dieuwerigne du Dahira D3S" loading="lazy">
+                                    </div>
+                                    <div class="dieuwerigne-crown">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                </div>
+                                <div class="dieuwerigne-status">
+                                    <span class="status-dot"></span>
+                                    En fonction
+                                </div>
+                            </div>
+
+                            <div class="dieuwerigne-info-section">
+                                <div class="dieuwerigne-header">
+                                    <span class="dieuwerigne-tag">
+                                        <i class="fas fa-microphone-alt me-1"></i>Dieuwerigne
+                                    </span>
+                                    <h3 class="dieuwerigne-name">Serigne Moustapha Ndao</h3>
+                                    <p class="dieuwerigne-subtitle">Dieuwerigne • Coordinateur général du D3S</p>
+                                </div>
+
+                                <div class="dieuwerigne-message">
+                                    <i class="fas fa-quote-left quote-icon"></i>
+                                    <p>Le Dieuwerigne est la voix du Dahira. Il transmet les enseignements, rassemble les cœurs et porte la parole de notre communauté auprès des autorités religieuses.</p>
+                                </div>
+
+                                <div class="dieuwerigne-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">3+</span>
+                                        <span class="stat-label">Années de service</span>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">100+</span>
+                                        <span class="stat-label">Membres guidés</span>
+                                    </div>
+                                    <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">3+</span>
+                                        <span class="stat-label">Événements/an</span>
+                                    </div>
+                                </div>
+
+                                <div class="dieuwerigne-actions-modern">
+                                    <a href="#" class="action-btn primary">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <span>Contacter</span>
+                                    </a>
+                                    <a href="#" class="action-btn secondary">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Message</span>
+                                    </a>
+                                    <a href="#" class="action-btn secondary">
+                                        <i class="fas fa-share-alt"></i>
+                                        <span>Partager</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dieuwerigne-footer">
+                            <i class="fas fa-star-and-crescent"></i>
+                            <span>Dieuwerigne de la Dahira Sope Serigne Saliou</span>
+                            <i class="fas fa-star-and-crescent"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESSOURCES -->
+                <div class="col-lg-5">
+                    <div class="d-flex justify-content-between align-items-end mb-4" data-aos="fade-up">
+                        <div>
+                            <span class="section-label">Documents</span>
+                            <h2 class="section-title">Ressources</h2>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="150">
+                        <div class="resource-item">
+                            <i class="fas fa-file-pdf text-danger"></i>
+                            <div>
+                                <a href="#">Guide des enseignements de Serigne Saliou</a>
+                                <small class="text-muted">PDF - 2.4 Mo</small>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-file-alt text-primary"></i>
+                            <div>
+                                <a href="#">Programme annuel des activités</a>
+                                <small class="text-muted">PDF - 1.1 Mo</small>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-file-contract text-success"></i>
+                            <div>
+                                <a href="#">Règlement intérieur de la Dahira</a>
+                                <small class="text-muted">PDF - 0.8 Mo</small>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-link text-info"></i>
+                            <div>
+                                <a href="#">Lieux saints et partenaires</a>
+                                <small class="text-muted">Lien externe</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-lg-4">
+                    <div class="d-flex align-items-center mb-4 justify-content-center justify-content-lg-start">
+                        <div class="brand-logo me-3" style="width: 42px; height: 42px; min-width: 42px; font-size: 0.9rem;">
+                            <img src="images/logo.png" alt="Logo D3S">
+                        </div>
+                        <div>
+                            <h5 class="text-white mb-0" style="font-family: 'Marcellus', serif; font-size: 0.95rem;">Dahira Sope Serigne Saliou</h5>
+                            <small class="text-gold" style="font-size: 0.65rem; letter-spacing: 1px;">UNITÉ • FOI • HÉRITAGE</small>
+                        </div>
+                    </div>
+                    <p class="small mb-4">Unis par la foi, guidés par Serigne Saliou, vers un meilleur demain. Rejoignez notre communauté spirituelle et fraternelle.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">La Dahira</a></li>
+                        <li><a href="#evenements">Événements</a></li>
+                        <li><a href="durus.html">Durus</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5>Liens utiles</h5>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <h5>Newsletter</h5>
+                    <p class="small mb-3">Recevez nos actualités et événements directement dans votre boîte mail.</p>
+                    <form class="d-flex flex-column flex-sm-row" id="newsletterForm" novalidate>
+                        <input type="email" class="form-control newsletter-input" placeholder="Votre email" required maxlength="100">
+                        <button class="btn newsletter-btn" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <p class="small mt-3 mb-0"><i class="fas fa-shield-alt text-gold me-2"></i>Vos données sont protégées.</p>
+                </div>
+            </div>
+            <hr class="mt-5 border-secondary" style="opacity: 0.2;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-light small text-center gap-2">
+                <div>&copy; 2026 Dahira Sope Serigne Saliou (D3S). Tous droits réservés.</div>
+                <div>Fait avec <i class="fas fa-heart text-gold"></i> pour la communauté</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FORMULAIRE -->
+    <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 id="joinModalLabel"><i class="fas fa-user-plus me-2 text-gold"></i>Rejoindre la Dahira D3S</h5>
+                        <p>Remplissez le formulaire ci-dessous pour devenir membre.</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+
+                <form id="joinForm" novalidate autocomplete="on">
+                    <div class="modal-body">
+                        <div class="honeypot-field" aria-hidden="true">
+                            <label for="website_url">Ne pas remplir ce champ</label>
+                            <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" required minlength="2" maxlength="50" autocomplete="given-name" pattern="^[a-zA-ZÀ-ÿ\s\-']{2,50}$">
+                                    <label for="prenom"><i class="fas fa-user text-gold me-1"></i>Prénom *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required minlength="2" maxlength="50" autocomplete="family-name" pattern="^[a-zA-ZÀ-ÿ\s\-']{2,50}$">
+                                    <label for="nom"><i class="fas fa-user text-gold me-1"></i>Nom *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating position-relative">
+                                    <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="WhatsApp" required autocomplete="tel" pattern="^[+]?[0-9\s\-()]{8,20}$" maxlength="20">
+                                    <label for="whatsapp"><i class="fab fa-whatsapp text-gold me-1"></i>Numéro WhatsApp *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville" required minlength="2" maxlength="60" autocomplete="address-level2" pattern="^[a-zA-ZÀ-ÿ\s\-']{2,60}$">
+                                    <label for="ville"><i class="fas fa-city text-gold me-1"></i>Ville de résidence *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" required minlength="5" maxlength="120" autocomplete="street-address">
+                                    <label for="adresse"><i class="fas fa-map-marker-alt text-gold me-1"></i>Adresse complète *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Profession" required minlength="2" maxlength="80" autocomplete="organization-title">
+                                    <label for="profession"><i class="fas fa-briefcase text-gold me-1"></i>Profession *</label>
+                                    <i class="fas fa-check-circle input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating position-relative">
+                                    <textarea class="form-control" id="message" name="message" placeholder="Message" style="height: 130px; padding-top: 20px;" required minlength="10" maxlength="1000"></textarea>
+                                    <label for="message"><i class="fas fa-comment-dots text-gold me-1"></i>Votre message * <span class="text-muted">(min. 10 caractères)</span></label>
+                                </div>
+                                <small class="text-muted d-block mt-1">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    <span id="charCount">0</span>/1000 caractères
+                                </small>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="conditions" name="conditions" required>
+                                    <label class="form-check-label small text-muted" for="conditions">
+                                        J'accepte les <a href="#" class="text-success fw-bold">conditions d'adhésion</a> et la <a href="#" class="text-success fw-bold">politique de confidentialité</a> de la Dahira D3S. *
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Annuler
+                        </button>
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane me-2"></i>Envoyer ma demande
+                        </button>
+                    </div>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h4 class="mb-3" style="color: var(--primary-green); font-size: 1.1rem;">Demande envoyée avec succès !</h4>
+                    <p class="text-muted mb-4">
+                        Barakallahou fik <strong id="successName"></strong> ! Votre demande a bien été reçue. 
+                        Notre équipe vous contactera très prochainement via WhatsApp.
+                    </p>
+                    <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">
+                        <i class="fas fa-check me-2"></i>Fermer
+                    </button>
+                </div>
+
+                <div class="success-message" id="errorMessage">
+                    <div class="check-icon" style="background: linear-gradient(135deg, #dc3545, #e4606d);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4 class="mb-3" style="color: #dc3545; font-size: 1.1rem;">Erreur d'envoi</h4>
+                    <p class="text-muted mb-4">
+                        Désolé, une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement par WhatsApp.
+                    </p>
+                    <button type="button" class="btn btn-primary-custom" onclick="location.reload()">
+                        <i class="fas fa-redo me-2"></i>Réessayer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ============ CONFIGURATION EMAILJS ============
+        const EMAILJS_PUBLIC_KEY = 'bh2JC2kzO2do5Ojb7';
+        const EMAILJS_SERVICE_ID = 'service_4h53gqi';
+        const EMAILJS_TEMPLATE_ID = 'template_i7n5mic';
+
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY,
+                limitRate: { throttle: 10000 }
+            });
+        }
+
+        // ============ SÉCURITÉ ============
+        function sanitizeInput(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/[<>]/g, '').replace(/javascript:/gi, '').replace(/on\w+=/gi, '').trim();
+        }
+
+        function containsSuspiciousContent(str) {
+            const patterns = [/<script/i, /javascript:/i, /on\w+\s*=/i, /<iframe/i, /<embed/i, /<object/i, /eval\(/i, /expression\(/i];
+            return patterns.some(pattern => pattern.test(str));
+        }
+
+        const RATE_LIMIT_KEY = 'd3s_form_last_submit';
+        const RATE_LIMIT_MS = 60000;
+
+        function canSubmitForm() {
+            const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+            if (!lastSubmit) return true;
+            return (Date.now() - parseInt(lastSubmit)) >= RATE_LIMIT_MS;
+        }
+        function recordSubmit() { localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString()); }
+        function getRemainingSeconds() {
+            const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+            if (!lastSubmit) return 0;
+            const remaining = RATE_LIMIT_MS - (Date.now() - parseInt(lastSubmit));
+            return remaining > 0 ? Math.ceil(remaining / 1000) : 0;
+        }
+
+        // ============ AOS ============
+        AOS.init({ duration: 900, once: true, offset: 80, easing: 'ease-out-cubic' });
+
+        // ============ BOUTON BACK TO TOP ============
+        const $backToTop = $('#backToTop');
+        $(window).on('scroll', function() {
+            if ($(this).scrollTop() > 400) {
+                $backToTop.addClass('visible');
+            } else {
+                $backToTop.removeClass('visible');
+            }
+        });
+        $backToTop.on('click', function(e) {
+            e.preventDefault();
+            $('html, body').stop().animate({ scrollTop: 0 }, 800, 'swing');
+        });
+
+        // ============ POPUP ============
+        function closeWelcomePopup() {
+            $('#welcomePopup').removeClass('active');
+        }
+
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $('#welcomePopup').addClass('active');
+            }, 300);
+        });
+
+        $('#welcomePopup').on('click', function(e) {
+            if (e.target === this) closeWelcomePopup();
+        });
+
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' && $('#welcomePopup').hasClass('active')) closeWelcomePopup();
+        });
+
+        // ============ NAVBAR SCROLL ============
+        $(window).on('scroll', function() {
+            if ($(this).scrollTop() > 50) {
+                $('#mainNav').addClass('scrolled');
+            } else {
+                $('#mainNav').removeClass('scrolled');
+            }
+        });
+
+        // ============ SMOOTH SCROLL ============
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if (target.length && $(this).attr('href') !== '#') {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 70
+                }, 900, 'swing');
+                $('.navbar-collapse').collapse('hide');
+            }
+        });
+
+        // ============ ACTIVE NAV ============
+        $(window).on('scroll', function() {
+            var scrollPos = $(this).scrollTop() + 100;
+            $('section[id]').each(function() {
+                var top = $(this).offset().top;
+                var bottom = top + $(this).outerHeight();
+                var id = $(this).attr('id');
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    $('.nav-link').removeClass('active');
+                    $('.nav-link[href="#' + id + '"]').addClass('active');
+                }
+            });
+        });
+
+        // ============ COMPTEUR ============
+        $('#message').on('input', function() {
+            var len = $(this).val().length;
+            $('#charCount').text(len);
+            $('#charCount').css('color', len > 1000 ? '#dc3545' : '');
+        });
+
+        // ============ VALIDATION ============
+        $('#joinForm input, #joinForm textarea, #joinForm select').on('blur input', function() {
+            var $field = $(this);
+            if ($field.attr('type') === 'checkbox' || $field.is('#website_url')) return;
+            
+            if (this.checkValidity() && $field.val().trim() !== '') {
+                $field.removeClass('is-invalid').addClass('is-valid');
+            } else if ($field.val() !== '') {
+                $field.removeClass('is-valid').addClass('is-invalid');
+            } else {
+                $field.removeClass('is-valid is-invalid');
+            }
+        });
+
+        // ============ SOUMISSION ============
+        $('#joinForm').on('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const $form = $(form);
+            const $submitBtn = $('#submitBtn');
+            
+            if ($('#website_url').val() !== '') return false;
+
+            if (!canSubmitForm()) {
+                const remaining = getRemainingSeconds();
+                alert(`Veuillez patienter ${remaining} seconde(s) avant de renvoyer une demande.`);
+                return false;
+            }
+
+            let isValid = true;
+            $form.find('[required]').each(function() {
+                if (!this.checkValidity()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            if (!isValid) {
+                const $firstInvalid = $form.find('.is-invalid').first();
+                $firstInvalid.focus();
+                $firstInvalid.css('animation', 'shake 0.5s');
+                setTimeout(() => $firstInvalid.css('animation', ''), 500);
+                return false;
+            }
+
+            const rawData = {
+                prenom: $('#prenom').val().trim(),
+                nom: $('#nom').val().trim(),
+                whatsapp: $('#whatsapp').val().trim(),
+                ville: $('#ville').val().trim(),
+                adresse: $('#adresse').val().trim(),
+                profession: $('#profession').val().trim(),
+                message: $('#message').val().trim()
+            };
+
+            for (const [key, value] of Object.entries(rawData)) {
+                if (containsSuspiciousContent(value)) {
+                    alert('Contenu non autorisé détecté.');
+                    return false;
+                }
+            }
+
+            const formData = {
+                prenom: sanitizeInput(rawData.prenom),
+                nom: sanitizeInput(rawData.nom),
+                whatsapp: sanitizeInput(rawData.whatsapp),
+                ville: sanitizeInput(rawData.ville),
+                adresse: sanitizeInput(rawData.adresse),
+                profession: sanitizeInput(rawData.profession),
+                message: sanitizeInput(rawData.message),
+                date_envoi: new Date().toLocaleString('fr-FR'),
+                user_agent: navigator.userAgent.substring(0, 100)
+            };
+
+            if (typeof emailjs === 'undefined') {
+                alert('Service d\'envoi indisponible.');
+                return false;
+            }
+
+            const originalBtnText = $submitBtn.html();
+            $submitBtn.html('<i class="fas fa-spinner fa-spin me-2"></i>Envoi...').prop('disabled', true);
+
+            try {
+                const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData);
+                console.log('EmailJS Success:', response.status);
+
+                recordSubmit();
+                $('#successName').text(formData.prenom);
+                $form.fadeOut(300, function() { $('#successMessage').fadeIn(400); });
+
+                $('#joinModal').on('hidden.bs.modal', function() {
+                    form.reset();
+                    $form.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+                    $('#charCount').text('0').css('color', '');
+                    $form.show();
+                    $('#successMessage').hide();
+                    $('#errorMessage').hide();
+                    $submitBtn.html(originalBtnText).prop('disabled', false);
+                    $(this).off('hidden.bs.modal');
+                });
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                $form.fadeOut(300, function() { $('#errorMessage').fadeIn(400); });
+                $submitBtn.html(originalBtnText).prop('disabled', false);
+            }
+        });
+
+        // Shake
+        const shakeStyle = document.createElement('style');
+        shakeStyle.innerHTML = `@keyframes shake {0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}`;
+        document.head.appendChild(shakeStyle);
+
+        // ============ GALLERY ============
+        $('.gallery-item').on('click', function() {
+            var imgSrc = $(this).find('img').attr('src');
+            var overlay = $('<div style="position:fixed;inset:0;background:rgba(10,77,58,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity 0.3s;padding:15px;"><img src="' + imgSrc + '" style="max-width:100%;max-height:90vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,0.5);" alt="Image agrandie"><i class="fas fa-times" style="position:absolute;top:15px;right:20px;color:white;font-size:1.8rem;cursor:pointer;"></i></div>');
+            $('body').append(overlay);
+            setTimeout(function() { overlay.css('opacity', '1'); }, 10);
+            overlay.on('click', function() {
+                $(this).css('opacity', '0');
+                setTimeout(() => $(this).remove(), 300);
+            });
+        });
+
+        // ============ NEWSLETTER ============
+        $('#newsletterForm').on('submit', function(e) {
+            e.preventDefault();
+            var input = $(this).find('input');
+            var btn = $(this).find('button');
+            var email = input.val().trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email) || email.length > 100) {
+                input.addClass('is-invalid');
+                return;
+            }
+            input.removeClass('is-invalid');
+            var originalHtml = btn.html();
+            btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
+            setTimeout(function() {
+                btn.html('<i class="fas fa-check"></i>');
+                input.val('');
+                setTimeout(function() { btn.html(originalHtml).prop('disabled', false); }, 2000);
+            }, 1000);
+        });
+
+        // ============ SÉCURITÉ : Anti-clickjacking ============
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+
+        console.log('%c🕌 Dahira D3S - Site sécurisé avec Back to Top', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+    </script>
+</body>
+</html>
