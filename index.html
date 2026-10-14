@@ -36,36 +36,17 @@
             --gradient-green: linear-gradient(135deg, #0a4d3a 0%, #0d5c46 50%, #1a7a5e 100%);
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+        
+        html, body { scrollbar-width: none; -ms-overflow-style: none; }
+        
+        html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+            display: none; width: 0; height: 0;
         }
         
-        html { 
-            scroll-behavior: smooth; 
-            -webkit-text-size-adjust: 100%;
-            overflow-x: hidden;
-        }
-        
-        html, body {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar,
-        *::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-        }
-        
-        * {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -86,10 +67,7 @@
 
         .font-arabic { font-family: 'Amiri', serif; }
 
-        img, iframe, video { 
-            max-width: 100%; 
-            height: auto; 
-        }
+        img, iframe, video { max-width: 100%; height: auto; }
 
         .honeypot-field {
             position: absolute !important;
@@ -151,7 +129,6 @@
         }
 
         #backToTop:hover::before { transform: scale(1); }
-
         #backToTop:active { transform: translateY(-2px) scale(1.02); }
 
         #backToTop i {
@@ -212,24 +189,12 @@
         }
 
         @media (max-width: 767px) {
-            #backToTop {
-                width: 46px;
-                height: 46px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 1rem;
-            }
+            #backToTop { width: 46px; height: 46px; bottom: 20px; right: 20px; font-size: 1rem; }
             #backToTop .tooltip-text { display: none; }
         }
 
         @media (max-width: 375px) {
-            #backToTop {
-                width: 42px;
-                height: 42px;
-                bottom: 15px;
-                right: 15px;
-                font-size: 0.9rem;
-            }
+            #backToTop { width: 42px; height: 42px; bottom: 15px; right: 15px; font-size: 0.9rem; }
         }
 
         /* ============ POPUP ============ */
@@ -647,9 +612,416 @@
             z-index: 1;
         }
 
-        /* FEATURES */
+        /* ============ SECTION COMPTE À REBOURS ÉVÉNEMENTS ============ */
+        .countdown-section {
+            padding: 0 0 55px;
+            background: var(--bg-cream);
+            position: relative;
+            z-index: 15;
+            margin-top: -75px;
+        }
+
+        .countdown-carousel {
+            position: relative;
+            max-width: 760px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .countdown-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            will-change: transform;
+        }
+
+        .countdown-slide {
+            flex: 0 0 100%;
+            min-width: 100%;
+            padding: 0 4px;
+        }
+
+        .countdown-card {
+            background: var(--gradient-green);
+            border-radius: 24px;
+            padding: 26px 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(10, 77, 58, 0.35);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .countdown-card::before {
+            content: '۞';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-family: 'Amiri', serif;
+            font-size: 14rem;
+            color: rgba(212, 175, 55, 0.06);
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .countdown-card::after {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            left: -120px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .countdown-badge {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .countdown-badge i {
+            font-size: 0.5rem;
+            color: var(--accent-gold);
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.4); }
+        }
+
+        .countdown-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 2;
+            padding-right: 90px;
+        }
+
+        .countdown-icon-wrapper {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+            flex-shrink: 0;
+        }
+
+        .countdown-icon-wrapper i {
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.35);
+            animation: rotateRing 8s linear infinite;
+            border-top-color: var(--accent-gold);
+            border-right-color: transparent;
+        }
+
+        @keyframes rotateRing {
+            to { transform: rotate(360deg); }
+        }
+
+        .countdown-title-block {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .countdown-event-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.35rem;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .countdown-event-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 300;
+        }
+
+        .countdown-event-date i {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown-unit {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px 10px 14px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+        }
+
+        .countdown-unit:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .countdown-value {
+            font-family: 'Marcellus', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            transition: color 0.3s;
+        }
+
+        .countdown-unit:hover .countdown-value {
+            color: var(--accent-gold-light);
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.55);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .countdown-unit:hover .countdown-label {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .countdown-unit.active {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: rgba(212, 175, 55, 0.35);
+        }
+
+        .countdown-unit.active .countdown-value {
+            animation: pulseNumber 1s ease-in-out infinite;
+            color: var(--accent-gold-light);
+        }
+
+        @keyframes pulseNumber {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .countdown-cta {
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            flex-wrap: wrap;
+        }
+
+        .countdown-cta-text {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .countdown-cta-text i {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .countdown-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .countdown-cta-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+            color: var(--primary-green);
+            filter: brightness(1.1);
+        }
+
+        .countdown-cta-btn i { font-size: 0.75rem; }
+
+        .countdown-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .countdown-dot {
+            width: 32px;
+            height: 4px;
+            border-radius: 50px;
+            background: rgba(10, 77, 58, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-dot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            border-radius: 50px;
+        }
+
+        .countdown-dot.active {
+            width: 50px;
+            background: rgba(10, 77, 58, 0.2);
+        }
+
+        .countdown-dot.active::before {
+            transform: scaleX(1);
+            animation: progressDot 5s linear;
+        }
+
+        @keyframes progressDot {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .countdown-dot:hover:not(.active) {
+            background: rgba(10, 77, 58, 0.4);
+        }
+
+        .countdown-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            font-size: 0.85rem;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 8px 20px rgba(10, 77, 58, 0.15);
+        }
+
+        .countdown-carousel:hover .countdown-nav {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .countdown-nav:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: translateY(-50%) scale(1.1);
+            border-color: var(--accent-gold);
+        }
+
+        .countdown-nav.prev { left: 12px; }
+        .countdown-nav.next { right: 12px; }
+
+        /* ============ FEATURES ============ */
         .features-section { 
-            margin-top: -90px; 
+            margin-top: -20px; 
             position: relative; 
             z-index: 10;
             padding-bottom: 20px;
@@ -704,7 +1076,6 @@
         .feature-card h4 { font-size: 1.25rem; margin-bottom: 12px; }
         .feature-card p { font-size: 0.9rem; line-height: 1.6; }
 
-        /* Section Headers */
         .section-label {
             display: inline-block;
             color: var(--accent-gold);
@@ -735,7 +1106,6 @@
             word-wrap: break-word;
         }
 
-        /* About */
         .about-section { padding: 70px 0; background: var(--bg-cream); position: relative; }
 
         .value-item {
@@ -798,7 +1168,6 @@
             background: white;
         }
 
-        /* Events */
         .event-card {
             background: white;
             border-radius: 18px;
@@ -875,7 +1244,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Gallery */
         .gallery-item {
             position: relative;
             border-radius: 16px;
@@ -918,7 +1286,6 @@
 
         .gallery-item:hover .gallery-overlay i { transform: scale(1); }
 
-        /* Testimonial */
         .testimonial-card {
             background: white;
             padding: 24px 18px;
@@ -944,7 +1311,6 @@
 
         .stars { color: var(--accent-gold); font-size: 0.75rem; margin-bottom: 10px; }
 
-        /* Resource */
         .resource-item {
             display: flex;
             align-items: center;
@@ -976,7 +1342,6 @@
 
         .resource-item a:hover { color: var(--primary-green); }
 
-        /* CTA Banner */
         .cta-banner {
             padding: 60px 0;
             background: linear-gradient(135deg, rgba(10, 77, 58, 0.95) 0%, rgba(13, 92, 70, 0.92) 100%),
@@ -996,7 +1361,6 @@
             line-height: 1.4;
         }
 
-        /* Footer */
         footer {
             background: linear-gradient(180deg, #083528 0%, #061f17 100%);
             color: rgba(255,255,255,0.7);
@@ -1088,23 +1452,10 @@
             transition: all 0.3s;
         }
 
-        /* ============ MODAL FORMULAIRE - CORRIGÉ POUR ORDINATEUR ============ */
-        .modal {
-            padding: 0 !important;
-        }
-
-        .modal-dialog {
-            max-height: calc(100vh - 40px);
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-        }
-
-        .modal-dialog.modal-lg {
-            max-width: 800px;
-            width: calc(100% - 30px);
-        }
-
+        /* MODAL */
+        .modal { padding: 0 !important; }
+        .modal-dialog { max-height: calc(100vh - 40px); margin: 20px auto; display: flex; align-items: center; }
+        .modal-dialog.modal-lg { max-width: 800px; width: calc(100% - 30px); }
         .modal-content {
             border: none;
             border-radius: 20px;
@@ -1115,7 +1466,6 @@
             flex-direction: column;
             width: 100%;
         }
-
         .modal-header {
             background: var(--gradient-green);
             color: white;
@@ -1125,7 +1475,6 @@
             overflow: hidden;
             flex-shrink: 0;
         }
-
         .modal-header::before {
             content: '۞';
             position: absolute;
@@ -1135,30 +1484,9 @@
             color: rgba(212, 175, 55, 0.15);
             font-family: 'Amiri', serif;
         }
-
-        .modal-header h5 {
-            color: white;
-            font-size: 1.15rem;
-            margin: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .modal-header p {
-            margin: 5px 0 0;
-            font-size: 0.78rem;
-            opacity: 0.85;
-            position: relative;
-            z-index: 2;
-        }
-
-        .modal-header .btn-close {
-            filter: invert(1) brightness(2);
-            opacity: 0.8;
-            position: relative;
-            z-index: 3;
-        }
-
+        .modal-header h5 { color: white; font-size: 1.15rem; margin: 0; position: relative; z-index: 2; }
+        .modal-header p { margin: 5px 0 0; font-size: 0.78rem; opacity: 0.85; position: relative; z-index: 2; }
+        .modal-header .btn-close { filter: invert(1) brightness(2); opacity: 0.8; position: relative; z-index: 3; }
         .modal-body {
             padding: 25px;
             background: var(--bg-cream);
@@ -1166,27 +1494,10 @@
             flex: 1 1 auto;
             max-height: calc(100vh - 220px);
         }
-
-        /* Barre de défilement personnalisée pour le body du modal */
-        .modal-body::-webkit-scrollbar {
-            width: 6px;
-            display: block;
-        }
-
-        .modal-body::-webkit-scrollbar-track {
-            background: rgba(10, 77, 58, 0.05);
-            border-radius: 10px;
-        }
-
-        .modal-body::-webkit-scrollbar-thumb {
-            background: var(--primary-green);
-            border-radius: 10px;
-        }
-
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-gold);
-        }
-
+        .modal-body::-webkit-scrollbar { width: 6px; display: block; }
+        .modal-body::-webkit-scrollbar-track { background: rgba(10, 77, 58, 0.05); border-radius: 10px; }
+        .modal-body::-webkit-scrollbar-thumb { background: var(--primary-green); border-radius: 10px; }
+        .modal-body::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
         .modal-footer {
             background: white;
             border: none;
@@ -1199,7 +1510,6 @@
             flex-shrink: 0;
             border-top: 1px solid rgba(10, 77, 58, 0.06);
         }
-
         .form-floating > .form-control,
         .form-floating > .form-select {
             border: 1.5px solid #e0e0e0;
@@ -1210,43 +1520,18 @@
             background: white;
             transition: all 0.3s;
         }
-
         .form-floating > .form-control:focus,
         .form-floating > .form-select:focus {
             border-color: var(--primary-green);
             box-shadow: 0 0 0 4px rgba(10, 77, 58, 0.1);
         }
-
         .form-floating > label { padding: 16px 18px; color: var(--text-muted); font-size: 0.83rem; }
-
         .form-floating > .form-control:focus ~ label,
         .form-floating > .form-control:not(:placeholder-shown) ~ label,
-        .form-floating > .form-select ~ label {
-            color: var(--primary-green);
-            font-weight: 500;
-        }
-
-        .form-floating > textarea.form-control {
-            height: 130px !important;
-            min-height: 130px;
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-gold);
-            z-index: 10;
-            pointer-events: none;
-            font-size: 0.9rem;
-        }
-
-        .form-check-input:checked {
-            background-color: var(--primary-green);
-            border-color: var(--primary-green);
-        }
-
+        .form-floating > .form-select ~ label { color: var(--primary-green); font-weight: 500; }
+        .form-floating > textarea.form-control { height: 130px !important; min-height: 130px; }
+        .input-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--accent-gold); z-index: 10; pointer-events: none; font-size: 0.9rem; }
+        .form-check-input:checked { background-color: var(--primary-green); border-color: var(--primary-green); }
         .btn-submit {
             background: var(--gradient-green);
             color: white;
@@ -1259,64 +1544,25 @@
             position: relative;
             overflow: hidden;
         }
-
-        .btn-submit:hover {
-            color: var(--primary-green);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-submit::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gradient-gold);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-            z-index: -1;
-        }
-
+        .btn-submit:hover { color: var(--primary-green); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); }
+        .btn-submit::before { content: ''; position: absolute; inset: 0; background: var(--gradient-gold); transform: translateX(-100%); transition: transform 0.4s ease; z-index: -1; }
         .btn-submit:hover::before { transform: translateX(0); }
-
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
         .success-message { display: none; text-align: center; padding: 25px 18px; }
-
         .success-message .check-icon {
-            width: 65px;
-            height: 65px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            animation: popIn 0.5s ease;
+            width: 65px; height: 65px; background: var(--gradient-gold); border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.6rem; margin-bottom: 15px; animation: popIn 0.5s ease;
         }
-
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             50% { transform: scale(1.15); }
             100% { transform: scale(1); opacity: 1; }
         }
+        .form-control.is-invalid, .form-select.is-invalid { border-color: #dc3545 !important; background-image: none; }
+        .form-control.is-valid, .form-select.is-valid { border-color: #198754 !important; background-image: none; }
 
-        .form-control.is-invalid, .form-select.is-invalid {
-            border-color: #dc3545 !important;
-            background-image: none;
-        }
-
-        .form-control.is-valid, .form-select.is-valid {
-            border-color: #198754 !important;
-            background-image: none;
-        }
-
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 1199px) {
             .hero-content h1 { font-size: 2.8rem; }
         }
@@ -1326,24 +1572,18 @@
             .hero-content h1 { font-size: 2.3rem; }
             .section-title { font-size: 2rem; }
             .navbar-collapse {
-                background: white;
-                padding: 15px;
-                border-radius: 16px;
-                margin-top: 12px;
-                box-shadow: var(--shadow-md);
-                max-height: calc(100vh - 100px);
-                overflow-y: auto;
+                background: white; padding: 15px; border-radius: 16px; margin-top: 12px;
+                box-shadow: var(--shadow-md); max-height: calc(100vh - 100px); overflow-y: auto;
             }
-            .nav-link { 
-                padding: 12px 15px !important; 
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                margin: 0;
-            }
+            .nav-link { padding: 12px 15px !important; border-bottom: 1px solid rgba(0,0,0,0.05); margin: 0; }
             .nav-link:last-child { border-bottom: none; }
             .nav-link::after { display: none; }
             .btn-primary-custom { margin-top: 12px; width: 100%; }
             .cta-banner h3 { font-size: 1.4rem; }
-            .features-section { margin-top: -85px; }
+            .countdown-card { padding: 24px 24px; }
+            .countdown-event-title { font-size: 1.2rem; }
+            .countdown-value { font-size: 2.2rem; }
+            .countdown-header { padding-right: 80px; }
         }
 
         @media (max-width: 767px) {
@@ -1355,7 +1595,7 @@
             .brand-text h5 { font-size: 0.75rem; }
             .brand-text span { font-size: 0.55rem; }
             
-            .hero-section { padding: 40px 0 115px; }
+            .hero-section { padding: 40px 0 130px; }
             .hero-content { text-align: center; margin-bottom: 25px; }
             .hero-content .badge-hero { font-size: 0.65rem; padding: 6px 13px; margin-bottom: 14px; }
             .hero-content h1 { font-size: 1.7rem; line-height: 1.3; margin-bottom: 14px; }
@@ -1369,7 +1609,26 @@
             .hero-image-badge .label { font-size: 0.48rem; letter-spacing: 0.8px; }
             .arabic-calligraphy { font-size: 1.5rem; bottom: 8px; right: 8px; }
             
-            .features-section { margin-top: -70px; padding-bottom: 20px; }
+            .countdown-section { padding: 0 0 40px; margin-top: -80px; }
+            .countdown-card { padding: 20px 16px; border-radius: 20px; }
+            .countdown-header { gap: 12px; margin-bottom: 18px; padding-right: 0; padding-top: 30px; }
+            .countdown-icon-wrapper { width: 48px; height: 48px; min-width: 48px; }
+            .countdown-icon-wrapper i { font-size: 1.35rem; }
+            .countdown-event-title { font-size: 1.05rem; white-space: normal; line-height: 1.3; }
+            .countdown-event-date { font-size: 0.75rem; }
+            .countdown-timer { gap: 8px; }
+            .countdown-unit { padding: 14px 6px 12px; border-radius: 12px; }
+            .countdown-value { font-size: 1.9rem; margin-bottom: 6px; }
+            .countdown-label { font-size: 0.6rem; letter-spacing: 1.5px; }
+            .countdown-cta { flex-direction: column; gap: 12px; align-items: stretch; text-align: center; }
+            .countdown-cta-text { justify-content: center; font-size: 0.78rem; }
+            .countdown-cta-btn { justify-content: center; width: 100%; }
+            .countdown-badge { top: 14px; right: 14px; padding: 4px 10px; font-size: 0.55rem; }
+            .countdown-dot { width: 26px; }
+            .countdown-dot.active { width: 40px; }
+            .countdown-nav { display: none; }
+            
+            .features-section { margin-top: -20px; padding-bottom: 20px; }
             .feature-card { padding: 22px 16px; }
             .icon-box { width: 52px; height: 52px; font-size: 1.3rem; margin-bottom: 14px; }
             .feature-card h4 { font-size: 1.1rem; }
@@ -1408,28 +1667,14 @@
             .newsletter-btn { border-radius: 50px; width: 100%; }
             footer form { flex-direction: column !important; }
             
-            /* Modal mobile */
-            .modal-dialog {
-                max-height: calc(100vh - 20px);
-                margin: 10px auto;
-            }
-            .modal-dialog.modal-lg {
-                width: calc(100% - 20px);
-            }
-            .modal-content {
-                max-height: calc(100vh - 20px);
-            }
-            .modal-body { 
-                padding: 18px; 
-                max-height: calc(100vh - 180px);
-            }
+            .modal-dialog { max-height: calc(100vh - 20px); margin: 10px auto; }
+            .modal-dialog.modal-lg { width: calc(100% - 20px); }
+            .modal-content { max-height: calc(100vh - 20px); }
+            .modal-body { padding: 18px; max-height: calc(100vh - 180px); }
             .modal-header { padding: 18px; }
             .modal-header h5 { font-size: 1rem; }
             .modal-header p { font-size: 0.72rem; }
-            .modal-footer { 
-                padding: 15px 18px 18px; 
-                flex-direction: column-reverse;
-            }
+            .modal-footer { padding: 15px 18px 18px; flex-direction: column-reverse; }
             .modal-footer .btn { width: 100%; }
             .btn-submit { width: 100%; padding: 13px 18px; font-size: 0.85rem; }
             .form-floating > .form-control,
@@ -1439,14 +1684,13 @@
         }
 
         @media (max-width: 480px) {
-            .hero-section { padding: 35px 0 105px; }
+            .hero-section { padding: 35px 0 115px; }
             .hero-content h1 { font-size: 1.5rem; }
             .hero-content .lead { font-size: 0.83rem; }
             .hero-content .badge-hero { font-size: 0.6rem; padding: 5px 11px; }
             .section-title { font-size: 1.4rem; }
             .cta-banner h3 { font-size: 1.05rem; }
             .cta-banner { padding: 40px 0; }
-            .features-section { margin-top: -65px; }
             .feature-card { padding: 20px 14px; }
             .feature-card h4 { font-size: 1rem; }
             .feature-card p { font-size: 0.78rem; }
@@ -1457,6 +1701,9 @@
             .hero-image-badge { padding: 8px 10px; }
             .hero-image-badge .number { font-size: 1.05rem; }
             .hero-image-badge .label { font-size: 0.42rem; }
+            .countdown-value { font-size: 1.6rem; }
+            .countdown-label { font-size: 0.55rem; }
+            .countdown-event-title { font-size: 0.95rem; }
         }
 
         @media (max-width: 375px) {
@@ -1466,8 +1713,7 @@
             .brand-text span { font-size: 0.5rem; }
             .brand-logo { width: 36px; height: 36px; min-width: 36px; font-size: 0.8rem; }
             .cta-banner h3 { font-size: 0.95rem; }
-            .features-section { margin-top: -60px; }
-            .hero-section { padding: 30px 0 100px; }
+            .hero-section { padding: 30px 0 110px; }
             .hero-content h1 { font-size: 1.25rem; }
             .hero-content .lead { font-size: 0.78rem; }
             .feature-card { padding: 18px 12px; }
@@ -1477,6 +1723,10 @@
             .resource-item { padding: 10px; }
             .resource-item i { font-size: 1.2rem; }
             .resource-item a { font-size: 0.75rem; }
+            .countdown-card { padding: 18px 14px; }
+            .countdown-value { font-size: 1.5rem; }
+            .countdown-icon-wrapper { width: 42px; height: 42px; min-width: 42px; }
+            .countdown-icon-wrapper i { font-size: 1.2rem; }
         }
 
         @media (max-width: 340px) {
@@ -1498,8 +1748,7 @@
         .text-gold { color: var(--accent-gold); }
         .bg-cream { background-color: var(--bg-cream); }
 
-
-        /* ============ CARTE DIEUWERIGNE - STYLE MODERNE ============ */
+        /* ============ CARTE DIEUWERIGNE ============ */
         .dieuwerigne-modern {
             position: relative;
             background: white;
@@ -1650,24 +1899,18 @@
             height: 7px;
             background: #198754;
             border-radius: 50%;
-            animation: pulseDot 1.5s ease-in-out infinite;
+            animation: pulseDotGreen 1.5s ease-in-out infinite;
             box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.6);
         }
 
-        @keyframes pulseDot {
+        @keyframes pulseDotGreen {
             0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.6); }
             70% { box-shadow: 0 0 0 8px rgba(25, 135, 84, 0); }
             100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
         }
 
-        .dieuwerigne-info-section {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .dieuwerigne-header {
-            margin-bottom: 18px;
-        }
+        .dieuwerigne-info-section { flex: 1; min-width: 0; }
+        .dieuwerigne-header { margin-bottom: 18px; }
 
         .dieuwerigne-tag {
             display: inline-flex;
@@ -1748,10 +1991,7 @@
             box-shadow: 0 8px 25px rgba(10, 77, 58, 0.2);
         }
 
-        .stat-item {
-            text-align: center;
-            flex: 1;
-        }
+        .stat-item { text-align: center; flex: 1; }
 
         .stat-value {
             display: block;
@@ -1779,10 +2019,7 @@
             flex-shrink: 0;
         }
 
-        .dieuwerigne-actions-modern {
-            display: flex;
-            gap: 8px;
-        }
+        .dieuwerigne-actions-modern { display: flex; gap: 8px; }
 
         .action-btn {
             display: inline-flex;
@@ -1854,28 +2091,12 @@
             50% { transform: translateX(100%); }
         }
 
-        .dieuwerigne-footer i {
-            font-size: 0.85rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .dieuwerigne-footer span {
-            position: relative;
-            z-index: 1;
-        }
+        .dieuwerigne-footer i { font-size: 0.85rem; position: relative; z-index: 1; }
+        .dieuwerigne-footer span { position: relative; z-index: 1; }
 
         @media (max-width: 991px) {
-            .dieuwerigne-modern-inner {
-                padding: 28px;
-                gap: 24px;
-            }
-            
-            .dieuwerigne-photo-ring {
-                width: 130px;
-                height: 130px;
-            }
-            
+            .dieuwerigne-modern-inner { padding: 28px; gap: 24px; }
+            .dieuwerigne-photo-ring { width: 130px; height: 130px; }
             .dieuwerigne-name { font-size: 1.5rem; }
             .dieuwerigne-message { padding: 16px 18px 16px 44px; }
             .dieuwerigne-message .quote-icon { top: 16px; left: 16px; }
@@ -1884,7 +2105,6 @@
 
         @media (max-width: 767px) {
             .dieuwerigne-modern { border-radius: 20px; }
-            
             .dieuwerigne-modern-inner {
                 flex-direction: column;
                 align-items: center;
@@ -1892,7 +2112,6 @@
                 padding: 30px 22px;
                 gap: 22px;
             }
-            
             .dieuwerigne-photo-ring { width: 140px; height: 140px; }
             .dieuwerigne-info-section { width: 100%; }
             .dieuwerigne-header { text-align: center; }
@@ -2020,6 +2239,179 @@
                 </div>
             </div>
             <div class="arabic-calligraphy font-arabic">﷽</div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION COMPTE À REBOURS ÉVÉNEMENTS ============ -->
+    <section class="countdown-section" style="margin-top: 20px;">
+        <div class="container">
+            <div class="countdown-carousel" id="countdownCarousel" data-aos="fade-up" data-aos-duration="800">
+                
+                                <div class="countdown-track" id="countdownTrack">
+                    
+                    <!-- SLIDE 1 : Grand Magal De Mbacké Kadior -->
+                    <div class="countdown-slide">
+                        <div class="countdown-card">
+                            <div class="countdown-badge">
+                                <i class="fas fa-circle"></i>
+                                À venir
+                            </div>
+                            
+                            <div class="countdown-header">
+                                <div class="countdown-icon-wrapper">
+                                    <i class="fas fa-star-and-crescent"></i>
+                                </div>
+                                <div class="countdown-title-block">
+                                    <h3 class="countdown-event-title">Grand Magal De Mbacké Kadior</h3>
+                                    <p class="countdown-event-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span class="event-date-display" data-event-date="2026-11-09T20:30:00">Chargement...</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="countdown-timer" data-event-date="2026-11-09T20:30:00">
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-days">00</span>
+                                    <span class="countdown-label">Jours</span>
+                                </div>
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-hours">00</span>
+                                    <span class="countdown-label">Heures</span>
+                                </div>
+                                <div class="countdown-unit active">
+                                    <span class="countdown-value cd-minutes">00</span>
+                                    <span class="countdown-label">Min</span>
+                                </div>
+                            </div>
+
+                            <div class="countdown-cta">
+                                <p class="countdown-cta-text">
+                                    <i class="fas fa-info-circle"></i>
+                                    Préparez-vous pour ce grand rendez-vous spirituel
+                                </p>
+                                <a href="#evenements" class="countdown-cta-btn">
+                                    Plus d'infos
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2 : Dahira Sahandatou Dareyni -->
+                    <div class="countdown-slide">
+                        <div class="countdown-card">
+                            <div class="countdown-badge">
+                                <i class="fas fa-circle"></i>
+                                À venir
+                            </div>
+                            
+                            <div class="countdown-header">
+                                <div class="countdown-icon-wrapper">
+                                    <i class="fas fa-mosque"></i>
+                                </div>
+                                <div class="countdown-title-block">
+                                    <h3 class="countdown-event-title">Programme Dahira Sahandatou Dareyni</h3>
+                                    <p class="countdown-event-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span class="event-date-display" data-event-date="2026-10-18T18:00:00">Chargement...</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="countdown-timer" data-event-date="2026-10-18T18:00:00">
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-days">00</span>
+                                    <span class="countdown-label">Jours</span>
+                                </div>
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-hours">00</span>
+                                    <span class="countdown-label">Heures</span>
+                                </div>
+                                <div class="countdown-unit active">
+                                    <span class="countdown-value cd-minutes">00</span>
+                                    <span class="countdown-label">Min</span>
+                                </div>
+                            </div>
+
+                            <div class="countdown-cta">
+                                <p class="countdown-cta-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Dialegne - Kaolack
+                                </p>
+                                <a href="#evenements" class="countdown-cta-btn">
+                                    Plus d'infos
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                                        <!-- SLIDE 3 : Dahira du Samedi - Serigne Abdou Khadre Thioune -->
+                    <div class="countdown-slide">
+                        <div class="countdown-card">
+                            <div class="countdown-badge">
+                                <i class="fas fa-circle"></i>
+                                À venir
+                            </div>
+                            
+                            <div class="countdown-header">
+                                <div class="countdown-icon-wrapper">
+                                    <i class="fas fa-hands-praying"></i>
+                                </div>
+                                <div class="countdown-title-block">
+                                    <h3 class="countdown-event-title">Dahira du Samedi - Serigne Abdou Khadre Thioune</h3>
+                                    <p class="countdown-event-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span class="event-date-display" data-event-date="2026-10-17T20:30:00">Chargement...</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="countdown-timer" data-event-date="2026-10-17T20:30:00">
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-days">00</span>
+                                    <span class="countdown-label">Jours</span>
+                                </div>
+                                <div class="countdown-unit">
+                                    <span class="countdown-value cd-hours">00</span>
+                                    <span class="countdown-label">Heures</span>
+                                </div>
+                                <div class="countdown-unit active">
+                                    <span class="countdown-value cd-minutes">00</span>
+                                    <span class="countdown-label">Min</span>
+                                </div>
+                            </div>
+
+                            <div class="countdown-cta">
+                                <p class="countdown-cta-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Kasaville - Kaolack
+                                </p>
+                                <a href="#evenements" class="countdown-cta-btn">
+                                    Plus d'infos
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="countdown-nav prev" id="countdownPrev" aria-label="Événement précédent">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="countdown-nav next" id="countdownNext" aria-label="Événement suivant">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+            <div class="countdown-dots" id="countdownDots">
+                <button class="countdown-dot active" data-slide="0" aria-label="Événement 1"></button>
+                <button class="countdown-dot" data-slide="1" aria-label="Événement 2"></button>
+                <button class="countdown-dot" data-slide="2" aria-label="Événement 3"></button>
+            </div>
         </div>
     </section>
 
@@ -2285,7 +2677,6 @@
         <div class="container py-3">
             <div class="row g-4 g-lg-5">
                 
-                <!-- DIEUWERIGNE -->
                 <div class="col-lg-7">
                     <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2" data-aos="fade-up">
                         <div>
@@ -2369,7 +2760,6 @@
                     </div>
                 </div>
 
-                <!-- RESSOURCES -->
                 <div class="col-lg-5">
                     <div class="d-flex justify-content-between align-items-end mb-4" data-aos="fade-up">
                         <div>
@@ -2479,57 +2869,16 @@
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
-                <style>
-                    .footer-credit {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        color: rgba(255, 255, 255, 0.7);
-                        font-size: 0.85rem;
-                    }
-
-                    .credit-link {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        color: var(--accent-gold);
-                        text-decoration: none;
-                        font-weight: 600;
-                        background: rgba(212, 175, 55, 0.08);
-                        padding: 4px 12px;
-                        border-radius: 50px;
-                        border: 1px solid rgba(212, 175, 55, 0.25);
-                        transition: all 0.3s ease;
-                        font-size: 0.82rem;
-                    }
-
-                    .credit-link i {
-                        font-size: 0.7rem;
-                        opacity: 0.8;
-                    }
-
-                    .credit-link i:last-child {
-                        font-size: 0.6rem;
-                        opacity: 0.5;
-                    }
-
-                    .credit-link:hover {
-                        background: var(--gradient-gold);
-                        color: var(--primary-green);
-                        border-color: var(--accent-gold);
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
-                    }
-
-                    .credit-link:hover i {
-                        opacity: 1;
-                    }
-                </style>
-                    
             </div>
         </div>
+        <style>
+            .footer-credit { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; }
+            .credit-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-gold); text-decoration: none; font-weight: 600; background: rgba(212, 175, 55, 0.08); padding: 4px 12px; border-radius: 50px; border: 1px solid rgba(212, 175, 55, 0.25); transition: all 0.3s ease; font-size: 0.82rem; }
+            .credit-link i { font-size: 0.7rem; opacity: 0.8; }
+            .credit-link i:last-child { font-size: 0.6rem; opacity: 0.5; }
+            .credit-link:hover { background: var(--gradient-gold); color: var(--primary-green); border-color: var(--accent-gold); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3); }
+            .credit-link:hover i { opacity: 1; }
+        </style>
     </footer>
 
     <!-- MODAL FORMULAIRE -->
@@ -2771,7 +3120,144 @@
             });
         });
 
-        // ============ COMPTEUR ============
+        // ============ COMPTE À REBOURS MULTIPLES ============
+        (function initAllCountdowns() {
+            const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            document.querySelectorAll('.event-date-display').forEach(function(el) {
+                const dateStr = el.getAttribute('data-event-date');
+                const eventDate = new Date(dateStr);
+                if (!isNaN(eventDate.getTime())) {
+                    const formatted = dateFormatter.format(eventDate);
+                    el.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+                }
+            });
+
+            function updateAllCountdowns() {
+                const now = Date.now();
+
+                document.querySelectorAll('.countdown-timer').forEach(function(timer) {
+                    const dateStr = timer.getAttribute('data-event-date');
+                    const eventDate = new Date(dateStr);
+                    const distance = eventDate.getTime() - now;
+
+                    const $days = timer.querySelector('.cd-days');
+                    const $hours = timer.querySelector('.cd-hours');
+                    const $minutes = timer.querySelector('.cd-minutes');
+
+                    if (distance < 0) {
+                        if ($days) $days.textContent = '00';
+                        if ($hours) $hours.textContent = '00';
+                        if ($minutes) $minutes.textContent = '00';
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                    if ($days) $days.textContent = String(days).padStart(2, '0');
+                    if ($hours) $hours.textContent = String(hours).padStart(2, '0');
+                    if ($minutes) $minutes.textContent = String(minutes).padStart(2, '0');
+                });
+            }
+
+            updateAllCountdowns();
+            setInterval(updateAllCountdowns, 30000);
+        })();
+
+        // ============ CARROUSEL ÉVÉNEMENTS AUTO ============
+        (function initCountdownCarousel() {
+            const track = document.getElementById('countdownTrack');
+            const slides = document.querySelectorAll('.countdown-slide');
+            const dots = document.querySelectorAll('.countdown-dot');
+            const prevBtn = document.getElementById('countdownPrev');
+            const nextBtn = document.getElementById('countdownNext');
+            const carousel = document.getElementById('countdownCarousel');
+
+            if (!track || slides.length === 0) return;
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            const AUTOPLAY_DURATION = 5000;
+            let autoplayTimer = null;
+            let isPaused = false;
+
+            function goToSlide(index) {
+                currentSlide = (index + totalSlides) % totalSlides;
+                track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+
+                dots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+
+            function nextSlide() { goToSlide(currentSlide + 1); }
+            function prevSlide() { goToSlide(currentSlide - 1); }
+
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayTimer = setInterval(function() {
+                    if (!isPaused) nextSlide();
+                }, AUTOPLAY_DURATION);
+            }
+
+            function stopAutoplay() {
+                if (autoplayTimer) {
+                    clearInterval(autoplayTimer);
+                    autoplayTimer = null;
+                }
+            }
+
+            if (nextBtn) nextBtn.addEventListener('click', function() { nextSlide(); startAutoplay(); });
+            if (prevBtn) prevBtn.addEventListener('click', function() { prevSlide(); startAutoplay(); });
+
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-slide'), 10);
+                    goToSlide(index);
+                    startAutoplay();
+                });
+            });
+
+            if (carousel) {
+                carousel.addEventListener('mouseenter', function() { isPaused = true; });
+                carousel.addEventListener('mouseleave', function() { isPaused = false; });
+            }
+
+            document.addEventListener('visibilitychange', function() {
+                isPaused = document.hidden;
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (carousel) {
+                carousel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                carousel.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) nextSlide();
+                        else prevSlide();
+                        startAutoplay();
+                    }
+                }, { passive: true });
+            }
+
+            goToSlide(0);
+            startAutoplay();
+        })();
+
+        // ============ COMPTEUR CARACTÈRES ============
         $('#message').on('input', function() {
             var len = $(this).val().length;
             $('#charCount').text(len);
@@ -2931,7 +3417,7 @@
             window.top.location = window.self.location;
         }
 
-        console.log('%c🕌 Dahira D3S - Site sécurisé avec Back to Top', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+        console.log('%c🕌 Dahira D3S - Site sécurisé avec carrousel événements', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
     </script>
 </body>
 </html>
