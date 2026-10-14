@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <meta name="description" content="Durus - Espace d'apprentissage des Xassida de Serigne Touba Mbacké. Bientôt disponible sur le site de la Dahira Sope Serigne Saliou (D3S).">
+    <meta name="description" content="Durus - Bibliothèque spirituelle des Xassida de Serigne Touba Mbacké. Consultez et téléchargez les PDF des œuvres majeures du Mouridisme.">
     <meta name="theme-color" content="#0a4d3a">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <title>Durus - Xassida de Serigne Touba | Dahira D3S</title>
+    <title>Durus - Bibliothèque des Xassida de Serigne Touba | Dahira D3S</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -24,54 +24,38 @@
             --secondary-green: #1a7a5e;
             --accent-gold: #d4af37;
             --accent-gold-light: #e8c458;
-            --accent-blue: #2c5e8a;
             --text-dark: #1a1a1a;
             --text-muted: #6c757d;
             --bg-cream: #faf8f3;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 50px rgba(10, 77, 58, 0.15);
+            --bg-white: #ffffff;
+            --border-soft: rgba(10, 77, 58, 0.08);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 12px rgba(10, 77, 58, 0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 32px rgba(10, 77, 58, 0.12), 0 4px 8px rgba(0,0,0,0.04);
             --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f4d47c 50%, #d4af37 100%);
             --gradient-green: linear-gradient(135deg, #0a4d3a 0%, #0d5c46 50%, #1a7a5e 100%);
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        html { 
-            scroll-behavior: smooth; 
-            -webkit-text-size-adjust: 100%;
-            overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
         
-        html, body {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
+        html, body { scrollbar-width: none; -ms-overflow-style: none; }
         
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar,
-        *::-webkit-scrollbar {
+        html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
             display: none;
             width: 0;
             height: 0;
         }
         
-        * {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
 
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
             background-color: var(--bg-cream);
-            line-height: 1.7;
+            line-height: 1.6;
             width: 100%;
             max-width: 100vw;
             position: relative;
@@ -80,23 +64,20 @@
         h1, h2, h3, h4, h5, .font-serif {
             font-family: 'Marcellus', serif;
             font-weight: 400;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .font-arabic { font-family: 'Amiri', serif; }
 
-        img, iframe, video { 
-            max-width: 100%; 
-            height: auto; 
-        }
+        img, iframe, video { max-width: 100%; height: auto; }
 
         /* ============ BOUTON BACK TO TOP ============ */
         #backToTop {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 52px;
-            height: 52px;
+            width: 48px;
+            height: 48px;
             background: var(--gradient-green);
             color: var(--accent-gold);
             border: 2px solid var(--accent-gold);
@@ -104,10 +85,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             z-index: 9998;
-            box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35);
+            box-shadow: 0 8px 25px rgba(10, 77, 58, 0.3);
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px) scale(0.8);
@@ -126,96 +107,22 @@
             z-index: -1;
         }
 
-        #backToTop.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-            animation: pulseRing 2.5s infinite;
-        }
-
-        #backToTop:hover {
-            color: var(--primary-green);
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
-            animation: none;
-        }
-
+        #backToTop.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        #backToTop:hover { color: var(--primary-green); transform: translateY(-5px) scale(1.08); }
         #backToTop:hover::before { transform: scale(1); }
-
-        #backToTop i {
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        #backToTop:hover i { 
-            transform: translateY(-3px);
-            animation: bounceArrow 0.6s ease infinite alternate;
-        }
-
-        #backToTop .tooltip-text {
-            position: absolute;
-            bottom: 100%;
-            right: 0;
-            background: var(--primary-green);
-            color: var(--accent-gold);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            margin-bottom: 8px;
-            box-shadow: var(--shadow-md);
-        }
-
-        #backToTop .tooltip-text::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            right: 18px;
-            border: 6px solid transparent;
-            border-top-color: var(--primary-green);
-        }
-
-        #backToTop:hover .tooltip-text {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        @keyframes pulseRing {
-            0% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.6); }
-            70% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 8px 25px rgba(10, 77, 58, 0.35), 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-
-        @keyframes bounceArrow {
-            from { transform: translateY(-3px); }
-            to { transform: translateY(-7px); }
-        }
+        #backToTop i { transition: transform 0.3s ease; position: relative; z-index: 2; }
+        #backToTop:hover i { transform: translateY(-3px); }
 
         /* Top Bar */
         .top-bar {
             background: var(--gradient-green);
             color: white;
             padding: 6px 0;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 300;
         }
 
-        .top-bar a { 
-            color: rgba(255,255,255,0.85); 
-            text-decoration: none; 
-            transition: color 0.3s; 
-            display: inline-block;
-            padding: 2px 4px;
-        }
-        
+        .top-bar a { color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; display: inline-block; padding: 2px 4px; }
         .top-bar a:hover { color: var(--accent-gold); }
 
         /* Navbar */
@@ -233,45 +140,31 @@
 
         .navbar .container { padding-left: 12px; padding-right: 12px; }
 
-        .navbar-brand { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-            max-width: calc(100% - 55px);
-            text-decoration: none;
-        }
+        .navbar-brand { display: flex; align-items: center; gap: 8px; max-width: calc(100% - 55px); text-decoration: none; }
 
         .brand-logo {
-            width: 45px;
-            height: 45px;
-            min-width: 45px;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             border-radius: 50%;
             background: var(--gradient-green);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-gold);
-            font-family: 'Marcellus', serif;
-            font-size: 1rem;
-            font-weight: bold;
             box-shadow: 0 4px 12px rgba(10, 77, 58, 0.3);
             border: 2px solid var(--accent-gold);
             flex-shrink: 0;
             overflow: hidden;
         }
 
-        .brand-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+        .brand-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
         .brand-text { overflow: hidden; min-width: 0; }
 
         .brand-text h5 {
             margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--primary-green);
             font-weight: 700;
             line-height: 1.2;
@@ -281,7 +174,7 @@
         }
 
         .brand-text span {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             color: var(--text-muted);
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -304,12 +197,7 @@
 
         .navbar-toggler:focus { box-shadow: none; }
 
-        .burger-icon {
-            position: relative;
-            width: 24px;
-            height: 18px;
-            display: inline-block;
-        }
+        .burger-icon { position: relative; width: 24px; height: 18px; display: inline-block; }
 
         .burger-icon span {
             position: absolute;
@@ -326,26 +214,21 @@
         .burger-icon span:nth-child(3) { bottom: 0; }
 
         .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(1) {
-            top: 50%;
-            transform: translateY(-50%) rotate(45deg);
-            background: var(--accent-gold);
+            top: 50%; transform: translateY(-50%) rotate(45deg); background: var(--accent-gold);
         }
 
         .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(2) {
-            opacity: 0;
-            transform: translateX(-20px);
+            opacity: 0; transform: translateX(-20px);
         }
 
         .navbar-toggler[aria-expanded="true"] .burger-icon span:nth-child(3) {
-            bottom: 50%;
-            transform: translateY(50%) rotate(-45deg);
-            background: var(--accent-gold);
+            bottom: 50%; transform: translateY(50%) rotate(-45deg); background: var(--accent-gold);
         }
 
         .nav-link {
             color: var(--text-dark) !important;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             margin: 0 4px;
             padding: 8px 12px !important;
             position: relative;
@@ -372,9 +255,9 @@
             background: var(--gradient-green);
             color: white;
             border-radius: 50px;
-            padding: 12px 28px;
+            padding: 11px 26px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: all 0.4s ease;
             border: none;
             position: relative;
@@ -407,32 +290,10 @@
 
         .btn-primary-custom:hover::before { left: 0; }
 
-        .btn-outline-gold {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 2px solid var(--accent-gold);
-            border-radius: 50px;
-            padding: 10px 26px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.4s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            text-align: center;
-        }
-
-        .btn-outline-gold:hover {
-            background: var(--accent-gold);
-            color: var(--primary-green);
-            transform: translateY(-3px);
-        }
-
-        /* ============ PAGE HERO DURUS ============ */
+        /* HERO */
         .durus-hero {
             position: relative;
-            padding: 90px 0 70px;
+            padding: 55px 0 45px;
             background: linear-gradient(135deg, rgba(10, 77, 58, 0.95) 0%, rgba(13, 92, 70, 0.9) 50%, rgba(26, 122, 94, 0.88) 100%),
                         url('images/mos1.WEBP') center/cover no-repeat;
             color: white;
@@ -444,10 +305,10 @@
         .durus-hero::before {
             content: '۞';
             position: absolute;
-            top: 40px;
-            right: 40px;
+            top: 20px;
+            right: 30px;
             font-family: 'Amiri', serif;
-            font-size: 8rem;
+            font-size: 6rem;
             color: rgba(212, 175, 55, 0.08);
             line-height: 1;
             pointer-events: none;
@@ -456,11 +317,11 @@
         .durus-hero .container { position: relative; z-index: 2; }
 
         .durus-hero h1 {
-            font-size: 3.2rem;
+            font-size: 2.3rem;
             color: white;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
             line-height: 1.2;
+            font-weight: 400;
         }
 
         .durus-hero h1 span {
@@ -472,758 +333,372 @@
         }
 
         .durus-hero p {
-            font-size: 1.05rem;
-            opacity: 0.92;
-            max-width: 700px;
-            margin: 0 auto 20px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto;
             font-weight: 300;
+            line-height: 1.5;
         }
 
-        .breadcrumb-custom {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.85);
-        }
-
-        .breadcrumb-custom a {
-            color: var(--accent-gold);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .breadcrumb-custom a:hover { color: white; }
-
-        .breadcrumb-custom i { color: var(--accent-gold); font-size: 0.7rem; }
-
-        /* ============ SECTION EN DÉVELOPPEMENT ============ */
-        .dev-section {
-            padding: 70px 0 60px;
+        /* RECHERCHE STICKY */
+        .search-sticky {
+            position: sticky;
+            top: 68px;
+            z-index: 100;
             background: var(--bg-cream);
-            position: relative;
-            overflow: hidden;
+            padding: 18px 0 14px;
+            border-bottom: 1px solid var(--border-soft);
+            transition: all 0.3s ease;
         }
 
-        .dev-card {
-            background: white;
-            border-radius: 30px;
-            padding: 60px 50px;
-            text-align: center;
-            box-shadow: 0 25px 70px rgba(10, 77, 58, 0.12);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(10, 77, 58, 0.06);
+        .search-sticky.scrolled {
+            box-shadow: 0 4px 20px rgba(10, 77, 58, 0.06);
+            background: rgba(250, 248, 243, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .search-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
             max-width: 900px;
             margin: 0 auto;
         }
 
-        .dev-card::before {
-            content: '';
-            position: absolute;
-            top: -150px;
-            right: -150px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .dev-card::after {
-            content: '';
-            position: absolute;
-            bottom: -150px;
-            left: -150px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(10, 77, 58, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .dev-card .dev-content { position: relative; z-index: 2; }
-
-        /* Animation engrenages */
-        .dev-illustration {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dev-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(10, 77, 58, 0.08) 0%, rgba(212, 175, 55, 0.12) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            animation: pulseDev 3s ease-in-out infinite;
-        }
-
-        .dev-circle::before {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            border-radius: 50%;
-            border: 2px dashed rgba(212, 175, 55, 0.3);
-            animation: rotateSlow 25s linear infinite;
-        }
-
-        .dev-circle::after {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            border-radius: 50%;
-            border: 1px solid rgba(10, 77, 58, 0.1);
-            animation: rotateSlow 35s linear infinite reverse;
-        }
-
-        .dev-circle i {
-            font-size: 3.5rem;
-            background: var(--gradient-green);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: bounceGear 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseDev {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes bounceGear {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(15deg); }
-        }
-
-        /* Badge "Bientôt disponible" */
-        .dev-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
-            color: var(--accent-gold);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            margin-bottom: 25px;
-        }
-
-        .dev-badge i { font-size: 0.85rem; animation: pulseDot 1.5s ease-in-out infinite; }
-
-        .dev-card h2 {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .dev-card h2 span {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: italic;
-        }
-
-        .dev-card > .dev-content > p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-        }
-
-        /* Barre de progression */
-        .progress-wrapper {
-            max-width: 550px;
-            margin: 0 auto 45px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .progress-label {
-            font-size: 0.8rem;
-            color: var(--primary-green);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .progress-percent {
-            font-family: 'Marcellus', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-
-        .progress-bar-custom {
-            width: 100%;
-            height: 12px;
-            background: rgba(10, 77, 58, 0.08);
-            border-radius: 50px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient-green);
-            border-radius: 50px;
-            width: 65%;
-            position: relative;
-            overflow: hidden;
-            transition: width 1.5s ease;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.4) 50%, transparent 100%);
-            animation: shimmerProgress 2s ease-in-out infinite;
-        }
-
-        @keyframes shimmerProgress {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Compte à rebours */
-        .countdown-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: var(--gradient-green);
-            color: white;
-            border-radius: 16px;
-            padding: 18px 22px;
-            min-width: 85px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(10, 77, 58, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .countdown-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-gold);
-        }
-
-        .countdown-value {
-            display: block;
-            font-family: 'Marcellus', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .countdown-label {
-            display: block;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.75);
-            font-weight: 500;
-        }
-
-        /* Formulaire de notification */
-        .notify-form {
-            max-width: 550px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #faf8f3 0%, #f4f7f6 100%);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(10, 77, 58, 0.08);
-        }
-
-        .notify-form h5 {
-            font-family: 'Marcellus', serif;
-            color: var(--primary-green);
-            font-size: 1.15rem;
-            margin-bottom: 8px;
-        }
-
-        .notify-form > p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .notify-input-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .notify-input {
+        .search-box {
             flex: 1;
-            min-width: 200px;
-            padding: 14px 20px;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 0.9rem;
+            position: relative;
+            display: flex;
+            align-items: center;
             background: white;
+            border-radius: 14px;
+            border: 1.5px solid var(--border-soft);
             transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
         }
 
-        .notify-input:focus {
-            outline: none;
+        .search-box:focus-within {
             border-color: var(--primary-green);
-            box-shadow: 0 0 0 4px rgba(10, 77, 58, 0.1);
+            box-shadow: 0 0 0 4px rgba(10, 77, 58, 0.08);
         }
 
-        .notify-btn {
-            background: var(--gradient-green);
-            color: white;
+        .search-box .search-icon { padding: 0 0 0 18px; color: var(--accent-gold); font-size: 1rem; flex-shrink: 0; }
+
+        .search-box input {
+            flex: 1;
             border: none;
-            border-radius: 50px;
-            padding: 14px 28px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 20px rgba(10, 77, 58, 0.25);
+            outline: none;
+            padding: 14px 14px;
+            font-size: 0.9rem;
             font-family: 'Poppins', sans-serif;
-            white-space: nowrap;
+            color: var(--text-dark);
+            background: transparent;
+            min-width: 0;
         }
 
-        .notify-btn:hover {
-            background: var(--gradient-gold);
-            color: var(--primary-green);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
-        }
+        .search-box input::placeholder { color: var(--text-muted); font-size: 0.85rem; }
 
-        .notify-note {
-            font-size: 0.72rem;
+        .search-box .search-clear {
+            padding: 0 12px;
+            background: transparent;
+            border: none;
             color: var(--text-muted);
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .notify-note i { color: var(--accent-gold); }
-
-        /* ============ SECTION FONCTIONNALITÉS À VENIR ============ */
-        .features-coming {
-            padding: 70px 0;
-            background: white;
-            position: relative;
-        }
-
-        .features-coming::before {
-            content: '۞';
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            font-family: 'Amiri', serif;
-            font-size: 8rem;
-            color: rgba(212, 175, 55, 0.05);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .section-header-center {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .section-label-center {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent-gold);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 15px;
-        }
-
-        .section-label-center::before,
-        .section-label-center::after {
-            content: '';
-            width: 30px;
-            height: 2px;
-            background: var(--accent-gold);
-        }
-
-        .section-header-center h2 {
-            font-size: 2.4rem;
-            color: var(--primary-green);
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .section-header-center h2 span {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: italic;
-        }
-
-        .section-header-center p {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .feature-coming-card {
-            background: var(--bg-cream);
-            border-radius: 22px;
-            padding: 35px 28px;
-            height: 100%;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(10, 77, 58, 0.06);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-coming-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--gradient-gold);
-            transition: height 0.4s ease;
-        }
-
-        .feature-coming-card:hover::before { height: 100%; }
-
-        .feature-coming-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(10, 77, 58, 0.12);
-            background: white;
-        }
-
-        .feature-coming-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-green);
-            color: var(--accent-gold);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 22px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(10, 77, 58, 0.2);
-        }
-
-        .feature-coming-card:hover .feature-coming-icon {
-            transform: rotate(-5deg) scale(1.05);
-            box-shadow: 0 15px 35px rgba(10, 77, 58, 0.3);
-        }
-
-        .feature-coming-card h5 {
-            font-family: 'Marcellus', serif;
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin-bottom: 12px;
-        }
-
-        .feature-coming-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .feature-coming-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(212, 175, 55, 0.12);
-            color: var(--accent-gold);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.68rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ============ SECTION APERÇU XASSIDA ============ */
-        .xassida-preview {
-            padding: 70px 0;
-            background: var(--bg-cream);
-            position: relative;
-        }
-
-        .xassida-preview::before {
-            content: '۞';
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            font-family: 'Amiri', serif;
-            font-size: 8rem;
-            color: rgba(212, 175, 55, 0.06);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .xassida-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            height: 100%;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(10, 77, 58, 0.06);
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .xassida-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .xassida-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(10, 77, 58, 0.12);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-
-        .xassida-icon {
-            width: 60px;
-            height: 60px;
-            min-width: 60px;
-            background: linear-gradient(135deg, rgba(10, 77, 58, 0.08) 0%, rgba(212, 175, 55, 0.1) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .xassida-card:hover .xassida-icon {
-            background: var(--gradient-green);
-            color: var(--accent-gold);
-            transform: rotate(-5deg);
-        }
-
-        .xassida-info { flex: 1; min-width: 0; }
-
-        .xassida-info h5 {
-            font-family: 'Marcellus', serif;
-            font-size: 1.05rem;
-            color: var(--primary-green);
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .xassida-info .xassida-arabic {
-            font-family: 'Amiri', serif;
+            cursor: pointer;
             font-size: 0.95rem;
-            color: var(--accent-gold);
-            margin-bottom: 8px;
-            direction: rtl;
-            text-align: right;
-            opacity: 0.8;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
-        .xassida-info p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
+        .search-box .search-clear.visible { opacity: 1; visibility: visible; }
+        .search-box .search-clear:hover { color: var(--primary-green); }
 
-        .xassida-meta {
+        .filters-inline {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 4px 0;
+            scrollbar-width: none;
+            flex-shrink: 0;
         }
 
-        .xassida-meta span {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .filters-inline::-webkit-scrollbar { display: none; }
 
-        .xassida-meta span i { color: var(--accent-gold); }
-
-        .xassida-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(212, 175, 55, 0.12);
-            color: var(--accent-gold);
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: auto;
-        }
-
-        /* ============ SECTION RESSOURCES À VENIR ============ */
-        .resources-coming {
-            padding: 70px 0;
+        .filter-pill {
             background: white;
-            position: relative;
+            color: var(--primary-green);
+            border: 1.5px solid var(--border-soft);
+            border-radius: 50px;
+            padding: 9px 16px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .resource-coming-item {
+        .filter-pill i { font-size: 0.72rem; color: var(--accent-gold); }
+        .filter-pill:hover { border-color: var(--primary-green); transform: translateY(-1px); }
+        .filter-pill.active { background: var(--gradient-green); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(10, 77, 58, 0.2); }
+        .filter-pill.active i { color: var(--accent-gold); }
+
+        .results-info {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .results-info strong { color: var(--primary-green); font-weight: 600; }
+
+        /* GRILLE */
+        .xassida-section {
+            padding: 25px 0 60px;
+            background: var(--bg-cream);
+            min-height: 400px;
+        }
+
+        .xassida-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+
+        .xassida-item {
+            background: white;
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--border-soft);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 22px 25px;
-            background: var(--bg-cream);
-            border-radius: 16px;
-            margin-bottom: 15px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(10, 77, 58, 0.06);
+            gap: 14px;
             position: relative;
             overflow: hidden;
+            animation: cardAppear 0.4s ease forwards;
+            opacity: 0;
         }
 
-        .resource-coming-item::before {
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .xassida-item::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
-            width: 4px;
-            background: var(--accent-gold);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            width: 3px;
+            background: var(--gradient-gold);
+            transform: scaleY(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
         }
 
-        .resource-coming-item:hover {
-            transform: translateX(8px);
-            background: white;
-            box-shadow: 0 15px 40px rgba(10, 77, 58, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+        .xassida-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(10, 77, 58, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
-        .resource-coming-item:hover::before { opacity: 1; }
+        .xassida-item:hover::before { transform: scaleY(1); }
 
-        .resource-icon {
-            width: 55px;
-            height: 55px;
-            min-width: 55px;
-            background: var(--gradient-green);
-            color: var(--accent-gold);
-            border-radius: 14px;
+        .xassida-icon-compact {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.06) 0%, rgba(212, 175, 55, 0.08) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            box-shadow: 0 8px 20px rgba(10, 77, 58, 0.2);
-        }
-
-        .resource-content { flex: 1; min-width: 0; }
-
-        .resource-content h6 {
-            font-family: 'Marcellus', serif;
-            font-size: 1rem;
+            font-size: 1.15rem;
             color: var(--primary-green);
-            margin-bottom: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-soft);
         }
 
-        .resource-content p {
-            font-size: 0.8rem;
+        .xassida-item:hover .xassida-icon-compact {
+            background: var(--gradient-green);
+            color: var(--accent-gold);
+            transform: scale(1.05);
+            border-color: transparent;
+        }
+
+        .xassida-content { flex: 1; min-width: 0; }
+
+        .xassida-title {
+            font-family: 'Marcellus', serif;
+            font-size: 0.98rem;
+            color: var(--primary-green);
+            margin: 0 0 3px 0;
+            line-height: 1.3;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .xassida-tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            font-size: 0.65rem;
             color: var(--text-muted);
-            margin: 0;
         }
 
-        .resource-badge {
+        .xassida-tags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: rgba(10, 77, 58, 0.04);
+            padding: 2px 7px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        .xassida-tags span i { font-size: 0.6rem; color: var(--accent-gold); }
+
+        .xassida-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+
+        .btn-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-soft);
+            background: white;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .btn-icon:hover {
+            background: var(--gradient-green);
+            color: var(--accent-gold);
+            border-color: transparent;
+            transform: scale(1.1);
+        }
+
+        .btn-read-compact {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--accent-gold);
-            padding: 6px 14px;
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            padding: 8px 14px;
             border-radius: 50px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 3px 10px rgba(10, 77, 58, 0.2);
+            flex-shrink: 0;
         }
 
-        /* ============ CTA BANNER ============ */
+        .btn-read-compact:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 16px;
+            border: 2px dashed var(--border-soft);
+        }
+
+        .empty-state i { font-size: 3rem; color: var(--accent-gold); opacity: 0.5; margin-bottom: 16px; }
+        .empty-state h4 { color: var(--primary-green); margin-bottom: 8px; font-family: 'Marcellus', serif; font-size: 1.1rem; }
+        .empty-state p { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* LOADER */
+        .loading-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(10, 77, 58, 0.1);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-state p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* INFO BANNER */
+        .info-banner {
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.03) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .info-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .info-banner-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            flex-shrink: 0;
+        }
+
+        .info-banner-text { flex: 1; min-width: 240px; text-align: left; }
+
+        .info-banner-text h4 { font-family: 'Marcellus', serif; color: var(--primary-green); font-size: 1.1rem; margin-bottom: 4px; }
+
+        .info-banner-text p { color: var(--text-muted); font-size: 0.85rem; margin: 0; line-height: 1.5; }
+
+        /* CTA */
         .cta-banner {
-            padding: 60px 0;
+            padding: 50px 0;
             background: linear-gradient(135deg, rgba(10, 77, 58, 0.95) 0%, rgba(13, 92, 70, 0.92) 100%),
                         url('images/so1.jpeg') center/cover no-repeat;
             color: white;
@@ -1234,7 +709,7 @@
         .cta-banner::before {
             content: '۞';
             position: absolute;
-            font-size: 15rem;
+            font-size: 12rem;
             color: rgba(212, 175, 55, 0.05);
             font-family: 'Amiri', serif;
             top: 50%;
@@ -1246,9 +721,9 @@
 
         .cta-banner h3 {
             font-family: 'Marcellus', serif;
-            max-width: 900px;
-            margin: 0 auto 20px;
-            font-size: 1.7rem;
+            max-width: 800px;
+            margin: 0 auto 15px;
+            font-size: 1.4rem;
             line-height: 1.4;
         }
 
@@ -1256,7 +731,7 @@
         footer {
             background: linear-gradient(180deg, #083528 0%, #061f17 100%);
             color: rgba(255,255,255,0.7);
-            padding: 55px 0 25px;
+            padding: 50px 0 22px;
             position: relative;
         }
 
@@ -1270,36 +745,20 @@
             background: var(--gradient-gold);
         }
 
-        footer h5 {
-            color: var(--accent-gold);
-            margin-bottom: 18px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-        }
+        footer h5 { color: var(--accent-gold); margin-bottom: 16px; font-size: 0.92rem; letter-spacing: 1px; }
 
         footer ul { list-style: none; padding: 0; }
-        footer ul li { margin-bottom: 10px; }
-        footer ul li a {
-            color: rgba(255,255,255,0.65);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.82rem;
-        }
-
-        footer ul li a::before {
-            content: '›';
-            margin-right: 8px;
-            color: var(--accent-gold);
-        }
-
+        footer ul li { margin-bottom: 9px; }
+        footer ul li a { color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.3s; font-size: 0.8rem; }
+        footer ul li a::before { content: '›'; margin-right: 8px; color: var(--accent-gold); }
         footer ul li a:hover { color: var(--accent-gold); padding-left: 5px; }
 
         .social-icons a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             background: rgba(255,255,255,0.06);
             color: white;
             border-radius: 50%;
@@ -1307,31 +766,22 @@
             margin-bottom: 6px;
             transition: all 0.4s ease;
             border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
         }
 
-        .social-icons a:hover {
-            background: var(--gradient-gold);
-            color: var(--primary-green);
-            transform: translateY(-3px);
-        }
+        .social-icons a:hover { background: var(--gradient-gold); color: var(--primary-green); transform: translateY(-3px); }
 
         .newsletter-input {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.15);
             color: white;
             border-radius: 50px 0 0 50px;
-            padding: 12px 18px;
+            padding: 11px 18px;
             flex: 1;
             font-size: 0.85rem;
         }
 
-        .newsletter-input:focus {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-color: var(--accent-gold);
-            box-shadow: none;
-        }
-
+        .newsletter-input:focus { background: rgba(255,255,255,0.1); color: white; border-color: var(--accent-gold); box-shadow: none; }
         .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
 
         .newsletter-btn {
@@ -1339,22 +789,141 @@
             color: var(--primary-green);
             border: none;
             border-radius: 0 50px 50px 0;
-            padding: 12px 20px;
+            padding: 11px 20px;
             font-weight: 600;
             transition: all 0.3s;
         }
 
-        /* ============ RESPONSIVE ============ */
+        /* ============ MODALE PDF - CORRIGÉE POUR LE SCROLL ============ */
+        .pdf-modal .modal-dialog {
+            max-width: 1200px;
+            height: 95vh;
+            margin: 2.5vh auto;
+        }
+
+        .pdf-modal .modal-content {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(10, 77, 58, 0.35);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-modal .modal-header {
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            flex-shrink: 0;
+        }
+
+        .pdf-modal .modal-header h5 {
+            color: white;
+            font-family: 'Marcellus', serif;
+            font-size: 1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .pdf-modal .modal-header h5 i { color: var(--accent-gold); flex-shrink: 0; }
+
+        .pdf-modal .modal-header h5 span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .pdf-modal .modal-header .pdf-actions { 
+            display: flex; 
+            gap: 8px; 
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .pdf-modal .modal-header .btn-pdf-action {
+            background: rgba(255,255,255,0.15);
+            color: var(--accent-gold);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            white-space: nowrap;
+        }
+
+        .pdf-modal .modal-header .btn-pdf-action:hover { 
+            background: var(--gradient-gold); 
+            color: var(--primary-green); 
+            transform: translateY(-1px);
+        }
+
+        .pdf-modal .modal-header .btn-close { 
+            filter: invert(1) brightness(2); 
+            opacity: 0.9;
+            margin-left: 8px;
+        }
+
+        /* ⚡ FIX PRINCIPAL : modal-body avec scroll natif */
+        .pdf-modal .modal-body {
+            padding: 0;
+            background: #f4f7f6;
+            flex: 1 1 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            position: relative;
+        }
+
+        /* ⚡ FIX : iframe avec scroll natif interne */
+        .pdf-modal .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            flex: 1 1 auto;
+            border: none;
+            background: white;
+            display: block;
+            min-height: 0;
+        }
+
+        .pdf-modal .pdf-fallback {
+            padding: 50px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .pdf-modal .pdf-fallback i { font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 18px; }
+        .pdf-modal .pdf-fallback h5 { font-family: 'Marcellus', serif; color: var(--primary-green); margin-bottom: 10px; font-size: 1.1rem; }
+        .pdf-modal .pdf-fallback p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 22px; }
+
+        /* RESPONSIVE */
         @media (max-width: 1199px) {
-            .durus-hero h1 { font-size: 2.7rem; }
-            .dev-card { padding: 50px 35px; }
-            .dev-card h2 { font-size: 2.2rem; }
+            .xassida-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
         }
 
         @media (max-width: 991px) {
-            .durus-hero { padding: 70px 0 55px; }
-            .durus-hero h1 { font-size: 2.3rem; }
-            .durus-hero p { font-size: 0.95rem; }
+            .durus-hero { padding: 45px 0 35px; }
+            .durus-hero h1 { font-size: 2rem; }
             .navbar-collapse {
                 background: white;
                 padding: 15px;
@@ -1364,17 +933,13 @@
                 max-height: calc(100vh - 100px);
                 overflow-y: auto;
             }
-            .nav-link { 
-                padding: 12px 15px !important; 
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                margin: 0;
-            }
+            .nav-link { padding: 12px 15px !important; border-bottom: 1px solid rgba(0,0,0,0.05); margin: 0; }
             .nav-link:last-child { border-bottom: none; }
             .nav-link::after { display: none; }
             .btn-primary-custom { margin-top: 12px; width: 100%; }
-            .cta-banner h3 { font-size: 1.4rem; }
-            .dev-card { padding: 45px 30px; }
-            .section-header-center h2 { font-size: 2rem; }
+            .cta-banner h3 { font-size: 1.2rem; }
+            .xassida-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .search-sticky { top: 62px; }
         }
 
         @media (max-width: 767px) {
@@ -1382,117 +947,100 @@
             .top-bar .container { justify-content: center !important; }
             
             .navbar { padding: 6px 0; }
-            .brand-logo { width: 40px; height: 40px; min-width: 40px; font-size: 0.9rem; }
-            .brand-text h5 { font-size: 0.75rem; }
-            .brand-text span { font-size: 0.55rem; }
+            .brand-logo { width: 38px; height: 38px; min-width: 38px; font-size: 0.9rem; }
+            .brand-text h5 { font-size: 0.72rem; }
+            .brand-text span { font-size: 0.53rem; }
             
-            .durus-hero { padding: 50px 0 40px; }
-            .durus-hero h1 { font-size: 1.7rem; margin-bottom: 12px; }
-            .durus-hero p { font-size: 0.85rem; margin-bottom: 15px; }
-            .breadcrumb-custom { font-size: 0.75rem; padding: 6px 15px; }
-            .durus-hero::before { font-size: 5rem; top: 20px; right: 20px; }
+            .durus-hero { padding: 35px 0 28px; }
+            .durus-hero h1 { font-size: 1.5rem; margin-bottom: 8px; }
+            .durus-hero p { font-size: 0.8rem; }
+            .durus-hero::before { font-size: 4rem; top: 10px; right: 15px; }
             
-            .dev-section { padding: 45px 0; }
-            .dev-card { padding: 35px 22px; border-radius: 22px; }
-            .dev-card h2 { font-size: 1.6rem; margin-bottom: 15px; }
-            .dev-card > .dev-content > p { font-size: 0.88rem; margin-bottom: 30px; }
-            .dev-illustration { width: 130px; height: 130px; margin-bottom: 22px; }
-            .dev-circle { width: 110px; height: 110px; }
-            .dev-circle i { font-size: 2.5rem; }
-            .dev-badge { font-size: 0.65rem; padding: 6px 14px; margin-bottom: 18px; }
+            .search-sticky { padding: 12px 0 10px; top: 60px; }
+            .search-wrapper { flex-direction: column; gap: 10px; }
+            .search-box { width: 100%; }
+            .search-box input { padding: 12px 10px; font-size: 0.85rem; }
+            .search-box .search-icon { padding: 0 0 0 14px; font-size: 0.9rem; }
             
-            .countdown { gap: 8px; margin-bottom: 30px; }
-            .countdown-item { padding: 14px 14px; min-width: 68px; border-radius: 12px; }
-            .countdown-value { font-size: 1.5rem; }
-            .countdown-label { font-size: 0.55rem; }
-            .countdown-title { font-size: 0.72rem; }
+            .filters-inline { width: 100%; justify-content: flex-start; padding: 2px 0 6px; }
+            .filter-pill { padding: 7px 13px; font-size: 0.72rem; }
+            .filter-pill i { font-size: 0.65rem; }
             
-            .notify-form { padding: 22px 18px; border-radius: 16px; }
-            .notify-form h5 { font-size: 1rem; }
-            .notify-form > p { font-size: 0.78rem; }
-            .notify-input { padding: 12px 18px; font-size: 0.85rem; min-width: 100%; }
-            .notify-btn { padding: 12px 22px; font-size: 0.82rem; width: 100%; justify-content: center; }
-            .notify-input-group { flex-direction: column; }
-            .notify-note { font-size: 0.68rem; }
+            .results-info { font-size: 0.72rem; margin-top: 8px; }
             
-            .features-coming { padding: 50px 0; }
-            .section-header-center { margin-bottom: 40px; }
-            .section-header-center h2 { font-size: 1.55rem; }
-            .section-header-center p { font-size: 0.88rem; }
-            .section-label-center { font-size: 0.7rem; letter-spacing: 2px; }
-            .feature-coming-card { padding: 25px 20px; border-radius: 18px; }
-            .feature-coming-icon { width: 58px; height: 58px; font-size: 1.35rem; margin-bottom: 18px; }
-            .feature-coming-card h5 { font-size: 1.05rem; }
-            .feature-coming-card p { font-size: 0.82rem; }
+            .xassida-section { padding: 18px 0 45px; }
+            .xassida-grid { grid-template-columns: 1fr; gap: 10px; }
+            .xassida-item { padding: 13px 14px; gap: 12px; border-radius: 12px; }
+            .xassida-icon-compact { width: 42px; height: 42px; min-width: 42px; font-size: 1rem; }
+            .xassida-title { font-size: 0.9rem; }
+            .xassida-tags { font-size: 0.6rem; }
+            .xassida-tags span { padding: 2px 6px; }
+            .btn-read-compact { padding: 7px 11px; font-size: 0.68rem; }
+            .btn-icon { width: 30px; height: 30px; font-size: 0.7rem; }
             
-            .xassida-preview { padding: 50px 0; }
-            .xassida-card { padding: 20px 18px; border-radius: 16px; gap: 15px; }
-            .xassida-icon { width: 50px; height: 50px; min-width: 50px; font-size: 1.2rem; border-radius: 12px; }
-            .xassida-info h5 { font-size: 0.95rem; }
-            .xassida-info p { font-size: 0.78rem; }
-            .xassida-meta span { font-size: 0.68rem; }
-            .xassida-status { font-size: 0.6rem; padding: 2px 8px; }
+            .info-banner { padding: 30px 0; }
+            .info-banner-content { flex-direction: column; gap: 15px; }
+            .info-banner-text { text-align: center; }
+            .info-banner-text h4 { font-size: 1rem; }
+            .info-banner-text p { font-size: 0.78rem; }
+            .info-banner-icon { width: 50px; height: 50px; font-size: 1.2rem; }
             
-            .resources-coming { padding: 50px 0; }
-            .resource-coming-item { padding: 18px 18px; gap: 15px; border-radius: 14px; }
-            .resource-icon { width: 48px; height: 48px; min-width: 48px; font-size: 1.15rem; border-radius: 12px; }
-            .resource-content h6 { font-size: 0.92rem; }
-            .resource-content p { font-size: 0.75rem; }
-            .resource-badge { font-size: 0.6rem; padding: 5px 10px; }
-            
-            .cta-banner { padding: 45px 0; }
-            .cta-banner h3 { font-size: 1.15rem; }
+            .cta-banner { padding: 40px 0; }
+            .cta-banner h3 { font-size: 1rem; }
             .cta-banner .container { padding: 0 18px; }
             .cta-banner .btn-primary-custom { width: 100%; }
             
-            footer { padding: 45px 0 20px; text-align: center; }
+            footer { padding: 40px 0 18px; text-align: center; }
             footer h5 { margin-top: 12px; }
             .social-icons { justify-content: center; display: flex; flex-wrap: wrap; }
             .newsletter-input { border-radius: 50px; margin-bottom: 8px; width: 100%; }
             .newsletter-btn { border-radius: 50px; width: 100%; }
             footer form { flex-direction: column !important; }
             
-            #backToTop {
-                width: 46px;
-                height: 46px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 1rem;
+            #backToTop { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 0.95rem; }
+            
+            /* Modale PDF mobile */
+            .pdf-modal .modal-dialog { 
+                margin: 0; 
+                max-width: 100%; 
+                height: 100vh;
             }
-            #backToTop .tooltip-text { display: none; }
+            .pdf-modal .modal-content { 
+                height: 100vh; 
+                border-radius: 0;
+            }
+            .pdf-modal .modal-header { 
+                padding: 12px 14px; 
+                flex-wrap: wrap; 
+                gap: 8px;
+            }
+            .pdf-modal .modal-header h5 { font-size: 0.85rem; width: 100%; }
+            .pdf-modal .modal-header .pdf-actions { 
+                width: 100%; 
+                justify-content: space-between;
+            }
+            .pdf-modal .modal-header .btn-pdf-action { 
+                font-size: 0.68rem; 
+                padding: 5px 10px;
+                flex: 1;
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
-            .durus-hero h1 { font-size: 1.5rem; }
-            .dev-card h2 { font-size: 1.4rem; }
-            .dev-card { padding: 28px 18px; }
-            .countdown { gap: 6px; }
-            .countdown-item { padding: 12px 10px; min-width: 60px; }
-            .countdown-value { font-size: 1.3rem; }
-            .countdown-label { font-size: 0.5rem; }
-            .section-header-center h2 { font-size: 1.4rem; }
-            .xassida-card { flex-direction: column; }
-            .xassida-icon { width: 55px; height: 55px; }
-            .resource-coming-item { flex-wrap: wrap; }
-            .resource-badge { margin-left: 0; }
+            .durus-hero h1 { font-size: 1.35rem; }
+            .xassida-title { font-size: 0.85rem; }
+            .xassida-item { padding: 12px 12px; gap: 10px; }
+            .xassida-icon-compact { width: 38px; height: 38px; min-width: 38px; font-size: 0.9rem; }
         }
 
         @media (max-width: 375px) {
-            .durus-hero h1 { font-size: 1.35rem; }
             .brand-text h5 { font-size: 0.65rem; }
             .brand-text span { font-size: 0.5rem; }
             .brand-logo { width: 36px; height: 36px; min-width: 36px; font-size: 0.8rem; }
-            .dev-card h2 { font-size: 1.25rem; }
-            .countdown-item { padding: 10px 8px; min-width: 55px; }
-            .countdown-value { font-size: 1.15rem; }
-            .section-header-center h2 { font-size: 1.25rem; }
-            #backToTop {
-                width: 42px;
-                height: 42px;
-                bottom: 15px;
-                right: 15px;
-                font-size: 0.9rem;
-            }
+            .durus-hero h1 { font-size: 1.2rem; }
+            .filter-pill { padding: 6px 11px; font-size: 0.68rem; }
+            .xassida-title { font-size: 0.8rem; }
         }
 
         .text-gold { color: var(--accent-gold); }
@@ -1501,13 +1049,27 @@
 </head>
 <body>
 
-    <!-- ============ BOUTON BACK TO TOP ============ -->
+    <!-- BOUTON BACK TO TOP -->
     <button id="backToTop" type="button" aria-label="Retour en haut" title="Retour en haut">
-        <span class="tooltip-text">Retour en haut</span>
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-none d-md-block">
+                <i class="fas fa-phone-alt me-2"></i>+221 77 678 65 89
+                <span class="mx-3">|</span>
+                <i class="fas fa-envelope me-2"></i>contact@dahira-d3s.sn
+            </div>
+            <div class="text-center w-100 w-md-auto">
+                <a href="#" class="me-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
         <div class="container">
@@ -1535,377 +1097,111 @@
                     <li class="nav-item"><a class="nav-link active" href="durus.html">Durus</a></li>
                     <li class="nav-item"><a class="nav-link" href="galerie.html">Galerie</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-                    <li class="nav-item ms-lg-3">
-                        <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#joinModal" type="button">
-                            <i class="fas fa-user-plus me-2"></i>Rejoindre la Dahira
-                        </button>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ============ HERO DURUS ============ -->
+    <!-- HERO -->
     <section class="durus-hero">
         <div class="container">
-            <div data-aos="fade-up" data-aos-duration="800">
-                <span class="badge-hero mb-3" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.4); color: var(--accent-gold); padding: 7px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 500;">
-                    <i class="fas fa-book-quran"></i>
-                    Espace d'apprentissage
-                </span>
+            <div data-aos="fade-up" data-aos-duration="600">
                 <h1>Les Xassida de <span>Serigne Touba</span></h1>
-                <p>Apprenez, lisez et méditez les Xassida du fondateur du Mouridisme, Cheikh Ahmadou Bamba Mbacké. Un espace dédié à la transmission du savoir spirituel.</p>
-                <nav class="breadcrumb-custom">
-                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span>Durus</span>
-                </nav>
+                <p>Consultez en ligne ou téléchargez les œuvres majeures de Cheikh Ahmadou Bamba Mbacké</p>
             </div>
         </div>
     </section>
 
-    <!-- ============ SECTION EN DÉVELOPPEMENT ============ -->
-    <section class="dev-section">
+    <!-- RECHERCHE STICKY -->
+    <div class="search-sticky" id="searchSticky">
         <div class="container">
-            <div class="dev-card" data-aos="fade-up" data-aos-duration="900">
-                <div class="dev-content">
-                    
-                    <!-- Illustration animée -->
-                    <div class="dev-illustration">
-                        <div class="dev-circle">
-                            <i class="fas fa-hammer"></i>
-                        </div>
-                    </div>
-
-                    <!-- Badge -->
-                    <div class="dev-badge">
-                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
-                        En cours de développement
-                    </div>
-
-                    <h2>Une bibliothèque <span>spirituelle</span> en préparation</h2>
-                    <p>
-                        Nous travaillons actuellement à la création d'un espace dédié à l'apprentissage des <strong>Xassida de Cheikh Ahmadou Bamba Mbacké</strong>. 
-                        Vous pourrez bientôt lire, écouter et télécharger les textes sacrés en format PDF, accompagnés de traductions et d'explications.
-                    </p>
-
-                    <!-- Barre de progression -->
-                    <div class="progress-wrapper">
-                        <div class="progress-info">
-                            <span class="progress-label">Progression du projet</span>
-                            <span class="progress-percent">65%</span>
-                        </div>
-                        <div class="progress-bar-custom">
-                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-
-                    <!-- Compte à rebours -->
-                    <p class="countdown-title">Lancement prévu dans</p>
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="days">00</span>
-                            <span class="countdown-label">Jours</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="hours">00</span>
-                            <span class="countdown-label">Heures</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="minutes">00</span>
-                            <span class="countdown-label">Minutes</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="seconds">00</span>
-                            <span class="countdown-label">Secondes</span>
-                        </div>
-                    </div>
-
-                    <!-- Formulaire de notification -->
-                    <div class="notify-form">
-                        <h5><i class="fas fa-bell text-gold me-2"></i>Soyez averti du lancement</h5>
-                        <p>Entrez votre email pour être informé dès que l'espace Durus sera disponible.</p>
-                        <form id="notifyForm" novalidate>
-                            <div class="notify-input-group">
-                                <input type="email" class="notify-input" placeholder="Votre adresse email" required maxlength="100">
-                                <button type="submit" class="notify-btn">
-                                    <i class="fas fa-paper-plane"></i>
-                                    M'avertir
-                                </button>
-                            </div>
-                        </form>
-                        <p class="notify-note">
-                            <i class="fas fa-shield-alt"></i>
-                            Vos données sont protégées et ne seront jamais partagées.
-                        </p>
-                    </div>
-
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <span class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Rechercher un Xassida..." autocomplete="off">
+                    <button class="search-clear" id="searchClear" type="button" aria-label="Effacer">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
+                <div class="filters-inline">
+                    <button class="filter-pill active" data-filter="all">
+                        <i class="fas fa-th"></i> Tous
+                    </button>
+                    <button class="filter-pill" data-filter="xassida">
+                        <i class="fas fa-book"></i> Xassida
+                    </button>
+                    <button class="filter-pill" data-filter="wird">
+                        <i class="fas fa-pray"></i> Wird
+                    </button>
+                    <button class="filter-pill" data-filter="poeme">
+                        <i class="fas fa-feather-alt"></i> Poèmes
+                    </button>
+                    <button class="filter-pill" data-filter="enseignement">
+                        <i class="fas fa-graduation-cap"></i> Enseignements
+                    </button>
                 </div>
             </div>
+            <div class="results-info" id="resultsInfo">
+                <span><strong id="resultCount">0</strong> Xassida en cours de chargement...</span>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- ============ FONCTIONNALITÉS À VENIR ============ -->
-    <section class="features-coming">
+    <!-- SECTION XASSIDA -->
+    <section class="xassida-section">
         <div class="container">
-            <div class="section-header-center" data-aos="fade-up">
-                <span class="section-label-center">Fonctionnalités à venir</span>
-                <h2>Ce que vous pourrez <span>découvrir</span></h2>
-                <p>Un espace complet conçu pour faciliter l'apprentissage et la mémorisation des Xassida de Serigne Touba.</p>
+            <div class="xassida-grid" id="xassidaGrid">
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Chargement de la bibliothèque...</p>
+                </div>
             </div>
-
-            <div class="row g-4">
-                <!-- Fonctionnalité 1 -->
-                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-coming-card">
-                        <div class="feature-coming-icon">
-                            <i class="fas fa-book-open-reader"></i>
-                        </div>
-                        <h5>Lecture en ligne</h5>
-                        <p>Consultez les Xassida en arabe avec translittération et traduction française pour faciliter la lecture.</p>
-                        <span class="feature-coming-tag">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Fonctionnalité 2 -->
-                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-coming-card">
-                        <div class="feature-coming-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <h5>PDF téléchargeables</h5>
-                        <p>Téléchargez les Xassida en format PDF haute qualité pour les étudier hors ligne à tout moment.</p>
-                        <span class="feature-coming-tag">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Fonctionnalité 3 -->
-                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-coming-card">
-                        <div class="feature-coming-icon">
-                            <i class="fas fa-headphones-alt"></i>
-                        </div>
-                        <h5>Écoute audio</h5>
-                        <p>Écoutez les récitations des Xassida par des voix autorisées pour parfaire votre prononciation.</p>
-                        <span class="feature-coming-tag">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Fonctionnalité 4 -->
-                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-coming-card">
-                        <div class="feature-coming-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h5>Explications</h5>
-                        <p>Bénéficiez d'explications détaillées et du sens profond des Xassida pour une meilleure compréhension.</p>
-                        <span class="feature-coming-tag">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-                </div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h4>Aucun Xassida trouvé</h4>
+                <p>Essayez de modifier votre recherche ou de sélectionner une autre catégorie.</p>
             </div>
         </div>
     </section>
 
-    <!-- ============ APERÇU DES XASSIDA ============ -->
-    <section class="xassida-preview">
+    <!-- INFO BANNER -->
+    <section class="info-banner">
         <div class="container">
-            <div class="section-header-center" data-aos="fade-up">
-                <span class="section-label-center">Aperçu du contenu</span>
-                <h2>Quelques <span>Xassida</span> à découvrir</h2>
-                <p>Voici un avant-goût des Xassida qui seront disponibles dans notre bibliothèque spirituelle.</p>
-            </div>
-
-            <div class="row g-4">
-                <!-- Xassida 1 -->
-                <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="xassida-card">
-                        <div class="xassida-icon">
-                            <i class="fas fa-star-and-crescent"></i>
-                        </div>
-                        <div class="xassida-info">
-                            <h5>Matlaboul Fawzaïni</h5>
-                            <div class="xassida-arabic">مطلب الفوزين</div>
-                            <p>L'une des œuvres majeures de Serigne Touba, traitant de la foi, de la spiritualité et de la voie mouride.</p>
-                            <div class="xassida-meta">
-                                <span><i class="fas fa-book"></i> Poème spirituel</span>
-                                <span><i class="fas fa-file-pdf"></i> PDF + Audio</span>
-                                <span class="xassida-status"><i class="fas fa-clock"></i> Bientôt</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="info-banner-content" data-aos="fade-up">
+                <div class="info-banner-icon">
+                    <i class="fas fa-lightbulb"></i>
                 </div>
-
-                <!-- Xassida 2 -->
-                <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="xassida-card">
-                        <div class="xassida-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="xassida-info">
-                            <h5>Khassaïd</h5>
-                            <div class="xassida-arabic">قصائد</div>
-                            <p>Recueil de poèmes en l'honneur du Prophète Muhammad (PSL), exprimant l'amour et la dévotion.</p>
-                            <div class="xassida-meta">
-                                <span><i class="fas fa-book"></i> Poèmes</span>
-                                <span><i class="fas fa-file-pdf"></i> PDF + Audio</span>
-                                <span class="xassida-status"><i class="fas fa-clock"></i> Bientôt</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="info-banner-text">
+                    <h4>Vous ne trouvez pas un Xassida ?</h4>
+                    <p>Contactez-nous et nous ferons de notre mieux pour l'ajouter à notre bibliothèque.</p>
                 </div>
-
-                <!-- Xassida 3 -->
-                <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="xassida-card">
-                        <div class="xassida-icon">
-                            <i class="fas fa-mosque"></i>
-                        </div>
-                        <div class="xassida-info">
-                            <h5>Jazbul Qouloub</h5>
-                            <div class="xassida-arabic">جذب القلوب</div>
-                            <p>Poème qui attire les cœurs vers la spiritualité et la proximité avec Allah à travers la voie mouride.</p>
-                            <div class="xassida-meta">
-                                <span><i class="fas fa-book"></i> Poème</span>
-                                <span><i class="fas fa-file-pdf"></i> PDF + Audio</span>
-                                <span class="xassida-status"><i class="fas fa-clock"></i> Bientôt</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Xassida 4 -->
-                <div class="col-12 col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="xassida-card">
-                        <div class="xassida-icon">
-                            <i class="fas fa-dove"></i>
-                        </div>
-                        <div class="xassida-info">
-                            <h5>Mawaahiboul Qouddous</h5>
-                            <div class="xassida-arabic">مواهب القدوس</div>
-                            <p>Une œuvre profonde qui traite des faveurs divines et de la sainteté dans la voie spirituelle.</p>
-                            <div class="xassida-meta">
-                                <span><i class="fas fa-book"></i> Poème</span>
-                                <span><i class="fas fa-file-pdf"></i> PDF + Audio</span>
-                                <span class="xassida-status"><i class="fas fa-clock"></i> Bientôt</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a href="index.html#contact" class="btn btn-primary-custom">
+                    <i class="fas fa-envelope me-2"></i>Nous contacter
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ============ RESSOURCES À VENIR ============ -->
-    <section class="resources-coming">
-        <div class="container">
-            <div class="section-header-center" data-aos="fade-up">
-                <span class="section-label-center">Ressources pédagogiques</span>
-                <h2>Ce qui sera <span>disponible</span></h2>
-                <p>Tout le matériel nécessaire pour apprendre et maîtriser les Xassida de Serigne Touba.</p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10" data-aos="fade-up" data-aos-delay="100">
-                    
-                    <div class="resource-coming-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="resource-content">
-                            <h6>Textes complets en PDF</h6>
-                            <p>Chaque Xassida disponible en téléchargement au format PDF haute qualité</p>
-                        </div>
-                        <span class="resource-badge">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-
-                    <div class="resource-coming-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-volume-up"></i>
-                        </div>
-                        <div class="resource-content">
-                            <h6>Récitations audio</h6>
-                            <p>Enregistrements audio des Xassida pour faciliter la mémorisation</p>
-                        </div>
-                        <span class="resource-badge">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-
-                    <div class="resource-coming-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <div class="resource-content">
-                            <h6>Traductions et translittérations</h6>
-                            <p>Traductions en français et translittérations phonétiques pour tous les niveaux</p>
-                        </div>
-                        <span class="resource-badge">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-
-                    <div class="resource-coming-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="resource-content">
-                            <h6>Cours et explications</h6>
-                            <p>Explications détaillées du sens et de la portée spirituelle de chaque Xassida</p>
-                        </div>
-                        <span class="resource-badge">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-
-                    <div class="resource-coming-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="resource-content">
-                            <h6>Application mobile</h6>
-                            <p>Une application mobile pour étudier les Xassida partout, à tout moment</p>
-                        </div>
-                        <span class="resource-badge">
-                            <i class="fas fa-clock"></i> Bientôt
-                        </span>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ CTA BANNER ============ -->
+    <!-- CTA BANNER -->
     <section class="cta-banner">
         <div class="container text-center" data-aos="fade-up">
             <i class="fas fa-quote-left text-gold fs-1 mb-3"></i>
-            <h3 class="fst-italic mb-4 text-white">
+            <h3 class="fst-italic mb-3 text-white">
                 « La science est une lumière qui éclaire le cœur de celui qui la recherche sincèrement. »
             </h3>
-            <p class="text-gold fw-bold mb-4">— Serigne Touba</p>
-            <a href="index.html#contact" class="btn btn-primary-custom btn-lg">
-                <i class="fas fa-envelope me-2"></i>Nous contacter
-            </a>
+            <p class="text-gold fw-bold mb-3">— Serigne Touba</p>
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="row g-4">
                 <div class="col-12 col-lg-4">
                     <div class="d-flex align-items-center mb-4 justify-content-center justify-content-lg-start">
-                        <div class="brand-logo me-3" style="width: 42px; height: 42px; min-width: 42px; font-size: 0.9rem;">
+                        <div class="brand-logo me-3" style="width: 42px; height: 42px; min-width: 42px;">
                             <img src="images/logo.png" alt="Logo D3S">
                         </div>
                         <div>
@@ -1913,7 +1209,7 @@
                             <small class="text-gold" style="font-size: 0.65rem; letter-spacing: 1px;">UNITÉ • FOI • HÉRITAGE</small>
                         </div>
                     </div>
-                    <p class="small mb-4">Unis par la foi, guidés par Serigne Saliou, vers un meilleur demain. Rejoignez notre communauté spirituelle et fraternelle.</p>
+                    <p class="small mb-4">Unis par la foi, guidés par Serigne Saliou, vers un meilleur demain.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -1966,152 +1262,278 @@
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
-                <style>
-                    .footer-credit {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        color: rgba(255, 255, 255, 0.7);
-                        font-size: 0.85rem;
-                    }
-
-                    .credit-link {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        color: var(--accent-gold);
-                        text-decoration: none;
-                        font-weight: 600;
-                        background: rgba(212, 175, 55, 0.08);
-                        padding: 4px 12px;
-                        border-radius: 50px;
-                        border: 1px solid rgba(212, 175, 55, 0.25);
-                        transition: all 0.3s ease;
-                        font-size: 0.82rem;
-                    }
-
-                    .credit-link i {
-                        font-size: 0.7rem;
-                        opacity: 0.8;
-                    }
-
-                    .credit-link i:last-child {
-                        font-size: 0.6rem;
-                        opacity: 0.5;
-                    }
-
-                    .credit-link:hover {
-                        background: var(--gradient-gold);
-                        color: var(--primary-green);
-                        border-color: var(--accent-gold);
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
-                    }
-
-                    .credit-link:hover i {
-                        opacity: 1;
-                    }
-                </style>
             </div>
         </div>
+        <style>
+            .footer-credit { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; color: rgba(255, 255, 255, 0.7); font-size: 0.85rem; }
+            .credit-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-gold); text-decoration: none; font-weight: 600; background: rgba(212, 175, 55, 0.08); padding: 4px 12px; border-radius: 50px; border: 1px solid rgba(212, 175, 55, 0.25); transition: all 0.3s ease; font-size: 0.82rem; }
+            .credit-link i { font-size: 0.7rem; opacity: 0.8; }
+            .credit-link i:last-child { font-size: 0.6rem; opacity: 0.5; }
+            .credit-link:hover { background: var(--gradient-gold); color: var(--primary-green); border-color: var(--accent-gold); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3); }
+            .credit-link:hover i { opacity: 1; }
+        </style>
     </footer>
 
-    <!-- ============ SCRIPTS ============ -->
+    <!-- MODALE PDF -->
+    <div class="modal fade pdf-modal" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="pdfModalLabel">
+                        <i class="fas fa-file-pdf"></i>
+                        <span id="pdfTitle">Xassida</span>
+                    </h5>
+                    <div class="pdf-actions">
+                        <!-- ⚡ Bouton "Ouvrir dans un nouvel onglet" (secours) -->
+                        <a href="#" id="pdfOpenNewTab" target="_blank" rel="noopener noreferrer" class="btn-pdf-action" title="Ouvrir dans un nouvel onglet">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Ouvrir</span>
+                        </a>
+                        <!-- Bouton télécharger -->
+                        <a href="#" id="pdfDownloadBtn" download class="btn-pdf-action" title="Télécharger le PDF">
+                            <i class="fas fa-download"></i>
+                            <span>Télécharger</span>
+                        </a>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <iframe id="pdfViewer" class="pdf-viewer" src="" title="Lecteur PDF"></iframe>
+                    <div class="pdf-fallback" id="pdfFallback" style="display: none;">
+                        <i class="fas fa-file-pdf"></i>
+                        <h5>Impossible d'afficher le PDF</h5>
+                        <p>Votre navigateur ne peut pas afficher ce PDF directement.</p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                            <a href="#" id="pdfFallbackOpen" target="_blank" rel="noopener noreferrer" class="btn btn-primary-custom">
+                                <i class="fas fa-external-link-alt me-2"></i>Ouvrir dans un onglet
+                            </a>
+                            <a href="#" id="pdfFallbackDownload" download class="btn btn-primary-custom">
+                                <i class="fas fa-download me-2"></i>Télécharger
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         // ============ AOS ============
-        AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+        AOS.init({ duration: 600, once: true, offset: 60, easing: 'ease-out-cubic' });
 
         // ============ BOUTON BACK TO TOP ============
         const $backToTop = $('#backToTop');
         $(window).on('scroll', function() {
             if ($(this).scrollTop() > 400) $backToTop.addClass('visible');
             else $backToTop.removeClass('visible');
-        });
-        $backToTop.on('click', function(e) {
-            e.preventDefault();
-            $('html, body').stop().animate({ scrollTop: 0 }, 800, 'swing');
-        });
-
-        // ============ NAVBAR SCROLL ============
-        $(window).on('scroll', function() {
+            
             if ($(this).scrollTop() > 50) $('#mainNav').addClass('scrolled');
             else $('#mainNav').removeClass('scrolled');
+            
+            if ($(this).scrollTop() > 100) $('#searchSticky').addClass('scrolled');
+            else $('#searchSticky').removeClass('scrolled');
         });
 
-        // ============ ANIMATION BARRE DE PROGRESSION ============
-        $(window).on('load', function() {
-            setTimeout(function() {
-                $('#progressFill').css('width', '65%');
-            }, 500);
-        });
-
-        // ============ COMPTE À REBOND ============
-        // Date cible : 3 mois à partir d'aujourd'hui (à ajuster)
-        const targetDate = new Date();
-        targetDate.setMonth(targetDate.getMonth() + 3);
-        
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate.getTime() - now;
-            
-            if (distance < 0) {
-                $('#days').text('00');
-                $('#hours').text('00');
-                $('#minutes').text('00');
-                $('#seconds').text('00');
-                return;
-            }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            $('#days').text(String(days).padStart(2, '0'));
-            $('#hours').text(String(hours).padStart(2, '0'));
-            $('#minutes').text(String(minutes).padStart(2, '0'));
-            $('#seconds').text(String(seconds).padStart(2, '0'));
-        }
-        
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // ============ FORMULAIRE DE NOTIFICATION ============
-        $('#notifyForm').on('submit', function(e) {
+        $backToTop.on('click', function(e) {
             e.preventDefault();
-            const input = $(this).find('input');
-            const btn = $(this).find('button');
-            const email = input.val().trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            // Validation
-            if (!emailRegex.test(email) || email.length > 100) {
-                input.css('border-color', '#dc3545');
-                input.css('animation', 'shake 0.5s');
-                setTimeout(() => input.css('animation', ''), 500);
-                setTimeout(() => input.css('border-color', ''), 2000);
-                return;
-            }
-            
-            input.css('border-color', '');
-            const originalHtml = btn.html();
-            btn.html('<i class="fas fa-spinner fa-spin"></i> Envoi...').prop('disabled', true);
-            
-            // Simulation d'envoi (à remplacer par un vrai appel API)
-            setTimeout(function() {
-                btn.html('<i class="fas fa-check"></i> Inscrit !').css('background', 'linear-gradient(135deg, #198754, #20c997)');
-                input.val('');
+            $('html, body').stop().animate({ scrollTop: 0 }, 700, 'swing');
+        });
+
+        // ============ ICÔNES PAR MOTS-CLÉS ============
+        function getIcon(title) {
+            const t = title.toLowerCase();
+            if (t.includes('wird') || t.includes('rajab')) return 'fas fa-pray';
+            if (t.includes('mimiya') || t.includes('madah')) return 'fas fa-feather-alt';
+            if (t.includes('matlab') || t.includes('fawz')) return 'fas fa-star-and-crescent';
+            if (t.includes('jazb')) return 'fas fa-mosque';
+            if (t.includes('mawaahib')) return 'fas fa-dove';
+            if (t.includes('fuzty')) return 'fas fa-sun';
+            if (t.includes('rasail') || t.includes('muqadam') || t.includes('kun') || t.includes('kitabal')) return 'fas fa-graduation-cap';
+            if (t.includes('nourou') || t.includes('bouchra')) return 'fas fa-lightbulb';
+            if (t.includes('ahmadou') || t.includes('mouhniyane')) return 'fas fa-star';
+            if (t.includes('yahman') || t.includes('yarahim')) return 'fas fa-heart';
+            if (t.includes('rabana') || t.includes('rabbi')) return 'fas fa-hands-praying';
+            return 'fas fa-book';
+        }
+
+        // ============ TAGS PAR CATÉGORIE ============
+        function getCategoryTag(category) {
+            if (category === 'wird') return '<span><i class="fas fa-pray"></i> Wird</span>';
+            if (category === 'enseignement') return '<span><i class="fas fa-graduation-cap"></i> Enseignement</span>';
+            if (category === 'poeme') return '<span><i class="fas fa-feather-alt"></i> Poème</span>';
+            return '<span><i class="fas fa-book"></i> Xassida</span>';
+        }
+
+        // ============ CHARGEMENT DYNAMIQUE ============
+        const $xassidaGrid = $('#xassidaGrid');
+        const $emptyState = $('#emptyState');
+        const $resultsInfo = $('#resultsInfo');
+        const $resultCount = $('#resultCount');
+
+        let allXassidas = [];
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // Charger le JSON
+        fetch('xassidas.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Fichier xassidas.json introuvable');
+                return response.json();
+            })
+            .then(data => {
+                allXassidas = data;
+                renderXassidas(data);
+                $resultCount.text(data.length);
+                $resultsInfo.find('span').html('<strong>' + data.length + '</strong> Xassida disponibles dans la bibliothèque');
+                AOS.refresh();
+                console.log(`✅ ${data.length} Xassida chargés dynamiquement`);
+            })
+            .catch(error => {
+                console.error('❌ Erreur chargement JSON :', error);
+                $xassidaGrid.html(`
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Erreur de chargement</h4>
+                        <p>Impossible de charger la liste des Xassida. Vérifiez que le fichier <strong>xassidas.json</strong> existe à la racine du site.</p>
+                    </div>
+                `);
+            });
+
+        // Générer les cartes HTML
+        function renderXassidas(data) {
+            let html = '';
+            data.forEach((xassida, index) => {
+                const icon = getIcon(xassida.title);
+                const categoryTag = getCategoryTag(xassida.category);
                 
-                setTimeout(function() {
-                    btn.html(originalHtml).prop('disabled', false).css('background', '');
-                }, 2500);
-            }, 1200);
+                html += `
+                    <div class="xassida-item" 
+                         data-category="${xassida.category}"
+                         data-title="${xassida.title}"
+                         data-theme="${xassida.title.toLowerCase()}"
+                         data-pdf="${xassida.file}"
+                         style="animation-delay: ${Math.min(index * 15, 400)}ms">
+                        <div class="xassida-icon-compact">
+                            <i class="${icon}"></i>
+                        </div>
+                        <div class="xassida-content">
+                            <h3 class="xassida-title">${xassida.title}</h3>
+                            <div class="xassida-tags">
+                                ${categoryTag}
+                                <span><i class="fas fa-file-pdf"></i> PDF</span>
+                            </div>
+                        </div>
+                        <div class="xassida-actions">
+                            <button class="btn-read-compact" data-pdf="${xassida.file}" data-title="${xassida.title}" title="Lire le PDF">
+                                <i class="fas fa-book-open"></i>
+                            </button>
+                            <a href="${xassida.file}" download class="btn-icon" title="Télécharger">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            $xassidaGrid.html(html);
+            
+            // Réattacher les événements
+            attachPdfEvents();
+        }
+
+        // ============ FILTRES ============
+        function filterXassida() {
+            const $items = $('.xassida-item');
+            let visibleCount = 0;
+            const searchLower = currentSearch.toLowerCase().trim();
+
+            $items.each(function() {
+                const $item = $(this);
+                const category = $item.data('category');
+                const title = ($item.data('title') || '').toString().toLowerCase();
+                const theme = ($item.data('theme') || '').toString().toLowerCase();
+
+                const matchesCategory = currentFilter === 'all' || category === currentFilter;
+                const matchesSearch = searchLower === '' || title.includes(searchLower) || theme.includes(searchLower);
+
+                if (matchesCategory && matchesSearch) {
+                    $item.show();
+                    visibleCount++;
+                } else {
+                    $item.hide();
+                }
+            });
+
+            $resultCount.text(visibleCount);
+            
+            if (searchLower !== '' || currentFilter !== 'all') {
+                $resultsInfo.find('span').html('<strong>' + visibleCount + '</strong> résultat(s) trouvé(s)');
+            } else {
+                $resultsInfo.find('span').html('<strong>' + visibleCount + '</strong> Xassida disponibles dans la bibliothèque');
+            }
+
+            if (visibleCount === 0) $emptyState.show();
+            else $emptyState.hide();
+        }
+
+        $('#searchInput').on('input', function() {
+            currentSearch = $(this).val();
+            if (currentSearch.length > 0) $('#searchClear').addClass('visible');
+            else $('#searchClear').removeClass('visible');
+            filterXassida();
+        });
+
+        $('#searchClear').on('click', function() {
+            $('#searchInput').val('').focus();
+            currentSearch = '';
+            $(this).removeClass('visible');
+            filterXassida();
+        });
+
+        $('.filter-pill').on('click', function() {
+            $('.filter-pill').removeClass('active');
+            $(this).addClass('active');
+            currentFilter = $(this).data('filter');
+            filterXassida();
+        });
+
+        // ============ MODALE PDF ============
+        function attachPdfEvents() {
+            $('.btn-read-compact').off('click').on('click', function(e) {
+                e.preventDefault();
+                const pdfUrl = $(this).data('pdf');
+                const title = $(this).data('title');
+
+                if (!pdfUrl) {
+                    alert('Ce Xassida n\'est pas encore disponible.');
+                    return;
+                }
+
+                // Mettre à jour tous les liens
+                $('#pdfTitle').text(title);
+                $('#pdfDownloadBtn').attr('href', pdfUrl);
+                $('#pdfOpenNewTab').attr('href', pdfUrl);
+                $('#pdfFallbackOpen').attr('href', pdfUrl);
+                $('#pdfFallbackDownload').attr('href', pdfUrl);
+                $('#pdfFallback').hide();
+                $('#pdfViewer').show().attr('src', pdfUrl);
+
+                const modal = new bootstrap.Modal($('#pdfModal')[0], {
+                    backdrop: true,
+                    keyboard: true
+                });
+                modal.show();
+            });
+        }
+
+        $('#pdfModal').on('hidden.bs.modal', function() {
+            $('#pdfViewer').attr('src', '');
+            $('#pdfFallback').hide();
+            $('#pdfViewer').show();
         });
 
         // ============ SMOOTH SCROLL ============
@@ -2133,7 +1555,7 @@
             var btn = $(this).find('button');
             var email = input.val().trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
+
             if (!emailRegex.test(email) || email.length > 100) {
                 input.addClass('is-invalid');
                 return;
@@ -2148,21 +1570,12 @@
             }, 1000);
         });
 
-        // ============ SHAKE ANIMATION ============
-        const shakeStyle = document.createElement('style');
-        shakeStyle.innerHTML = `@keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }`;
-        document.head.appendChild(shakeStyle);
-
-        // ============ SÉCURITÉ : Anti-clickjacking ============
+        // ============ SÉCURITÉ ============
         if (window.top !== window.self) {
             window.top.location = window.self.location;
         }
 
-        console.log('%c📖 Page Durus D3S chargée - En développement', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+        console.log('%c📖 Page Durus D3S - Bibliothèque Xassida chargée', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
     </script>
 </body>
 </html>
