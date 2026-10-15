@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <meta name="description" content="Durus - Bibliothèque spirituelle des Xassida de Serigne Touba Mbacké. Consultez et téléchargez les PDF des œuvres majeures du Mouridisme.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="description" content="Durus - Bibliothèque spirituelle : Coran Warsh, Xassida de Serigne Touba, Wird et Enseignements.">
     <meta name="theme-color" content="#0a4d3a">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <title>Durus - Bibliothèque des Xassida de Serigne Touba | Dahira D3S</title>
+    <title>Durus - Bibliothèque spirituelle | Dahira D3S</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -440,14 +440,39 @@
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             font-family: 'Poppins', sans-serif;
+            position: relative;
         }
 
-        .filter-pill i { font-size: 0.72rem; color: var(--accent-gold); }
+        .filter-pill i { font-size: 0.72rem; color: var(--accent-gold); transition: color 0.3s; }
+
+        .filter-pill .filter-count {
+            background: rgba(10, 77, 58, 0.08);
+            color: var(--primary-green);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            min-width: 20px;
+            text-align: center;
+        }
+
         .filter-pill:hover { border-color: var(--primary-green); transform: translateY(-1px); }
-        .filter-pill.active { background: var(--gradient-green); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(10, 77, 58, 0.2); }
+
+        .filter-pill.active {
+            background: var(--gradient-green);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(10, 77, 58, 0.25);
+        }
+
         .filter-pill.active i { color: var(--accent-gold); }
+        .filter-pill.active .filter-count {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+        }
 
         .results-info {
             text-align: center;
@@ -458,13 +483,96 @@
 
         .results-info strong { color: var(--primary-green); font-weight: 600; }
 
-        /* GRILLE */
+        /* SECTION */
         .xassida-section {
             padding: 25px 0 60px;
             background: var(--bg-cream);
             min-height: 400px;
         }
 
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 25px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border-soft);
+            position: relative;
+        }
+
+        .section-header-icon {
+            width: 55px;
+            height: 55px;
+            min-width: 55px;
+            border-radius: 16px;
+            background: var(--gradient-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            box-shadow: 0 8px 20px rgba(10, 77, 58, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+            animation: shimmerHeader 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerHeader {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .section-header-text { flex: 1; min-width: 0; }
+
+        .section-header-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin: 0 0 3px 0;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+
+        .section-header-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-header-subtitle .count {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .section-header-decoration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        .section-header-decoration span {
+            width: 25px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        /* GRILLE */
         .xassida-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -476,19 +584,19 @@
             border-radius: 14px;
             padding: 16px 18px;
             border: 1px solid var(--border-soft);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 14px;
             position: relative;
             overflow: hidden;
-            animation: cardAppear 0.4s ease forwards;
+            animation: cardAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
             opacity: 0;
         }
 
         @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .xassida-item::before {
@@ -501,12 +609,26 @@
             background: var(--gradient-gold);
             transform: scaleY(0);
             transform-origin: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
+        .xassida-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.06), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .xassida-item:hover::after { left: 100%; }
+
         .xassida-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(10, 77, 58, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(10, 77, 58, 0.12), 0 0 0 1px rgba(212, 175, 55, 0.2);
             border-color: rgba(212, 175, 55, 0.4);
         }
 
@@ -523,15 +645,36 @@
             justify-content: center;
             font-size: 1.15rem;
             color: var(--primary-green);
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
             border: 1px solid var(--border-soft);
+            position: relative;
         }
 
         .xassida-item:hover .xassida-icon-compact {
             background: var(--gradient-green);
             color: var(--accent-gold);
-            transform: scale(1.05);
+            transform: scale(1.08) rotate(-3deg);
             border-color: transparent;
+            box-shadow: 0 8px 20px rgba(10, 77, 58, 0.25);
+        }
+
+        .surah-number {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            font-size: 0.55rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.4);
+            z-index: 2;
         }
 
         .xassida-content { flex: 1; min-width: 0; }
@@ -546,6 +689,20 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            transition: color 0.3s;
+        }
+
+        .xassida-item:hover .xassida-title { color: var(--primary-green-light); }
+
+        .xassida-arabic-small {
+            font-family: 'Amiri', serif;
+            font-size: 0.82rem;
+            color: var(--accent-gold);
+            direction: rtl;
+            display: block;
+            margin-bottom: 5px;
+            line-height: 1;
+            opacity: 0.85;
         }
 
         .xassida-tags {
@@ -591,7 +748,8 @@
             background: var(--gradient-green);
             color: var(--accent-gold);
             border-color: transparent;
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 0 6px 18px rgba(10, 77, 58, 0.25);
         }
 
         .btn-read-compact {
@@ -610,27 +768,158 @@
             font-family: 'Poppins', sans-serif;
             box-shadow: 0 3px 10px rgba(10, 77, 58, 0.2);
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-read-compact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
 
         .btn-read-compact:hover {
-            background: var(--gradient-gold);
             color: var(--primary-green);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
         }
 
+        .btn-read-compact:hover::before { left: 0; }
+
+        /* ============ ÉTAT VIDE PERSONNALISÉ ============ */
         .empty-state {
             grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 16px;
-            border: 2px dashed var(--border-soft);
+            padding: 0;
+            background: transparent;
+            border: none;
+            animation: fadeInEmpty 0.5s ease;
         }
 
-        .empty-state i { font-size: 3rem; color: var(--accent-gold); opacity: 0.5; margin-bottom: 16px; }
-        .empty-state h4 { color: var(--primary-green); margin-bottom: 8px; font-family: 'Marcellus', serif; font-size: 1.1rem; }
-        .empty-state p { color: var(--text-muted); font-size: 0.85rem; }
+        @keyframes fadeInEmpty {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .custom-empty-state {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 24px;
+            border: 2px dashed rgba(10, 77, 58, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-empty-state::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .custom-empty-state::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(10, 77, 58, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .custom-empty-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-empty-state.gold .custom-empty-icon {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+            color: var(--accent-gold);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+            animation: pulseIcon 2s ease-in-out infinite;
+        }
+
+        .custom-empty-state.green .custom-empty-icon {
+            background: linear-gradient(135deg, rgba(10, 77, 58, 0.1) 0%, rgba(26, 122, 94, 0.08) 100%);
+            color: var(--primary-green);
+            border: 2px solid rgba(10, 77, 58, 0.2);
+            box-shadow: 0 10px 30px rgba(10, 77, 58, 0.12);
+            animation: pulseIcon 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .custom-empty-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin: 0 0 12px 0;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-empty-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0 0 24px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-empty-text strong { color: var(--primary-green); font-weight: 600; }
+
+        .custom-empty-text i { color: var(--accent-gold); font-style: italic; }
+
+        .custom-empty-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-empty-decoration span {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .custom-empty-decoration i {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
 
         /* LOADER */
         .loading-state {
@@ -794,7 +1083,7 @@
             transition: all 0.3s;
         }
 
-        /* ============ MODALE PDF - CORRIGÉE POUR LE SCROLL ============ */
+        /* ============ MODALE PDF ============ */
         .pdf-modal .modal-dialog {
             max-width: 1200px;
             height: 95vh;
@@ -879,7 +1168,6 @@
             margin-left: 8px;
         }
 
-        /* ⚡ FIX PRINCIPAL : modal-body avec scroll natif */
         .pdf-modal .modal-body {
             padding: 0;
             background: #f4f7f6;
@@ -891,7 +1179,6 @@
             position: relative;
         }
 
-        /* ⚡ FIX : iframe avec scroll natif interne */
         .pdf-modal .pdf-viewer {
             width: 100%;
             height: 100%;
@@ -900,6 +1187,8 @@
             background: white;
             display: block;
             min-height: 0;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .pdf-modal .pdf-fallback {
@@ -910,6 +1199,8 @@
             align-items: center;
             justify-content: center;
             height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .pdf-modal .pdf-fallback i { font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 18px; }
@@ -965,18 +1256,31 @@
             .filters-inline { width: 100%; justify-content: flex-start; padding: 2px 0 6px; }
             .filter-pill { padding: 7px 13px; font-size: 0.72rem; }
             .filter-pill i { font-size: 0.65rem; }
+            .filter-pill .filter-count { font-size: 0.6rem; padding: 1px 6px; }
             
             .results-info { font-size: 0.72rem; margin-top: 8px; }
+            
+            .section-header { gap: 12px; margin-bottom: 18px; padding-bottom: 14px; }
+            .section-header-icon { width: 48px; height: 48px; min-width: 48px; font-size: 1.2rem; border-radius: 12px; }
+            .section-header-title { font-size: 1.2rem; }
+            .section-header-subtitle { font-size: 0.75rem; }
+            .section-header-decoration { display: none; }
             
             .xassida-section { padding: 18px 0 45px; }
             .xassida-grid { grid-template-columns: 1fr; gap: 10px; }
             .xassida-item { padding: 13px 14px; gap: 12px; border-radius: 12px; }
             .xassida-icon-compact { width: 42px; height: 42px; min-width: 42px; font-size: 1rem; }
             .xassida-title { font-size: 0.9rem; }
+            .xassida-arabic-small { font-size: 0.75rem; }
             .xassida-tags { font-size: 0.6rem; }
             .xassida-tags span { padding: 2px 6px; }
             .btn-read-compact { padding: 7px 11px; font-size: 0.68rem; }
             .btn-icon { width: 30px; height: 30px; font-size: 0.7rem; }
+            
+            .custom-empty-state { padding: 45px 25px; border-radius: 20px; }
+            .custom-empty-icon { width: 75px; height: 75px; font-size: 2rem; margin-bottom: 20px; }
+            .custom-empty-title { font-size: 1.2rem; }
+            .custom-empty-text { font-size: 0.85rem; }
             
             .info-banner { padding: 30px 0; }
             .info-banner-content { flex-direction: column; gap: 15px; }
@@ -998,33 +1302,6 @@
             footer form { flex-direction: column !important; }
             
             #backToTop { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 0.95rem; }
-            
-            /* Modale PDF mobile */
-            .pdf-modal .modal-dialog { 
-                margin: 0; 
-                max-width: 100%; 
-                height: 100vh;
-            }
-            .pdf-modal .modal-content { 
-                height: 100vh; 
-                border-radius: 0;
-            }
-            .pdf-modal .modal-header { 
-                padding: 12px 14px; 
-                flex-wrap: wrap; 
-                gap: 8px;
-            }
-            .pdf-modal .modal-header h5 { font-size: 0.85rem; width: 100%; }
-            .pdf-modal .modal-header .pdf-actions { 
-                width: 100%; 
-                justify-content: space-between;
-            }
-            .pdf-modal .modal-header .btn-pdf-action { 
-                font-size: 0.68rem; 
-                padding: 5px 10px;
-                flex: 1;
-                justify-content: center;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1032,6 +1309,9 @@
             .xassida-title { font-size: 0.85rem; }
             .xassida-item { padding: 12px 12px; gap: 10px; }
             .xassida-icon-compact { width: 38px; height: 38px; min-width: 38px; font-size: 0.9rem; }
+            .custom-empty-state { padding: 40px 20px; }
+            .custom-empty-title { font-size: 1.1rem; }
+            .custom-empty-text { font-size: 0.8rem; }
         }
 
         @media (max-width: 375px) {
@@ -1045,6 +1325,91 @@
 
         .text-gold { color: var(--accent-gold); }
         .bg-cream { background-color: var(--bg-cream); }
+
+        /* ============ MODALE PDF - SCROLL MOBILE CORRIGÉ ============ */
+        body.modal-open {
+            overflow: hidden !important;
+        }
+
+        .pdf-modal {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 767px) {
+            .pdf-modal .modal-dialog {
+                margin: 0;
+                max-width: 100%;
+                width: 100%;
+                height: 100vh;
+                max-height: 100vh;
+                padding: 0;
+                display: flex;
+                align-items: stretch;
+            }
+            .pdf-modal .modal-content {
+                height: 100vh;
+                max-height: 100vh;
+                border-radius: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .pdf-modal .modal-header {
+                padding: 10px 12px;
+                flex-wrap: wrap;
+                gap: 6px;
+                flex-shrink: 0;
+            }
+            .pdf-modal .modal-header h5 { font-size: 0.82rem; width: 100%; }
+            .pdf-modal .modal-header .pdf-actions { 
+                width: 100%; 
+                justify-content: space-between;
+                gap: 6px;
+            }
+            .pdf-modal .modal-header .btn-pdf-action { 
+                font-size: 0.68rem; 
+                padding: 6px 10px;
+                flex: 1;
+                justify-content: center;
+            }
+            .pdf-modal .modal-header .btn-close {
+                margin-left: 0;
+                width: 28px;
+                height: 28px;
+                background-size: 20px;
+            }
+            
+            .pdf-modal .modal-body {
+                flex: 1 1 auto;
+                min-height: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .pdf-modal .pdf-viewer {
+                width: 100%;
+                height: 100%;
+                flex: 1 1 auto;
+                min-height: 0;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-y;
+                display: block;
+            }
+            
+            .pdf-modal .pdf-fallback {
+                padding: 30px 20px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        @supports (-webkit-touch-callout: none) {
+            .pdf-modal .modal-content {
+                height: -webkit-fill-available;
+                max-height: -webkit-fill-available;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1090,8 +1455,8 @@
     <section class="durus-hero">
         <div class="container">
             <div data-aos="fade-up" data-aos-duration="600">
-                <h1>Les Xassida de <span>Serigne Touba</span></h1>
-                <p>Consultez en ligne ou téléchargez les œuvres majeures de Cheikh Ahmadou Bamba Mbacké</p>
+                <h1>Bibliothèque <span>spirituelle</span></h1>
+                <p>Coran Warsh • Xassida de Serigne Touba • Wird • Enseignements</p>
             </div>
         </div>
     </section>
@@ -1104,49 +1469,67 @@
                     <span class="search-icon">
                         <i class="fas fa-search"></i>
                     </span>
-                    <input type="text" id="searchInput" placeholder="Rechercher un Xassida..." autocomplete="off">
+                    <input type="text" id="searchInput" placeholder="Rechercher..." autocomplete="off">
                     <button class="search-clear" id="searchClear" type="button" aria-label="Effacer">
                         <i class="fas fa-times-circle"></i>
                     </button>
                 </div>
                 <div class="filters-inline">
-                    <button class="filter-pill active" data-filter="all">
-                        <i class="fas fa-th"></i> Tous
+                    <button class="filter-pill active" data-filter="coran">
+                        <i class="fas fa-book-quran"></i> Coran
+                        <span class="filter-count" data-count="coran">0</span>
                     </button>
                     <button class="filter-pill" data-filter="xassida">
                         <i class="fas fa-book"></i> Xassida
+                        <span class="filter-count" data-count="xassida">0</span>
                     </button>
                     <button class="filter-pill" data-filter="wird">
                         <i class="fas fa-pray"></i> Wird
-                    </button>
-                    <button class="filter-pill" data-filter="poeme">
-                        <i class="fas fa-feather-alt"></i> Poèmes
+                        <span class="filter-count" data-count="wird">0</span>
                     </button>
                     <button class="filter-pill" data-filter="enseignement">
                         <i class="fas fa-graduation-cap"></i> Enseignements
+                        <span class="filter-count" data-count="enseignement">0</span>
                     </button>
                 </div>
             </div>
             <div class="results-info" id="resultsInfo">
-                <span><strong id="resultCount">0</strong> Xassida en cours de chargement...</span>
+                <span>Chargement de la bibliothèque...</span>
             </div>
         </div>
     </div>
 
-    <!-- SECTION XASSIDA -->
+    <!-- SECTION BIBLIOTHÈQUE -->
     <section class="xassida-section">
         <div class="container">
+            <div class="section-header" id="sectionHeader" style="display: none;">
+                <div class="section-header-icon" id="sectionHeaderIcon">
+                    <i class="fas fa-book-quran"></i>
+                </div>
+                <div class="section-header-text">
+                    <h2 class="section-header-title" id="sectionHeaderTitle">Coran Warsh</h2>
+                    <p class="section-header-subtitle">
+                        <span class="count" id="sectionHeaderCount">
+                            <i class="fas fa-book"></i>
+                            <span>0</span> document(s)
+                        </span>
+                        <span id="sectionHeaderSubtitle">• Le Saint Coran en lecture Warsh</span>
+                    </p>
+                </div>
+                <div class="section-header-decoration">
+                    <span></span>
+                    <i class="fas fa-star-and-crescent"></i>
+                    <span></span>
+                </div>
+            </div>
+
             <div class="xassida-grid" id="xassidaGrid">
                 <div class="loading-state">
                     <div class="loading-spinner"></div>
                     <p>Chargement de la bibliothèque...</p>
                 </div>
             </div>
-            <div class="empty-state" id="emptyState" style="display: none;">
-                <i class="fas fa-search"></i>
-                <h4>Aucun Xassida trouvé</h4>
-                <p>Essayez de modifier votre recherche ou de sélectionner une autre catégorie.</p>
-            </div>
+            <div class="empty-state" id="emptyState" style="display: none;"></div>
         </div>
     </section>
 
@@ -1158,7 +1541,7 @@
                     <i class="fas fa-lightbulb"></i>
                 </div>
                 <div class="info-banner-text">
-                    <h4>Vous ne trouvez pas un Xassida ?</h4>
+                    <h4>Vous ne trouvez pas un document ?</h4>
                     <p>Contactez-nous et nous ferons de notre mieux pour l'ajouter à notre bibliothèque.</p>
                 </div>
                 <a href="index.html#contact" class="btn btn-primary-custom">
@@ -1265,15 +1648,13 @@
                 <div class="modal-header">
                     <h5 id="pdfModalLabel">
                         <i class="fas fa-file-pdf"></i>
-                        <span id="pdfTitle">Xassida</span>
+                        <span id="pdfTitle">Document</span>
                     </h5>
                     <div class="pdf-actions">
-                        <!-- ⚡ Bouton "Ouvrir dans un nouvel onglet" (secours) -->
                         <a href="#" id="pdfOpenNewTab" target="_blank" rel="noopener noreferrer" class="btn-pdf-action" title="Ouvrir dans un nouvel onglet">
                             <i class="fas fa-external-link-alt"></i>
                             <span>Ouvrir</span>
                         </a>
-                        <!-- Bouton télécharger -->
                         <a href="#" id="pdfDownloadBtn" download class="btn-pdf-action" title="Télécharger le PDF">
                             <i class="fas fa-download"></i>
                             <span>Télécharger</span>
@@ -1328,9 +1709,37 @@
             $('html, body').stop().animate({ scrollTop: 0 }, 700, 'swing');
         });
 
+        // ============ CONFIGURATION DES CATÉGORIES ============
+        const CATEGORIES = {
+            coran: {
+                icon: 'fas fa-book-quran',
+                title: 'Coran Warsh',
+                subtitle: 'Le Saint Coran en lecture Warsh'
+            },
+            xassida: {
+                icon: 'fas fa-book',
+                title: 'Xassida de Serigne Touba',
+                subtitle: 'Les poèmes et œuvres de Cheikh Ahmadou Bamba'
+            },
+            wird: {
+                icon: 'fas fa-pray',
+                title: 'Wird',
+                subtitle: 'Les invocations et wird quotidiens'
+            },
+            enseignement: {
+                icon: 'fas fa-graduation-cap',
+                title: 'Enseignements',
+                subtitle: 'Lettres, enseignements et guidance spirituelle'
+            }
+        };
+
         // ============ ICÔNES PAR MOTS-CLÉS ============
-        function getIcon(title) {
-            const t = title.toLowerCase();
+        function getIcon(item) {
+            const category = item.category || '';
+            const t = (item.title || '').toLowerCase();
+            
+            if (category === 'coran') return 'fas fa-book-quran';
+            
             if (t.includes('wird') || t.includes('rajab')) return 'fas fa-pray';
             if (t.includes('mimiya') || t.includes('madah')) return 'fas fa-feather-alt';
             if (t.includes('matlab') || t.includes('fawz')) return 'fas fa-star-and-crescent';
@@ -1347,6 +1756,7 @@
 
         // ============ TAGS PAR CATÉGORIE ============
         function getCategoryTag(category) {
+            if (category === 'coran') return '<span><i class="fas fa-book-quran"></i> Coran</span>';
             if (category === 'wird') return '<span><i class="fas fa-pray"></i> Wird</span>';
             if (category === 'enseignement') return '<span><i class="fas fa-graduation-cap"></i> Enseignement</span>';
             if (category === 'poeme') return '<span><i class="fas fa-feather-alt"></i> Poème</span>';
@@ -1357,66 +1767,98 @@
         const $xassidaGrid = $('#xassidaGrid');
         const $emptyState = $('#emptyState');
         const $resultsInfo = $('#resultsInfo');
-        const $resultCount = $('#resultCount');
+        const $sectionHeader = $('#sectionHeader');
 
-        let allXassidas = [];
-        let currentFilter = 'all';
+        let allItems = [];
+        let currentFilter = 'coran';
         let currentSearch = '';
+        let categoryCounts = { coran: 0, xassida: 0, wird: 0, enseignement: 0 };
 
-        // Charger le JSON
-        fetch('xassidas.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Fichier xassidas.json introuvable');
-                return response.json();
-            })
-            .then(data => {
-                allXassidas = data;
-                renderXassidas(data);
-                $resultCount.text(data.length);
-                $resultsInfo.find('span').html('<strong>' + data.length + '</strong> Xassida disponibles dans la bibliothèque');
-                AOS.refresh();
-                console.log(`✅ ${data.length} Xassida chargés dynamiquement`);
-            })
-            .catch(error => {
-                console.error('❌ Erreur chargement JSON :', error);
-                $xassidaGrid.html(`
-                    <div class="empty-state">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h4>Erreur de chargement</h4>
-                        <p>Impossible de charger la liste des Xassida. Vérifiez que le fichier <strong>xassidas.json</strong> existe à la racine du site.</p>
-                    </div>
-                `);
+        // Charger les 2 JSON
+        Promise.all([
+            fetch('xassidas.json').then(r => r.ok ? r.json() : []).catch(() => []),
+            fetch('corans.json').then(r => r.ok ? r.json() : []).catch(() => [])
+        ])
+        .then(([xassidas, corans]) => {
+            allItems = [
+                ...corans.map(c => ({ ...c, category: 'coran' })),
+                ...xassidas.map(x => ({ ...x, category: x.category || 'xassida' }))
+            ];
+            
+            allItems.forEach(item => {
+                if (categoryCounts[item.category] !== undefined) {
+                    categoryCounts[item.category]++;
+                }
             });
+            
+            $('.filter-count').each(function() {
+                const cat = $(this).data('count');
+                $(this).text(categoryCounts[cat] || 0);
+            });
+            
+            allItems.sort((a, b) => {
+                if (a.category === 'coran' && b.category === 'coran') return (a.num || 0) - (b.num || 0);
+                if (a.category === 'coran') return -1;
+                if (b.category === 'coran') return 1;
+                return 0;
+            });
+            
+            renderItems(allItems);
+            updateResultsInfo();
+            AOS.refresh();
+            console.log(`✅ ${corans.length} Corans + ${xassidas.length} Xassidas chargés`);
+        })
+        .catch(error => {
+            console.error('❌ Erreur chargement :', error);
+            $xassidaGrid.html(`
+                <div class="custom-empty-state gold">
+                    <div class="custom-empty-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h4 class="custom-empty-title">Erreur de chargement</h4>
+                    <p class="custom-empty-text">Vérifiez que les fichiers <strong>xassidas.json</strong> et <strong>corans.json</strong> existent à la racine du site.</p>
+                </div>
+            `);
+        });
 
         // Générer les cartes HTML
-        function renderXassidas(data) {
+        function renderItems(data) {
             let html = '';
-            data.forEach((xassida, index) => {
-                const icon = getIcon(xassida.title);
-                const categoryTag = getCategoryTag(xassida.category);
+            data.forEach((item, index) => {
+                const icon = getIcon(item);
+                const categoryTag = getCategoryTag(item.category);
+                const arabic = item.arabic ? `<span class="xassida-arabic-small">${item.arabic}</span>` : '';
+                
+                const numBadge = (item.category === 'coran' && item.num)
+                    ? `<div class="surah-number">${item.num}</div>`
+                    : '';
+                
+                const displayTitle = (item.category === 'coran' && item.num)
+                    ? `${item.num}. ${item.title}`
+                    : item.title;
                 
                 html += `
                     <div class="xassida-item" 
-                         data-category="${xassida.category}"
-                         data-title="${xassida.title}"
-                         data-theme="${xassida.title.toLowerCase()}"
-                         data-pdf="${xassida.file}"
-                         style="animation-delay: ${Math.min(index * 15, 400)}ms">
+                         data-category="${item.category}"
+                         data-title="${item.title}"
+                         data-theme="${(item.title + ' ' + (item.arabic || '')).toLowerCase()}"
+                         data-pdf="${item.file}"
+                         style="animation-delay: ${Math.min(index * 12, 350)}ms">
                         <div class="xassida-icon-compact">
                             <i class="${icon}"></i>
+                            ${numBadge}
                         </div>
                         <div class="xassida-content">
-                            <h3 class="xassida-title">${xassida.title}</h3>
+                            <h3 class="xassida-title">${displayTitle}</h3>
+                            ${arabic}
                             <div class="xassida-tags">
                                 ${categoryTag}
                                 <span><i class="fas fa-file-pdf"></i> PDF</span>
                             </div>
                         </div>
                         <div class="xassida-actions">
-                            <button class="btn-read-compact" data-pdf="${xassida.file}" data-title="${xassida.title}" title="Lire le PDF">
+                            <button class="btn-read-compact" data-pdf="${item.file}" data-title="${displayTitle}" title="Lire le PDF">
                                 <i class="fas fa-book-open"></i>
                             </button>
-                            <a href="${xassida.file}" download class="btn-icon" title="Télécharger">
+                            <a href="${item.file}" download class="btn-icon" title="Télécharger">
                                 <i class="fas fa-download"></i>
                             </a>
                         </div>
@@ -1424,13 +1866,11 @@
                 `;
             });
             $xassidaGrid.html(html);
-            
-            // Réattacher les événements
             attachPdfEvents();
         }
 
         // ============ FILTRES ============
-        function filterXassida() {
+        function updateResultsInfo() {
             const $items = $('.xassida-item');
             let visibleCount = 0;
             const searchLower = currentSearch.toLowerCase().trim();
@@ -1441,7 +1881,7 @@
                 const title = ($item.data('title') || '').toString().toLowerCase();
                 const theme = ($item.data('theme') || '').toString().toLowerCase();
 
-                const matchesCategory = currentFilter === 'all' || category === currentFilter;
+                const matchesCategory = category === currentFilter;
                 const matchesSearch = searchLower === '' || title.includes(searchLower) || theme.includes(searchLower);
 
                 if (matchesCategory && matchesSearch) {
@@ -1452,40 +1892,97 @@
                 }
             });
 
-            $resultCount.text(visibleCount);
+            const catInfo = CATEGORIES[currentFilter];
+            const catName = catInfo ? catInfo.title : 'Document(s)';
             
-            if (searchLower !== '' || currentFilter !== 'all') {
-                $resultsInfo.find('span').html('<strong>' + visibleCount + '</strong> résultat(s) trouvé(s)');
+            if (searchLower !== '') {
+                $resultsInfo.find('span').html(`<strong>${visibleCount}</strong> résultat(s) pour "${currentSearch}"`);
             } else {
-                $resultsInfo.find('span').html('<strong>' + visibleCount + '</strong> Xassida disponibles dans la bibliothèque');
+                $resultsInfo.find('span').html(`<strong>${visibleCount}</strong> ${catName.toLowerCase()} disponible(s)`);
             }
 
-            if (visibleCount === 0) $emptyState.show();
-            else $emptyState.hide();
+            if (catInfo) {
+                $('#sectionHeaderIcon').html(`<i class="${catInfo.icon}"></i>`);
+                $('#sectionHeaderTitle').text(catInfo.title);
+                $('#sectionHeaderCount span').text(visibleCount);
+                $('#sectionHeaderSubtitle').text('• ' + catInfo.subtitle);
+                $sectionHeader.fadeIn(300);
+            }
+
+            if (visibleCount === 0) {
+                $xassidaGrid.hide();
+                $sectionHeader.hide();
+                showEmptyMessage(currentFilter, searchLower);
+            } else {
+                $xassidaGrid.show();
+                $sectionHeader.fadeIn(300);
+                $emptyState.hide();
+            }
+        }
+
+        // ============ MESSAGE VIDE ============
+        function showEmptyMessage(category, searchTerm) {
+            let icon = 'fas fa-search';
+            let title = 'Aucun résultat trouvé';
+            let message = 'Essayez de modifier votre recherche.';
+            let color = 'gold';
+
+            if (searchTerm !== '') {
+                icon = 'fas fa-search';
+                title = 'Aucun résultat';
+                message = `Aucun document ne correspond à votre recherche "<strong>${searchTerm}</strong>". Essayez un autre mot-clé.`;
+            } else if (category === 'wird') {
+                icon = 'fas fa-pray';
+                title = 'Wird - Bientôt disponible';
+                message = 'Les Wird seront prochainement ajoutés à la bibliothèque. Revenez bientôt <i>Inch\'Allah</i> !';
+                color = 'green';
+            } else if (category === 'enseignement') {
+                icon = 'fas fa-graduation-cap';
+                title = 'Enseignements - Bientôt disponible';
+                message = 'Les enseignements seront prochainement ajoutés à la bibliothèque. Revenez bientôt <i>Inch\'Allah</i> !';
+                color = 'green';
+            }
+
+            const html = `
+                <div class="custom-empty-state ${color}">
+                    <div class="custom-empty-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <h4 class="custom-empty-title">${title}</h4>
+                    <p class="custom-empty-text">${message}</p>
+                    <div class="custom-empty-decoration">
+                        <span></span>
+                        <i class="fas fa-star-and-crescent"></i>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            
+            $emptyState.html(html).show();
         }
 
         $('#searchInput').on('input', function() {
             currentSearch = $(this).val();
             if (currentSearch.length > 0) $('#searchClear').addClass('visible');
             else $('#searchClear').removeClass('visible');
-            filterXassida();
+            updateResultsInfo();
         });
 
         $('#searchClear').on('click', function() {
             $('#searchInput').val('').focus();
             currentSearch = '';
             $(this).removeClass('visible');
-            filterXassida();
+            updateResultsInfo();
         });
 
         $('.filter-pill').on('click', function() {
             $('.filter-pill').removeClass('active');
             $(this).addClass('active');
             currentFilter = $(this).data('filter');
-            filterXassida();
+            updateResultsInfo();
         });
 
-        // ============ MODALE PDF ============
+        // ============ MODALE PDF - AVEC FIX MOBILE ============
         function attachPdfEvents() {
             $('.btn-read-compact').off('click').on('click', function(e) {
                 e.preventDefault();
@@ -1493,18 +1990,54 @@
                 const title = $(this).data('title');
 
                 if (!pdfUrl) {
-                    alert('Ce Xassida n\'est pas encore disponible.');
+                    alert('Ce document n\'est pas encore disponible.');
                     return;
                 }
 
-                // Mettre à jour tous les liens
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                
+                // Mettre à jour les liens
                 $('#pdfTitle').text(title);
                 $('#pdfDownloadBtn').attr('href', pdfUrl);
                 $('#pdfOpenNewTab').attr('href', pdfUrl);
                 $('#pdfFallbackOpen').attr('href', pdfUrl);
                 $('#pdfFallbackDownload').attr('href', pdfUrl);
-                $('#pdfFallback').hide();
-                $('#pdfViewer').show().attr('src', pdfUrl);
+
+                // ⚡ FIX MOBILE : hauteur explicite
+                if (isMobile) {
+                    const vh = window.innerHeight;
+                    $('.pdf-modal .modal-content').css({
+                        'height': vh + 'px',
+                        'max-height': vh + 'px'
+                    });
+                    $('.pdf-modal .pdf-viewer').css({
+                        'height': (vh - 90) + 'px',
+                        'min-height': (vh - 90) + 'px'
+                    });
+                }
+
+                // ⚡ FIX iOS : ouvrir directement dans un nouvel onglet
+                if (isIOS) {
+                    $('#pdfFallback').show();
+                    $('#pdfViewer').hide();
+                    $('#pdfFallback').html(`
+                        <i class="fas fa-file-pdf"></i>
+                        <h5>${title}</h5>
+                        <p>Sur iPhone/iPad, les PDF s'ouvrent mieux dans un nouvel onglet pour une lecture confortable.</p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 0 15px;">
+                            <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary-custom">
+                                <i class="fas fa-external-link-alt me-2"></i>Ouvrir le PDF
+                            </a>
+                            <a href="${pdfUrl}" download class="btn btn-primary-custom">
+                                <i class="fas fa-download me-2"></i>Télécharger
+                            </a>
+                        </div>
+                    `);
+                } else {
+                    $('#pdfFallback').hide();
+                    $('#pdfViewer').show().attr('src', pdfUrl);
+                }
 
                 const modal = new bootstrap.Modal($('#pdfModal')[0], {
                     backdrop: true,
@@ -1514,10 +2047,35 @@
             });
         }
 
+        // ⚡ Nettoyage
         $('#pdfModal').on('hidden.bs.modal', function() {
-            $('#pdfViewer').attr('src', '');
+            $('#pdfViewer').attr('src', '').css({ 'height': '', 'min-height': '' });
+            $('.pdf-modal .modal-content').css({ 'height': '', 'max-height': '' });
             $('#pdfFallback').hide();
             $('#pdfViewer').show();
+            $('body').removeClass('modal-open').css('overflow', '');
+        });
+
+        // ⚡ Recalcul hauteur au changement d'orientation
+        let resizeTimeout;
+        $(window).on('resize orientationchange', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                if ($('#pdfModal').hasClass('show')) {
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    if (isMobile) {
+                        const vh = window.innerHeight;
+                        $('.pdf-modal .modal-content').css({
+                            'height': vh + 'px',
+                            'max-height': vh + 'px'
+                        });
+                        $('.pdf-modal .pdf-viewer').css({
+                            'height': (vh - 90) + 'px',
+                            'min-height': (vh - 90) + 'px'
+                        });
+                    }
+                }
+            }, 250);
         });
 
         // ============ SMOOTH SCROLL ============
@@ -1559,7 +2117,7 @@
             window.top.location = window.self.location;
         }
 
-        console.log('%c📖 Page Durus D3S - Bibliothèque Xassida chargée', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+        console.log('%c📖 Page Durus D3S - Bibliothèque premium', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
     </script>
 </body>
 </html>
