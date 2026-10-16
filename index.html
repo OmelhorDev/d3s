@@ -2202,6 +2202,260 @@
             .dieuwerigne-stats { flex-direction: column; gap: 10px; }
             .stat-divider { width: 40px; height: 1px; }
         }
+                /* ============ FIX BOUTON SUBMIT MOBILE ============ */
+        @media (max-width: 767px) {
+            .modal-footer {
+                padding-bottom: 25px !important;
+                flex-direction: column-reverse !important;
+            }
+            .modal-footer .btn,
+            .modal-footer .btn-submit {
+                width: 100% !important;
+                margin-bottom: 8px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 50px !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                padding: 14px 18px !important;
+                font-size: 0.9rem !important;
+            }
+            .modal-footer .btn:last-child,
+            .modal-footer .btn-submit:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        /* ============ AUDIO FLOTTANT ============ */
+        #audioControl {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            z-index: 9997;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #audioToggle {
+            width: 52px;
+            height: 52px;
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #audioToggle::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--gradient-green);
+            transform: scale(0);
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        #audioToggle:hover {
+            transform: translateY(-3px) scale(1.08);
+            color: var(--accent-gold);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+        }
+
+        #audioToggle:hover::before { transform: scale(1); }
+
+        #audioToggle.playing {
+            animation: pulseAudio 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseAudio {
+            0%, 100% { box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45), 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45), 0 0 0 15px rgba(212, 175, 55, 0); }
+        }
+
+        #audioPanel {
+            background: white;
+            border-radius: 16px;
+            padding: 14px 16px;
+            box-shadow: 0 15px 40px rgba(10, 77, 58, 0.25);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 220px;
+            animation: slideAudio 0.3s ease;
+        }
+
+        #audioPanel.visible {
+            display: flex;
+        }
+
+        @keyframes slideAudio {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #audioPanel .audio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(10, 77, 58, 0.08);
+        }
+
+        #audioPanel .audio-header span {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #audioPanel .audio-header span i {
+            color: var(--accent-gold);
+        }
+
+        #audioPanel .audio-header button {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 2px 6px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        #audioPanel .audio-header button:hover {
+            background: rgba(10, 77, 58, 0.08);
+            color: var(--primary-green);
+        }
+
+        #audioPanel .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #audioPanel .audio-controls button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gradient-green);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        #audioPanel .audio-controls button:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: scale(1.1);
+        }
+
+        #audioPanel .audio-controls button.stop-btn {
+            background: linear-gradient(135deg, #dc3545, #e4606d);
+        }
+
+        #audioPanel .audio-controls button.stop-btn:hover {
+            background: linear-gradient(135deg, #c82333, #dc3545);
+            color: white;
+        }
+
+        #audioPanel .volume-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        #audioPanel .volume-wrapper label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #audioPanel .volume-slider {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(10, 77, 58, 0.1);
+            border-radius: 50px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #audioPanel .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            cursor: pointer;
+            border: 2px solid var(--primary-green);
+            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.4);
+        }
+
+        #audioPanel .volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            cursor: pointer;
+            border: 2px solid var(--primary-green);
+        }
+
+        @media (max-width: 767px) {
+            #audioControl {
+                bottom: 80px;
+                right: 20px;
+            }
+            #audioToggle {
+                width: 46px;
+                height: 46px;
+                font-size: 1rem;
+            }
+            #audioPanel {
+                min-width: 200px;
+                padding: 12px 14px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #audioControl {
+                bottom: 75px;
+                right: 15px;
+            }
+            #audioToggle {
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3051,6 +3305,39 @@
             </div>
         </div>
     </div>
+        <!-- ============ AUDIO FLOTTANT ============ -->
+    <div id="audioControl">
+        <div id="audioPanel">
+            <div class="audio-header">
+                <span><i class="fas fa-music"></i> Son du site</span>
+                <button type="button" id="audioPanelClose" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="audio-controls">
+                <button type="button" id="audioPlayPause" aria-label="Lecture/Pause">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <div class="volume-wrapper">
+                    <label for="audioVolume">Volume</label>
+                    <input type="range" id="audioVolume" class="volume-slider" min="0" max="100" value="35">
+                </div>
+                <button type="button" id="audioStop" class="stop-btn" aria-label="Arrêter">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+        </div>
+        <button type="button" id="audioToggle" aria-label="Contrôler le son" title="Contrôler le son">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <!-- Audio (source à modifier) -->
+    <audio id="siteAudio" loop preload="auto">
+        <source src="images/xass.mp4" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'audio HTML5.
+    </audio>
+
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -3467,6 +3754,220 @@
         }
 
         console.log('%c🕌 Dahira D3S - Site sécurisé avec carrousel événements', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+                        // ============ AUDIO FLOTTANT AVEC CONTINUITÉ ENTRE PAGES ============
+        (function initAudioControl() {
+            const audio = document.getElementById('siteAudio');
+            const audioToggle = document.getElementById('audioToggle');
+            const audioPanel = document.getElementById('audioPanel');
+            const audioPanelClose = document.getElementById('audioPanelClose');
+            const audioPlayPause = document.getElementById('audioPlayPause');
+            const audioStop = document.getElementById('audioStop');
+            const audioVolume = document.getElementById('audioVolume');
+            const audioControl = document.getElementById('audioControl');
+
+            if (!audio || !audioToggle) return;
+
+            // ⚡ Clés de stockage
+            const STORAGE_KEY = 'd3s_audio_state';
+            const STOPPED_KEY = 'd3s_audio_stopped';
+
+            // ⚡ Vérifier si l'utilisateur a arrêté le son (avant tout)
+            if (sessionStorage.getItem(STOPPED_KEY) === 'true') {
+                if (audioControl) audioControl.style.display = 'none';
+                return; // On ne fait RIEN, le son reste arrêté
+            }
+
+            // ⚡ Récupérer l'état précédent (position, volume, play/pause)
+            let savedState = {
+                currentTime: 0,
+                volume: 0.35,
+                wasPlaying: true
+            };
+
+            try {
+                const stored = sessionStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    savedState = { ...savedState, ...JSON.parse(stored) };
+                }
+            } catch (e) {
+                console.warn('Impossible de lire l\'état audio précédent');
+            }
+
+            // ⚡ Appliquer le volume sauvegardé
+            audio.volume = savedState.volume;
+            if (audioVolume) audioVolume.value = Math.round(savedState.volume * 100);
+
+            // ⚡ Restaurer la position de lecture
+            let seekPositionApplied = false;
+
+            function applySeekPosition() {
+                if (!seekPositionApplied && savedState.currentTime > 0 && isFinite(audio.duration)) {
+                    try {
+                        audio.currentTime = savedState.currentTime;
+                        seekPositionApplied = true;
+                    } catch (e) {
+                        console.warn('Impossible de reprendre à la position précédente');
+                    }
+                }
+            }
+
+            audio.addEventListener('loadedmetadata', applySeekPosition);
+            audio.addEventListener('canplay', applySeekPosition);
+
+            // ⚡ Sauvegarder l'état AVANT de quitter la page
+            function saveCurrentState() {
+                try {
+                    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+                        currentTime: audio.currentTime || 0,
+                        volume: audio.volume,
+                        wasPlaying: !audio.paused
+                    }));
+                } catch (e) {
+                    console.warn('Impossible de sauvegarder l\'état audio');
+                }
+            }
+
+            // Sauvegarder toutes les 2 secondes
+            setInterval(saveCurrentState, 2000);
+
+            // Sauvegarder avant déchargement de la page
+            window.addEventListener('beforeunload', saveCurrentState);
+
+            // Sauvegarder aussi quand on change d'onglet
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    saveCurrentState();
+                }
+            });
+
+            // ⚡ Mettre à jour l'icône play/pause
+            function updatePlayPauseIcon(isPlaying) {
+                if (!audioPlayPause) return;
+                if (isPlaying) {
+                    audioPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audioPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            }
+
+            // ⚡ Fonction play avec fallback autoplay bloqué
+            function startAudio() {
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        audioToggle.classList.add('playing');
+                        updatePlayPauseIcon(true);
+                    }).catch(function(error) {
+                        console.log('Autoplay bloqué, en attente d\'interaction');
+                        audioToggle.classList.remove('playing');
+                        updatePlayPauseIcon(false);
+
+                        const startAudioOnInteraction = function() {
+                            if (sessionStorage.getItem(STOPPED_KEY) !== 'true') {
+                                audio.play().then(function() {
+                                    audioToggle.classList.add('playing');
+                                    updatePlayPauseIcon(true);
+                                    applySeekPosition();
+                                }).catch(function() {});
+                            }
+                            document.removeEventListener('click', startAudioOnInteraction);
+                            document.removeEventListener('touchstart', startAudioOnInteraction);
+                            document.removeEventListener('keydown', startAudioOnInteraction);
+                        };
+
+                        document.addEventListener('click', startAudioOnInteraction, { once: true });
+                        document.addEventListener('touchstart', startAudioOnInteraction, { once: true });
+                        document.addEventListener('keydown', startAudioOnInteraction, { once: true });
+                    });
+                }
+            }
+
+            // ⚡ Au chargement de la page → reprendre la lecture
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    // Si l'utilisateur avait mis en pause, ne pas redémarrer
+                    if (savedState.wasPlaying === false) {
+                        updatePlayPauseIcon(false);
+                        audioToggle.classList.remove('playing');
+                        return;
+                    }
+                    startAudio();
+                }, 500);
+            });
+
+            // ⚡ Ouvrir / fermer le panneau
+            audioToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                audioPanel.classList.toggle('visible');
+            });
+
+            if (audioPanelClose) {
+                audioPanelClose.addEventListener('click', function() {
+                    audioPanel.classList.remove('visible');
+                });
+            }
+
+            document.addEventListener('click', function(e) {
+                if (!audioPanel.contains(e.target) && !audioToggle.contains(e.target)) {
+                    audioPanel.classList.remove('visible');
+                }
+            });
+
+            // ⚡ Play / Pause
+            if (audioPlayPause) {
+                audioPlayPause.addEventListener('click', function() {
+                    if (audio.paused) {
+                        audio.play();
+                        audioToggle.classList.add('playing');
+                        updatePlayPauseIcon(true);
+                        // Sauvegarder immédiatement le nouvel état
+                        setTimeout(saveCurrentState, 100);
+                    } else {
+                        audio.pause();
+                        audioToggle.classList.remove('playing');
+                        updatePlayPauseIcon(false);
+                        // Sauvegarder immédiatement le nouvel état
+                        setTimeout(saveCurrentState, 100);
+                    }
+                });
+            }
+
+            // ⚡ Stop - Arrête et cache définitivement jusqu'à nouvelle session
+            if (audioStop) {
+                audioStop.addEventListener('click', function() {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    audioPanel.classList.remove('visible');
+                    audioToggle.classList.remove('playing');
+
+                    // Marquer comme arrêté pour cette session
+                    sessionStorage.setItem(STOPPED_KEY, 'true');
+                    sessionStorage.removeItem(STORAGE_KEY);
+
+                    // Cacher complètement le bouton
+                    if (audioControl) audioControl.style.display = 'none';
+                });
+            }
+
+            // ⚡ Volume
+            if (audioVolume) {
+                audioVolume.addEventListener('input', function() {
+                    const vol = parseInt(this.value, 10) / 100;
+                    audio.volume = vol;
+
+                    if (vol === 0) {
+                        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    } else if (vol < 0.5) {
+                        audioToggle.innerHTML = '<i class="fas fa-volume-down"></i>';
+                    } else {
+                        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+
+                    // Sauvegarder le volume
+                    saveCurrentState();
+                });
+            }
+        })();
     </script>
 </body>
 </html>
