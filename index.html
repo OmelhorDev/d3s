@@ -2456,6 +2456,165 @@
                 font-size: 0.95rem;
             }
         }
+
+                /* ============ POPUP D'ACTIVATION AUDIO ============ */
+        #audioPrompt {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 77, 58, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        #audioPrompt.active {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .audio-prompt-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px 30px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            border: 3px solid var(--accent-gold);
+            position: relative;
+            transform: scale(0.85);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #audioPrompt.active .audio-prompt-card {
+            transform: scale(1);
+        }
+
+        .audio-prompt-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            background: var(--gradient-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(10, 77, 58, 0.3);
+            position: relative;
+            animation: pulseAudioPrompt 2s ease-in-out infinite;
+        }
+
+        .audio-prompt-icon::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            animation: rotateRing 8s linear infinite;
+            border-top-color: var(--accent-gold);
+            border-right-color: transparent;
+        }
+
+        @keyframes pulseAudioPrompt {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .audio-prompt-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin: 0 0 10px 0;
+            font-weight: 500;
+        }
+
+        .audio-prompt-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 25px 0;
+        }
+
+        .audio-prompt-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .audio-prompt-activate {
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(10, 77, 58, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .audio-prompt-activate:hover {
+            background: var(--gradient-gold);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .audio-prompt-skip {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .audio-prompt-skip:hover {
+            color: var(--primary-green);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .audio-prompt-card {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+            .audio-prompt-icon {
+                width: 75px;
+                height: 75px;
+                font-size: 2rem;
+                margin-bottom: 16px;
+            }
+            .audio-prompt-title {
+                font-size: 1.2rem;
+            }
+            .audio-prompt-text {
+                font-size: 0.82rem;
+                margin-bottom: 20px;
+            }
+            .audio-prompt-activate {
+                padding: 13px 20px;
+                font-size: 0.88rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3338,6 +3497,28 @@
         Votre navigateur ne supporte pas l'audio HTML5.
     </audio>
 
+        <!-- ============ POPUP D'ACTIVATION AUDIO ============ -->
+    <div id="audioPrompt">
+        <div class="audio-prompt-card">
+            <div class="audio-prompt-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <h3 class="audio-prompt-title">Ambiance spirituelle</h3>
+            <p class="audio-prompt-text">
+                Activez le son pour profiter d'une ambiance spirituelle apaisante durant votre visite.
+            </p>
+            <div class="audio-prompt-buttons">
+                <button type="button" class="audio-prompt-activate" id="activateAudio">
+                    <i class="fas fa-volume-up"></i>
+                    Activer le son
+                </button>
+                <button type="button" class="audio-prompt-skip" id="skipAudio">
+                    Continuer sans son
+                </button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -3754,7 +3935,7 @@
         }
 
         console.log('%c🕌 Dahira D3S - Site sécurisé avec carrousel événements', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
-                        // ============ AUDIO FLOTTANT AVEC CONTINUITÉ ENTRE PAGES ============
+                // ============ AUDIO FLOTTANT AVEC CONTINUITÉ + SUPPORT MOBILE ============
         (function initAudioControl() {
             const audio = document.getElementById('siteAudio');
             const audioToggle = document.getElementById('audioToggle');
@@ -3764,20 +3945,24 @@
             const audioStop = document.getElementById('audioStop');
             const audioVolume = document.getElementById('audioVolume');
             const audioControl = document.getElementById('audioControl');
+            const audioPrompt = document.getElementById('audioPrompt');
+            const activateAudioBtn = document.getElementById('activateAudio');
+            const skipAudioBtn = document.getElementById('skipAudio');
 
             if (!audio || !audioToggle) return;
 
-            // ⚡ Clés de stockage
             const STORAGE_KEY = 'd3s_audio_state';
             const STOPPED_KEY = 'd3s_audio_stopped';
+            const PROMPT_SHOWN_KEY = 'd3s_audio_prompt_shown';
 
-            // ⚡ Vérifier si l'utilisateur a arrêté le son (avant tout)
+            // ⚡ Vérifier si l'utilisateur a arrêté le son
             if (sessionStorage.getItem(STOPPED_KEY) === 'true') {
                 if (audioControl) audioControl.style.display = 'none';
-                return; // On ne fait RIEN, le son reste arrêté
+                if (audioPrompt) audioPrompt.classList.remove('active');
+                return;
             }
 
-            // ⚡ Récupérer l'état précédent (position, volume, play/pause)
+            // ⚡ Récupérer l'état précédent
             let savedState = {
                 currentTime: 0,
                 volume: 0.35,
@@ -3790,10 +3975,9 @@
                     savedState = { ...savedState, ...JSON.parse(stored) };
                 }
             } catch (e) {
-                console.warn('Impossible de lire l\'état audio précédent');
+                console.warn('Impossible de lire l\'état audio');
             }
 
-            // ⚡ Appliquer le volume sauvegardé
             audio.volume = savedState.volume;
             if (audioVolume) audioVolume.value = Math.round(savedState.volume * 100);
 
@@ -3805,16 +3989,14 @@
                     try {
                         audio.currentTime = savedState.currentTime;
                         seekPositionApplied = true;
-                    } catch (e) {
-                        console.warn('Impossible de reprendre à la position précédente');
-                    }
+                    } catch (e) {}
                 }
             }
 
             audio.addEventListener('loadedmetadata', applySeekPosition);
             audio.addEventListener('canplay', applySeekPosition);
 
-            // ⚡ Sauvegarder l'état AVANT de quitter la page
+            // ⚡ Sauvegarder l'état
             function saveCurrentState() {
                 try {
                     sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
@@ -3822,67 +4004,44 @@
                         volume: audio.volume,
                         wasPlaying: !audio.paused
                     }));
-                } catch (e) {
-                    console.warn('Impossible de sauvegarder l\'état audio');
-                }
+                } catch (e) {}
             }
 
-            // Sauvegarder toutes les 2 secondes
             setInterval(saveCurrentState, 2000);
-
-            // Sauvegarder avant déchargement de la page
             window.addEventListener('beforeunload', saveCurrentState);
-
-            // Sauvegarder aussi quand on change d'onglet
             document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    saveCurrentState();
-                }
+                if (document.hidden) saveCurrentState();
             });
 
             // ⚡ Mettre à jour l'icône play/pause
             function updatePlayPauseIcon(isPlaying) {
                 if (!audioPlayPause) return;
-                if (isPlaying) {
-                    audioPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    audioPlayPause.innerHTML = '<i class="fas fa-play"></i>';
-                }
+                audioPlayPause.innerHTML = isPlaying 
+                    ? '<i class="fas fa-pause"></i>' 
+                    : '<i class="fas fa-play"></i>';
             }
 
-            // ⚡ Fonction play avec fallback autoplay bloqué
+            // ⚡ Démarrer l'audio (avec gestion des erreurs mobile)
             function startAudio() {
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(function() {
                         audioToggle.classList.add('playing');
                         updatePlayPauseIcon(true);
+                        applySeekPosition();
+                        console.log('✅ Audio en lecture');
                     }).catch(function(error) {
-                        console.log('Autoplay bloqué, en attente d\'interaction');
+                        console.log('❌ Autoplay bloqué :', error.message);
                         audioToggle.classList.remove('playing');
                         updatePlayPauseIcon(false);
-
-                        const startAudioOnInteraction = function() {
-                            if (sessionStorage.getItem(STOPPED_KEY) !== 'true') {
-                                audio.play().then(function() {
-                                    audioToggle.classList.add('playing');
-                                    updatePlayPauseIcon(true);
-                                    applySeekPosition();
-                                }).catch(function() {});
-                            }
-                            document.removeEventListener('click', startAudioOnInteraction);
-                            document.removeEventListener('touchstart', startAudioOnInteraction);
-                            document.removeEventListener('keydown', startAudioOnInteraction);
-                        };
-
-                        document.addEventListener('click', startAudioOnInteraction, { once: true });
-                        document.addEventListener('touchstart', startAudioOnInteraction, { once: true });
-                        document.addEventListener('keydown', startAudioOnInteraction, { once: true });
                     });
                 }
             }
 
-            // ⚡ Au chargement de la page → reprendre la lecture
+            // ⚡ Détection mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // ⚡ Au chargement de la page
             window.addEventListener('load', function() {
                 setTimeout(function() {
                     // Si l'utilisateur avait mis en pause, ne pas redémarrer
@@ -3891,9 +4050,37 @@
                         audioToggle.classList.remove('playing');
                         return;
                     }
-                    startAudio();
-                }, 500);
+
+                    // ⚡ Sur MOBILE : afficher le popup d'activation
+                    if (isMobile && sessionStorage.getItem(PROMPT_SHOWN_KEY) !== 'true') {
+                        if (audioPrompt) {
+                            audioPrompt.classList.add('active');
+                            sessionStorage.setItem(PROMPT_SHOWN_KEY, 'true');
+                        }
+                    } else {
+                        // Sur desktop ou si popup déjà vu : essayer l'autoplay
+                        startAudio();
+                    }
+                }, 800);
             });
+
+            // ⚡ Bouton "Activer le son" du popup
+            if (activateAudioBtn) {
+                activateAudioBtn.addEventListener('click', function() {
+                    if (audioPrompt) audioPrompt.classList.remove('active');
+                    startAudio();
+                });
+            }
+
+            // ⚡ Bouton "Continuer sans son" du popup
+            if (skipAudioBtn) {
+                skipAudioBtn.addEventListener('click', function() {
+                    if (audioPrompt) audioPrompt.classList.remove('active');
+                    // Garder le widget visible mais en pause
+                    updatePlayPauseIcon(false);
+                    audioToggle.classList.remove('playing');
+                });
+            }
 
             // ⚡ Ouvrir / fermer le panneau
             audioToggle.addEventListener('click', function(e) {
@@ -3920,19 +4107,17 @@
                         audio.play();
                         audioToggle.classList.add('playing');
                         updatePlayPauseIcon(true);
-                        // Sauvegarder immédiatement le nouvel état
                         setTimeout(saveCurrentState, 100);
                     } else {
                         audio.pause();
                         audioToggle.classList.remove('playing');
                         updatePlayPauseIcon(false);
-                        // Sauvegarder immédiatement le nouvel état
                         setTimeout(saveCurrentState, 100);
                     }
                 });
             }
 
-            // ⚡ Stop - Arrête et cache définitivement jusqu'à nouvelle session
+            // ⚡ Stop - Cache définitivement pour la session
             if (audioStop) {
                 audioStop.addEventListener('click', function() {
                     audio.pause();
@@ -3940,11 +4125,9 @@
                     audioPanel.classList.remove('visible');
                     audioToggle.classList.remove('playing');
 
-                    // Marquer comme arrêté pour cette session
                     sessionStorage.setItem(STOPPED_KEY, 'true');
                     sessionStorage.removeItem(STORAGE_KEY);
 
-                    // Cacher complètement le bouton
                     if (audioControl) audioControl.style.display = 'none';
                 });
             }
@@ -3963,7 +4146,6 @@
                         audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
                     }
 
-                    // Sauvegarder le volume
                     saveCurrentState();
                 });
             }
