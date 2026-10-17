@@ -2577,7 +2577,7 @@
         }
 
         console.log('%c📖 Page Durus D3S - Bibliothèque premium', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
-                // ============ AUDIO FLOTTANT - VERSION MOBILE OPTIMISÉE ============
+                // ============ AUDIO FLOTTANT - VERSION FINALE OPTIMISÉE ============
 (function initAudioControl() {
     const audio = document.getElementById('siteAudio');
     const audioToggle = document.getElementById('audioToggle');
@@ -2595,6 +2595,7 @@
 
     const STORAGE_KEY = 'd3s_audio_state';
     const STOPPED_KEY = 'd3s_audio_stopped';
+    const VOLUME_KEY = 'd3s_audio_volume';
 
     // ⚡ Si l'utilisateur a arrêté le son, on cache tout
     if (sessionStorage.getItem(STOPPED_KEY) === 'true') {
@@ -2615,13 +2616,35 @@
         if (stored) {
             savedState = Object.assign({}, savedState, JSON.parse(stored));
         }
+        // Volume sauvegardé séparément (plus fiable)
+        const storedVolume = localStorage.getItem(VOLUME_KEY);
+        if (storedVolume !== null) {
+            savedState.volume = parseFloat(storedVolume);
+        }
     } catch (e) {
         console.warn('Impossible de lire l\'état audio');
     }
 
+    // ⚡ Appliquer le volume
     audio.volume = savedState.volume;
     audio.muted = false;
     if (audioVolume) audioVolume.value = Math.round(savedState.volume * 100);
+
+    // ⚡ Mettre à jour l'icône selon le volume initial
+    function updateVolumeIcon(vol) {
+        if (!audioToggle) return;
+        // Ne pas écraser les icônes play/pause si on est en cours
+        if (audio.paused && !audioToggle.classList.contains('playing')) {
+            return;
+        }
+        if (vol === 0) {
+            audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else if (vol < 0.5) {
+            audioToggle.innerHTML = '<i class="fas fa-volume-down"></i>';
+        } else {
+            audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
 
     // ⚡ Restaurer la position
     let seekPositionApplied = false;
@@ -2645,6 +2668,8 @@
                 volume: audio.volume,
                 wasPlaying: !audio.paused
             }));
+            // Sauvegarder aussi le volume séparément
+            localStorage.setItem(VOLUME_KEY, audio.volume.toString());
         } catch (e) {}
     }
 
@@ -2654,7 +2679,7 @@
         if (document.hidden) saveCurrentState();
     });
 
-    // ⚡ Mettre à jour l'icône
+    // ⚡ Mettre à jour l'icône play/pause
     function updatePlayPauseIcon(isPlaying) {
         if (!audioPlayPause) return;
         audioPlayPause.innerHTML = isPlaying 
@@ -2667,7 +2692,6 @@
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     // ⚡ FONCTION CRITIQUE : démarrer l'audio DIRECTEMENT dans le clic
-    // Sur mobile, le play() doit être appelé SYNC dans le gestionnaire d'événement
     function forceStartAudio() {
         // Sur iOS, on doit recharger la source pour contourner le blocage
         if (isIOS) {
@@ -2680,22 +2704,23 @@
         audio.volume = savedState.volume || 0.35;
         audio.muted = false;
         
-        // Appel play() DIRECTEMENT (pas dans setTimeout)
+        // Appel play() DIRECTEMENT
         const playPromise = audio.play();
         
         if (playPromise !== undefined) {
             playPromise.then(function() {
                 audioToggle.classList.add('playing');
                 updatePlayPauseIcon(true);
+                updateVolumeIcon(audio.volume);
                 setTimeout(applySeekPosition, 100);
-                console.log('✅ Audio démarré sur mobile');
+                console.log('✅ Audio démarré');
             }).catch(function(error) {
                 console.log('❌ Erreur play():', error.message);
-                // Dernière tentative après un petit délai
                 setTimeout(function() {
                     audio.play().then(function() {
                         audioToggle.classList.add('playing');
                         updatePlayPauseIcon(true);
+                        updateVolumeIcon(audio.volume);
                         applySeekPosition();
                     }).catch(function(err) {
                         console.log('❌ 2ème tentative échouée:', err.message);
@@ -2705,42 +2730,35 @@
         }
     }
 
-    // ⚡ GESTION DU POPUP MOBILE
+    // ⚡ GESTION DU POPUP
     function showMobilePrompt() {
-        if (audioPrompt) {
-            audioPrompt.classList.add('active');
-        }
+        if (audioPrompt) audioPrompt.classList.add('active');
     }
 
     function hideMobilePrompt() {
-        if (audioPrompt) {
-            audioPrompt.classList.remove('active');
-        }
+        if (audioPrompt) audioPrompt.classList.remove('active');
     }
 
     // ⚡ AU CHARGEMENT
     window.addEventListener('load', function() {
         setTimeout(function() {
-            // Si l'utilisateur avait mis en pause avant
             if (savedState.wasPlaying === false) {
                 updatePlayPauseIcon(false);
                 audioToggle.classList.remove('playing');
                 return;
             }
 
-            // ⚡ Sur MOBILE → afficher le popup
             if (isMobile) {
                 showMobilePrompt();
             } else {
-                // Sur desktop → essayer autoplay
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(function() {
                         audioToggle.classList.add('playing');
                         updatePlayPauseIcon(true);
+                        updateVolumeIcon(audio.volume);
                         applySeekPosition();
                     }).catch(function() {
-                        // Bloqué → afficher le popup aussi sur desktop
                         showMobilePrompt();
                     });
                 }
@@ -2748,19 +2766,13 @@
         }, 500);
     });
 
-    // ⚡ BOUTON "ACTIVER LE SON" — CRITIQUE POUR MOBILE
+    // ⚡ BOUTON "ACTIVER LE SON"
     if (activateAudioBtn) {
-        // Utiliser 'touchend' ET 'click' pour être sûr sur mobile
         const handleActivate = function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
             hideMobilePrompt();
-            
-            // Appel DIRECT et SYNC de play()
             forceStartAudio();
-            
-            // Sauvegarder l'état
             setTimeout(saveCurrentState, 500);
         };
         
@@ -2810,6 +2822,7 @@
                 audio.play().then(function() {
                     audioToggle.classList.add('playing');
                     updatePlayPauseIcon(true);
+                    updateVolumeIcon(audio.volume);
                     setTimeout(saveCurrentState, 100);
                 }).catch(function(err) {
                     console.log('Erreur play:', err);
@@ -2845,41 +2858,73 @@
         audioStop.addEventListener('click', handleStop);
     }
 
-    // ⚡ VOLUME
+    // ============ ⚡ VOLUME - VERSION CORRIGÉE ============
     if (audioVolume) {
-        audioVolume.addEventListener('input', function() {
-            const vol = parseInt(this.value, 10) / 100;
+        // Fonction principale de changement du volume
+        function setVolume(value) {
+            const vol = Math.max(0, Math.min(1, parseInt(value, 10) / 100));
+            
+            // Appliquer le volume
             audio.volume = vol;
             audio.muted = false;
+            
+            // Mettre à jour l'icône
+            updateVolumeIcon(vol);
+            
+            // Sauvegarder immédiatement
+            try {
+                localStorage.setItem(VOLUME_KEY, vol.toString());
+                const currentState = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}');
+                currentState.volume = vol;
+                sessionStorage.setItem(STORAGE_KEY, JSON.stringify(currentState));
+            } catch (e) {}
+            
+            // Mettre à jour le label (si vous en avez un)
+            const volDisplay = document.getElementById('volDisplay');
+            if (volDisplay) volDisplay.textContent = Math.round(vol * 100) + '%';
+        }
 
-            if (vol === 0) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else if (vol < 0.5) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-down"></i>';
-            } else {
-                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-            }
+        // Événement 'input' : quand l'utilisateur glisse le curseur (desktop + certains mobiles)
+        audioVolume.addEventListener('input', function(e) {
+            setVolume(this.value);
+        });
 
-            saveCurrentState();
+        // Événement 'change' : quand l'utilisateur relâche (mobile + desktop)
+        audioVolume.addEventListener('change', function(e) {
+            setVolume(this.value);
         });
-        
-        // Sur mobile, 'change' est parfois plus fiable
-        audioVolume.addEventListener('change', function() {
-            audio.volume = parseInt(this.value, 10) / 100;
-            audio.muted = false;
+
+        // Pour mobile Android : 'touchmove' pour capter le glissement
+        audioVolume.addEventListener('touchmove', function(e) {
+            setVolume(this.value);
+        }, { passive: true });
+
+        // Pour mobile : 'touchend' pour capter la fin du glissement
+        audioVolume.addEventListener('touchend', function(e) {
+            setVolume(this.value);
+        }, { passive: true });
+
+        // Empêcher la fermeture du panneau quand on touche le slider
+        audioVolume.addEventListener('click', function(e) {
+            e.stopPropagation();
         });
+
+        audioVolume.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
     }
 
-    // ⚡ CAS PARTICULIER iOS : débloquer l'audio à la première interaction
+    // ⚡ CAS PARTICULIER iOS : débloquer l'audio et le volume à la 1ère interaction
     if (isIOS) {
         const unlockAudio = function() {
-            // Sur iOS, on doit jouer un tout petit bout muet pour débloquer
-            const originalVolume = audio.volume;
+            const originalVolume = audio.volume || 0.35;
             audio.volume = 0;
             audio.play().then(function() {
                 audio.pause();
                 audio.currentTime = 0;
                 audio.volume = originalVolume;
+                audio.muted = false;
+                console.log('✅ Audio débloqué sur iOS');
                 document.removeEventListener('touchstart', unlockAudio);
                 document.removeEventListener('click', unlockAudio);
             }).catch(function() {});
@@ -2888,6 +2933,8 @@
         document.addEventListener('touchstart', unlockAudio, { once: true });
         document.addEventListener('click', unlockAudio, { once: true });
     }
+
+    console.log('🎵 Contrôle audio initialisé (Volume:', Math.round(audio.volume * 100) + '%)');
 })();
     </script>
 </body>
