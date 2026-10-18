@@ -1501,10 +1501,19 @@
             transition: all 0.3s;
         }
 
-        /* MODAL */
+        /* ============================================================
+           MODAL + FORMULAIRE GLISSABLE (DRAGGABLE)
+           ============================================================ */
         .modal { padding: 0 !important; }
-        .modal-dialog { max-height: calc(100vh - 40px); margin: 20px auto; display: flex; align-items: center; }
+        .modal-dialog {
+            max-height: calc(100vh - 40px);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            transition: none; /* désactive la transition Bootstrap pour le drag */
+        }
         .modal-dialog.modal-lg { max-width: 800px; width: calc(100% - 30px); }
+        .modal-dialog.modal-draggable { pointer-events: auto; }
         .modal-content {
             border: none;
             border-radius: 20px;
@@ -1523,7 +1532,12 @@
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none; /* empêche le scroll natif pendant le drag */
         }
+        .modal-header.dragging { cursor: grabbing; }
         .modal-header::before {
             content: '۞';
             position: absolute;
@@ -1532,10 +1546,29 @@
             font-size: 6rem;
             color: rgba(212, 175, 55, 0.15);
             font-family: 'Amiri', serif;
+            pointer-events: none;
         }
         .modal-header h5 { color: white; font-size: 1.15rem; margin: 0; position: relative; z-index: 2; }
         .modal-header p { margin: 5px 0 0; font-size: 0.78rem; opacity: 0.85; position: relative; z-index: 2; }
-        .modal-header .btn-close { filter: invert(1) brightness(2); opacity: 0.8; position: relative; z-index: 3; }
+        .modal-header .btn-close { filter: invert(1) brightness(2); opacity: 0.8; position: relative; z-index: 3; cursor: pointer; }
+
+        /* Indicateur visuel "glissable" */
+        .drag-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 3px 10px;
+            border-radius: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        .drag-hint i { color: var(--accent-gold); font-size: 0.65rem; }
+
         .modal-body {
             padding: 25px;
             background: var(--bg-cream);
@@ -1597,21 +1630,186 @@
         .btn-submit::before { content: ''; position: absolute; inset: 0; background: var(--gradient-gold); transform: translateX(-100%); transition: transform 0.4s ease; z-index: -1; }
         .btn-submit:hover::before { transform: translateX(0); }
         .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .success-message { display: none; text-align: center; padding: 25px 18px; }
-        .success-message .check-icon {
-            width: 65px; height: 65px; background: var(--gradient-gold); border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.6rem; margin-bottom: 15px; animation: popIn 0.5s ease;
+        .form-control.is-invalid, .form-select.is-invalid { border-color: #dc3545 !important; background-image: none; }
+        .form-control.is-valid, .form-select.is-valid { border-color: #198754 !important; background-image: none; }
+
+        /* ============================================================
+           MESSAGE DE SUCCÈS / ERREUR — VERSION PRO & RESPONSIVE
+           ============================================================ */
+        .success-message {
+            display: none;
+            padding: 0;
+            text-align: center;
+            background: var(--bg-cream);
         }
+        .success-message-inner {
+            padding: 40px 32px 32px;
+        }
+        .success-icon-wrapper {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .success-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+            animation: successPulse 2s ease-out infinite;
+        }
+        .success-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            border: 2px dashed rgba(212, 175, 55, 0.35);
+            animation: rotateRing 14s linear infinite;
+        }
+        .check-icon {
+            position: relative;
+            z-index: 2;
+            width: 72px;
+            height: 72px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.9rem;
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.45);
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 3px solid white;
+        }
+        .check-icon i { animation: checkDraw 0.6s ease 0.2s both; }
+        .success-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin: 0 0 10px 0;
+            line-height: 1.25;
+            letter-spacing: 0.3px;
+        }
+        .success-subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(25, 135, 84, 0.1);
+            color: #198754;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+        .success-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 460px;
+            margin: 0 auto 24px;
+        }
+        .success-text strong {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+        .success-info-card {
+            background: white;
+            border-radius: 14px;
+            padding: 16px 20px;
+            max-width: 460px;
+            margin: 0 auto 26px;
+            text-align: left;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .success-info-card i {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .success-info-card p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+        .success-info-card p strong { color: var(--primary-green); }
+
+        .success-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 32px 32px;
+        }
+        .success-actions .btn {
+            min-width: 150px;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.35s ease;
+        }
+        .success-actions .btn-close-success {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid rgba(10, 77, 58, 0.15);
+        }
+        .success-actions .btn-close-success:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             50% { transform: scale(1.15); }
             100% { transform: scale(1); opacity: 1; }
         }
-        .form-control.is-invalid, .form-select.is-invalid { border-color: #dc3545 !important; background-image: none; }
-        .form-control.is-valid, .form-select.is-valid { border-color: #198754 !important; background-image: none; }
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        @keyframes checkDraw {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
 
-        /* RESPONSIVE */
+        /* Version erreur */
+        .error-icon-wrapper .check-icon {
+            background: linear-gradient(135deg, #dc3545, #e4606d);
+            color: white;
+        }
+        .error-icon-wrapper::before {
+            background: radial-gradient(circle, rgba(220, 53, 69, 0.18) 0%, transparent 70%);
+        }
+        .error-icon-wrapper::after {
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        .error-title { color: #dc3545; }
+        .error-subtitle {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+
+        /* ============ RESPONSIVE ============ */
         @media (max-width: 1199px) {
             .hero-content h1 { font-size: 2.8rem; }
         }
@@ -1716,7 +1914,7 @@
             .newsletter-btn { border-radius: 50px; width: 100%; }
             footer form { flex-direction: column !important; }
 
-            /* ===== FORMULAIRE RESPONSIVE (CORRIGÉ) ===== */
+            /* ===== FORMULAIRE RESPONSIVE ===== */
             .modal-dialog { max-height: 100dvh; margin: 0; width: 100%; align-items: stretch; }
             .modal-dialog.modal-lg { width: 100%; max-width: 100%; }
             .modal-content { max-height: 100dvh; border-radius: 0; height: 100dvh; }
@@ -1724,6 +1922,7 @@
             .modal-header { padding: 18px; }
             .modal-header h5 { font-size: 1rem; }
             .modal-header p { font-size: 0.72rem; }
+            .drag-hint { font-size: 0.62rem; padding: 2px 8px; }
             .modal-footer {
                 padding: 14px 18px calc(14px + env(safe-area-inset-bottom)) 18px;
                 flex-direction: column-reverse;
@@ -1747,7 +1946,18 @@
             .form-floating > .form-select { height: 52px; font-size: 0.83rem; padding: 14px 15px; }
             .form-floating > label { font-size: 0.78rem; padding: 14px 15px; }
             .input-icon { right: 14px; font-size: 0.8rem; }
-            /* ===== FIN FORMULAIRE RESPONSIVE ===== */
+
+            /* ===== MESSAGE SUCCÈS RESPONSIVE ===== */
+            .success-message-inner { padding: 32px 22px 24px; }
+            .success-icon-wrapper { width: 82px; height: 82px; margin-bottom: 18px; }
+            .check-icon { width: 62px; height: 62px; font-size: 1.6rem; }
+            .success-title { font-size: 1.25rem; }
+            .success-subtitle { font-size: 0.65rem; padding: 3px 12px; }
+            .success-text { font-size: 0.83rem; margin-bottom: 20px; }
+            .success-info-card { padding: 14px 16px; margin-bottom: 22px; }
+            .success-info-card p { font-size: 0.76rem; }
+            .success-actions { padding: 0 22px 26px; flex-direction: column; }
+            .success-actions .btn { width: 100%; min-height: 48px; }
         }
 
         @media (max-width: 480px) {
@@ -3346,14 +3556,15 @@
         </style>
     </footer>
 
-    <!-- MODAL FORMULAIRE -->
+    <!-- MODAL FORMULAIRE GLISSABLE -->
     <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" id="joinDialog">
+            <div class="modal-content" id="joinContent">
+                <div class="modal-header" id="joinDragHandle">
                     <div>
                         <h5 id="joinModalLabel"><i class="fas fa-user-plus me-2 text-gold"></i>Rejoindre la Dahira D3S</h5>
                         <p>Remplissez le formulaire ci-dessous pour devenir membre.</p>
+                        <span class="drag-hint"><i class="fas fa-arrows-alt"></i> Glissez l'en-tête pour déplacer</span>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                 </div>
@@ -3410,7 +3621,6 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating position-relative">
-                                    <!-- ✅ MODIFICATION : champ message facultatif (required et minlength retirés) -->
                                     <textarea class="form-control" id="message" name="message" placeholder="Message" style="height: 130px; padding-top: 20px;" maxlength="1000"></textarea>
                                     <label for="message"><i class="fas fa-comment-dots text-gold me-1"></i>Votre message <span class="text-muted">(facultatif)</span></label>
                                 </div>
@@ -3439,31 +3649,74 @@
                     </div>
                 </form>
 
+                <!-- ============================================================
+                     MESSAGE DE SUCCÈS — VERSION PRO & RESPONSIVE
+                     ============================================================ -->
                 <div class="success-message" id="successMessage">
-                    <div class="check-icon">
-                        <i class="fas fa-check"></i>
+                    <div class="success-message-inner">
+                        <div class="success-icon-wrapper">
+                            <div class="check-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <span class="success-subtitle">
+                            <i class="fas fa-check-circle"></i> Demande confirmée
+                        </span>
+                        <h4 class="success-title">Bienvenue dans la famille D3S !</h4>
+                        <p class="success-text">
+                            Barakallahou fik <strong id="successName"></strong> !<br>
+                            Votre demande d'adhésion a bien été reçue et enregistrée.
+                        </p>
+                        <div class="success-info-card">
+                            <i class="fas fa-info-circle"></i>
+                            <p>
+                                Notre équipe vous contactera <strong>très prochainement via WhatsApp</strong> pour finaliser votre adhésion et vous transmettre les informations pratiques.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="mb-3" style="color: var(--primary-green); font-size: 1.1rem;">Demande envoyée avec succès !</h4>
-                    <p class="text-muted mb-4">
-                        Barakallahou fik <strong id="successName"></strong> ! Votre demande a bien été reçue. 
-                        Notre équipe vous contactera très prochainement via WhatsApp.
-                    </p>
-                    <button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">
-                        <i class="fas fa-check me-2"></i>Fermer
-                    </button>
+                    <div class="success-actions">
+                        <button type="button" class="btn btn-close-success" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Fermer
+                        </button>
+                        <button type="button" class="btn btn-primary-custom" id="successShareBtn">
+                            <i class="fas fa-share-alt"></i> Partager
+                        </button>
+                    </div>
                 </div>
 
+                <!-- ============================================================
+                     MESSAGE D'ERREUR — VERSION PRO & RESPONSIVE
+                     ============================================================ -->
                 <div class="success-message" id="errorMessage">
-                    <div class="check-icon" style="background: linear-gradient(135deg, #dc3545, #e4606d);">
-                        <i class="fas fa-exclamation-triangle"></i>
+                    <div class="success-message-inner">
+                        <div class="success-icon-wrapper error-icon-wrapper">
+                            <div class="check-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                        <span class="success-subtitle error-subtitle">
+                            <i class="fas fa-exclamation-circle"></i> Erreur d'envoi
+                        </span>
+                        <h4 class="success-title error-title">Une erreur est survenue</h4>
+                        <p class="success-text">
+                            Désolé, votre demande n'a pas pu être envoyée.<br>
+                            Veuillez réessayer ou nous contacter directement.
+                        </p>
+                        <div class="success-info-card">
+                            <i class="fas fa-wifi"></i>
+                            <p>
+                                Vérifiez votre connexion internet puis réessayez. Si le problème persiste, contactez-nous via <strong>WhatsApp</strong>.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="mb-3" style="color: #dc3545; font-size: 1.1rem;">Erreur d'envoi</h4>
-                    <p class="text-muted mb-4">
-                        Désolé, une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement par WhatsApp.
-                    </p>
-                    <button type="button" class="btn btn-primary-custom" onclick="location.reload()">
-                        <i class="fas fa-redo me-2"></i>Réessayer
-                    </button>
+                    <div class="success-actions">
+                        <button type="button" class="btn btn-close-success" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Fermer
+                        </button>
+                        <button type="button" class="btn btn-primary-custom" onclick="location.reload()">
+                            <i class="fas fa-redo"></i> Réessayer
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3887,6 +4140,7 @@
                     $('#errorMessage').hide();
                     $submitBtn.html(originalBtnText).prop('disabled', false);
                     $(this).off('hidden.bs.modal');
+                    resetModalPosition();
                 });
             } catch (error) {
                 console.error('EmailJS Error:', error);
@@ -3933,12 +4187,124 @@
             }, 1000);
         });
 
+        // ============ BOUTON PARTAGER SUCCÈS ============
+        $('#successShareBtn').on('click', function() {
+            const shareData = {
+                title: 'Dahira Sope Serigne Saliou (D3S)',
+                text: 'Je viens de rejoindre la Dahira D3S. Rejoignez-nous !',
+                url: window.location.origin
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(function() {});
+            } else {
+                // fallback : copier le lien
+                navigator.clipboard.writeText(window.location.origin).then(function() {
+                    const $btn = $('#successShareBtn');
+                    const original = $btn.html();
+                    $btn.html('<i class="fas fa-check"></i> Lien copié !');
+                    setTimeout(function() { $btn.html(original); }, 2000);
+                }).catch(function() {});
+            }
+        });
+
         // ============ SÉCURITÉ : Anti-clickjacking ============
         if (window.top !== window.self) {
             window.top.location = window.self.location;
         }
 
-        console.log('%c🕌 Dahira D3S - Site sécurisé avec carrousel événements', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
+        // ============================================================
+        // FORMULAIRE GLISSABLE (DRAGGABLE) — souris + tactile
+        // ============================================================
+        (function initDraggableModal() {
+            const modal = document.getElementById('joinModal');
+            const dialog = document.getElementById('joinDialog');
+            const content = document.getElementById('joinContent');
+            const handle = document.getElementById('joinDragHandle');
+
+            if (!modal || !dialog || !content || !handle) return;
+
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let offsetX = 0, offsetY = 0;
+            let currentX = 0, currentY = 0;
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            function resetModalPosition() {
+                content.style.transform = '';
+                content.style.transition = '';
+                currentX = 0;
+                currentY = 0;
+            }
+
+            // Exposer la fonction pour le reset après succès
+            window.resetModalPosition = resetModalPosition;
+
+            function clamp(v, min, max) {
+                return Math.max(min, Math.min(max, v));
+            }
+
+            function onStart(e) {
+                // Ignore les clics sur le bouton de fermeture
+                if (e.target.closest('.btn-close')) return;
+
+                // Sur mobile (<= 767px), on désactive le drag pour garder le fullscreen
+                if (window.innerWidth <= 767) return;
+
+                const evt = e.type === 'touchstart' ? e.touches[0] : e;
+                isDragging = true;
+                startX = evt.clientX;
+                startY = evt.clientY;
+                offsetX = currentX;
+                offsetY = currentY;
+                content.style.transition = 'none';
+                handle.classList.add('dragging');
+                if (e.type === 'mousedown') e.preventDefault();
+            }
+
+            function onMove(e) {
+                if (!isDragging) return;
+                const evt = e.type === 'touchmove' ? e.touches[0] : e;
+                let dx = evt.clientX - startX + offsetX;
+                let dy = evt.clientY - startY + offsetY;
+
+                // Limites pour garder le modal visible
+                const rect = content.getBoundingClientRect();
+                const maxX = (window.innerWidth - rect.width) / 2;
+                const maxY = (window.innerHeight - rect.height) / 2;
+
+                dx = clamp(dx, -maxX, maxX);
+                dy = clamp(dy, -maxY, maxY);
+
+                currentX = dx;
+                currentY = dy;
+                content.style.transform = `translate(${dx}px, ${dy}px)`;
+
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function onEnd() {
+                if (!isDragging) return;
+                isDragging = false;
+                handle.classList.remove('dragging');
+                content.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            }
+
+            // Souris
+            handle.addEventListener('mousedown', onStart);
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onEnd);
+
+            // Tactile
+            handle.addEventListener('touchstart', onStart, { passive: false });
+            document.addEventListener('touchmove', onMove, { passive: false });
+            document.addEventListener('touchend', onEnd);
+            document.addEventListener('touchcancel', onEnd);
+
+            // Reset à la fermeture
+            modal.addEventListener('hidden.bs.modal', resetModalPosition);
+        })();
+
+        console.log('%c🕌 Dahira D3S - Site sécurisé avec formulaire glissable', 'background: #0a4d3a; color: #d4af37; font-size: 14px; padding: 6px 12px; border-radius: 6px; font-weight: bold;');
                 // ============ AUDIO FLOTTANT - VERSION ULTRA-ROBUSTE ============
 (function initAudioControl() {
     console.log('🎵 initAudioControl: démarrage');
@@ -4185,7 +4551,7 @@
             audioPlayPause.addEventListener('click', handlePlayPause);
         }
 
-        // ⚡ Stop        
+        // ⚡ Stop
         if (audioStop) {
             const handleStop = function(e) {
                 e.preventDefault();
