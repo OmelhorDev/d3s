@@ -64,5 +64,7 @@
   { "title": "Yarahmanou Yarahimou", "file": "xassidas/Yarahmanou-Yarahimou.pdf", "category": "xassida" },
   { "title": "Ya Khayra Dayfin", "file": "xassidas/Ya_khayra_dayfin (1).pdf", "category": "xassida" },
   { "title": "Alaa Inani Ousni & Alaa Inani Arju", "file": "xassidas/Alaa_Inani_Ousni_&_Alaa_Inani_Arju_Ed_Srn_Saliou_Mbacke.pdf", "category": "xassida" },
-  { "title": "Jawâbu Sokhna Penda Job", "file": "xassidas/Jawâbu_Sokhna_Penda_Job.pdf", "category": "enseignement" }
+  { "title": "Jawâbu Sokhna Penda Job", "file": "xassidas/Jawâbu_Sokhna_Penda_Job.pdf", "category": "enseignement" },
+  { "title": "Tazawudu Ss Sikhar", "file": "xassidas/Tazawudu Ss Sikhar.pdf", "category": "enseignement" },
+  { "title": "JAWHAR_J", "file": "xassidas/JAWHAR_J.pdf", "category": "enseignement" }
 ]
