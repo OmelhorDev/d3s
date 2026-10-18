@@ -1715,21 +1715,39 @@
             .newsletter-input { border-radius: 50px; margin-bottom: 8px; width: 100%; }
             .newsletter-btn { border-radius: 50px; width: 100%; }
             footer form { flex-direction: column !important; }
-            
-            .modal-dialog { max-height: calc(100vh - 20px); margin: 10px auto; }
-            .modal-dialog.modal-lg { width: calc(100% - 20px); }
-            .modal-content { max-height: calc(100vh - 20px); }
-            .modal-body { padding: 18px; max-height: calc(100vh - 180px); }
+
+            /* ===== FORMULAIRE RESPONSIVE (CORRIGÉ) ===== */
+            .modal-dialog { max-height: 100dvh; margin: 0; width: 100%; align-items: stretch; }
+            .modal-dialog.modal-lg { width: 100%; max-width: 100%; }
+            .modal-content { max-height: 100dvh; border-radius: 0; height: 100dvh; }
+            .modal-body { padding: 18px; max-height: none; flex: 1 1 auto; overflow-y: auto; }
             .modal-header { padding: 18px; }
             .modal-header h5 { font-size: 1rem; }
             .modal-header p { font-size: 0.72rem; }
-            .modal-footer { padding: 15px 18px 18px; flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            .btn-submit { width: 100%; padding: 13px 18px; font-size: 0.85rem; }
+            .modal-footer {
+                padding: 14px 18px calc(14px + env(safe-area-inset-bottom)) 18px;
+                flex-direction: column-reverse;
+                gap: 10px;
+                position: sticky;
+                bottom: 0;
+                background: white;
+                box-shadow: 0 -6px 20px rgba(10, 77, 58, 0.08);
+                z-index: 5;
+            }
+            .modal-footer .btn,
+            .modal-footer .btn-submit {
+                width: 100%;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-submit { padding: 13px 18px; font-size: 0.88rem; }
             .form-floating > .form-control,
             .form-floating > .form-select { height: 52px; font-size: 0.83rem; padding: 14px 15px; }
             .form-floating > label { font-size: 0.78rem; padding: 14px 15px; }
             .input-icon { right: 14px; font-size: 0.8rem; }
+            /* ===== FIN FORMULAIRE RESPONSIVE ===== */
         }
 
         @media (max-width: 480px) {
@@ -3392,8 +3410,9 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating position-relative">
-                                    <textarea class="form-control" id="message" name="message" placeholder="Message" style="height: 130px; padding-top: 20px;" required minlength="10" maxlength="1000"></textarea>
-                                    <label for="message"><i class="fas fa-comment-dots text-gold me-1"></i>Votre message * <span class="text-muted">(min. 10 caractères)</span></label>
+                                    <!-- ✅ MODIFICATION : champ message facultatif (required et minlength retirés) -->
+                                    <textarea class="form-control" id="message" name="message" placeholder="Message" style="height: 130px; padding-top: 20px;" maxlength="1000"></textarea>
+                                    <label for="message"><i class="fas fa-comment-dots text-gold me-1"></i>Votre message <span class="text-muted">(facultatif)</span></label>
                                 </div>
                                 <small class="text-muted d-block mt-1">
                                     <i class="fas fa-info-circle me-1"></i>
@@ -4166,7 +4185,7 @@
             audioPlayPause.addEventListener('click', handlePlayPause);
         }
 
-        // ⚡ Stop
+        // ⚡ Stop        
         if (audioStop) {
             const handleStop = function(e) {
                 e.preventDefault();
