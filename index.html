@@ -4022,7 +4022,7 @@
         });
 
         // ============ VALIDATION ============
-        $('#joinForm input, #joinForm textarea, #joinForm select').on('blur input', function() {
+        $('#joinForm input, #joinForm select').on('blur input', function() {
             var $field = $(this);
             if ($field.attr('type') === 'checkbox' || $field.is('#website_url')) return;
             
@@ -4071,12 +4071,10 @@
 
             const rawData = {
                 prenom: $('#prenom').val().trim(),
-                nom: $('#nom').val().trim(),
                 whatsapp: $('#whatsapp').val().trim(),
                 ville: $('#ville').val().trim(),
                 adresse: $('#adresse').val().trim(),
-                profession: $('#profession').val().trim(),
-                message: $('#message').val().trim()
+                profession: $('#profession').val().trim()
             };
 
             for (const [key, value] of Object.entries(rawData)) {
@@ -4088,12 +4086,10 @@
 
             const formData = {
                 prenom: sanitizeInput(rawData.prenom),
-                nom: sanitizeInput(rawData.nom),
                 whatsapp: sanitizeInput(rawData.whatsapp),
                 ville: sanitizeInput(rawData.ville),
                 adresse: sanitizeInput(rawData.adresse),
                 profession: sanitizeInput(rawData.profession),
-                message: sanitizeInput(rawData.message),
                 date_envoi: new Date().toLocaleString('fr-FR'),
                 user_agent: navigator.userAgent.substring(0, 100)
             };
